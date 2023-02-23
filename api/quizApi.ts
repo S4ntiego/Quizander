@@ -1,3 +1,5 @@
+import axios from "axios"
+
 import {
   GenericResponse,
   IQuizResponse,
@@ -16,7 +18,20 @@ export const getQuizFn = async (id: string) => {
 }
 
 export const createQuizFn = async (formData: FormData) => {
-  const response = await authApi.post<IQuizResponse>(`quizzes`, formData)
+  const response = await axios.post(`/api/quiz/upload-quiz`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
+  return response.data
+}
+
+export const uploadImageFn = async (formData: FormData) => {
+  const response = await axios.post(`/api/upload-image`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
   return response.data
 }
 

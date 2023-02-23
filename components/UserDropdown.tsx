@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
@@ -72,21 +74,27 @@ const UserDropdown = () => {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <User className="mr-2 h-4 w-4" />
-                <span>Profile</span>
-                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Settings</span>
-                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Dashboard</span>
-                <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
-              </DropdownMenuItem>
+              <Link href="/user/profile">
+                <DropdownMenuItem>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/user/settings">
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/dashboard">
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Dashboard</span>
+                  <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => signOut()}>
