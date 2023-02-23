@@ -5,11 +5,10 @@ import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 import EditQuiz from "@/components/EditQuiz"
 
-async function getPostForUser(id: Quiz["id"], userId: User["id"]) {
+async function getQuiz(id: Quiz["id"]) {
   const quiz = await prisma.quiz.findFirst({
     where: {
       id: id,
-      createdById: userId,
     },
     include: {
       questions: {
@@ -27,7 +26,7 @@ async function getPostForUser(id: Quiz["id"], userId: User["id"]) {
 }
 
 interface EditorPageProps {
-  params: { quizId: string }
+  params: { id: string }
 }
 
 export default async function EditorPage({ params }: EditorPageProps) {
@@ -37,7 +36,7 @@ export default async function EditorPage({ params }: EditorPageProps) {
     redirect("/login")
   }
 
-  const quiz = await getPostForUser(params.quizId, user.id)
+  const quiz = await getQuiz(params.id)
 
   if (!quiz) {
     notFound()

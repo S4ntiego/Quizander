@@ -51,7 +51,11 @@ export const saveQuizDataFn = async (
 }
 
 export const updateQuizFn = async (id: string, formData: FormData) => {
-  const response = await authApi.patch<IQuizResponse>(`quizzes/${id}`, formData)
+  const response = await axios.patch(`/api/quiz/upload-quiz`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
   return response.data
 }
 

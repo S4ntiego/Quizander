@@ -62,9 +62,6 @@ function QuizArtwork({
             src={quiz.coverImage}
             alt={quiz.title}
             fill
-            sizes="(min-width: 60em) 24vw,
-            (min-width: 28em) 45vw,
-            100vw"
             className="object-cover transition-all hover:scale-105"
           />
         </AspectRatio>

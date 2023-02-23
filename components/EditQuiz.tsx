@@ -5,6 +5,7 @@ import Image from "next/image"
 import { updateQuizFn } from "@/api/quizApi"
 import { IQuizResponse } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Quiz } from "@prisma/client"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { pickBy } from "lodash"
 import { useForm } from "react-hook-form"
@@ -12,10 +13,6 @@ import { toast } from "react-toastify"
 import { TypeOf, object, string, z } from "zod"
 
 import Question from "@/components/Question"
-
-interface IUpdateQuizProp {
-  quiz: IQuizResponse
-}
 
 const updateQuizSchema = object({
   coverImage: z.any(),
@@ -25,7 +22,7 @@ const updateQuizSchema = object({
   questions: z.any(),
 }).partial()
 
-type IUpdateQuiz = TypeOf<typeof updateQuizSchema>
+type UpdateQuizForm = TypeOf<typeof updateQuizSchema>
 
 export default function QuizzesForm({ quiz }) {
   const queryClient = useQueryClient()
@@ -53,7 +50,8 @@ export default function QuizzesForm({ quiz }) {
     }
   )
 
-  const methods = useForm<IUpdateQuiz>({
+  //object returned will have the same shape as UpdateQuizForm
+  const methods = useForm<UpdateQuizForm>({
     resolver: zodResolver(updateQuizSchema),
   })
 
@@ -75,7 +73,7 @@ export default function QuizzesForm({ quiz }) {
       formData.append(key, JSON.stringify(val))
     }
 
-    updateQuiz({ id: quiz?._id!, formData })
+    updateQuiz({ id: quiz.id, formData })
   }
 
   useEffect(() => {
@@ -94,8 +92,8 @@ export default function QuizzesForm({ quiz }) {
   return (
     <form onSubmit={methods.handleSubmit(onSubmit)}>
       <Image
-        src={quiz?.coverImage}
-        alt={quiz?.title}
+        src={quiz.coverImage}
+        alt={quiz.title}
         width={402}
         height={226}
         className="rounded-md border border-slate-200 bg-slate-200 transition-colors group-hover:border-slate-900"

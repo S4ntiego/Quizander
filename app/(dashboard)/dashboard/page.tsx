@@ -7,8 +7,8 @@ import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 import { DashboardShell } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
+import { DashboardQuizItem } from "@/components/Dashboard/DashboardQuizItem"
 import { EmptyPlaceholder } from "@/components/Dashboard/EmptyPlaceholder"
-import { QuizItem } from "@/components/QuizItem"
 import { buttonVariants } from "@/components/ui/button"
 
 const getQuizzes = cache(async () => {
@@ -54,9 +54,9 @@ export default async function DashboardPage() {
       </DashboardHeader>
       <div>
         {quizzes?.length ? (
-          <div className="divide-y relative divide-neutral-200 rounded-md border border-slate-200">
+          <div className="grid grid-cols-3 gap-2">
             {quizzes.map((quiz) => (
-              <QuizItem key={quiz.id} quiz={quiz} className="w-48" />
+              <DashboardQuizItem key={quiz.id} quiz={quiz} />
             ))}
           </div>
         ) : (

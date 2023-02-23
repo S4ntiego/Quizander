@@ -2,27 +2,15 @@
 
 import Link from "next/link"
 import { logoutUserFn } from "@/api/authApi"
-import { useMutation, useQuery } from "@tanstack/react-query"
-import { LogOut, Settings, User } from "lucide-react"
-import { signIn, signOut, useSession } from "next-auth/react"
+import { useMutation } from "@tanstack/react-query"
+import { signIn, useSession } from "next-auth/react"
 import { toast } from "react-toastify"
 
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
 import { Icons } from "@/components/Icons"
 import { MainNav } from "@/components/MainNav"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { Button, buttonVariants } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import UserDropdown from "./UserDropdown"
 import {
   Dialog,
