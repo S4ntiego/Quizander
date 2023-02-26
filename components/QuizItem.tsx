@@ -4,6 +4,7 @@ import { Quiz } from "@prisma/client"
 
 import { cn, formatDate } from "@/lib/utils"
 import { AspectRatio } from "./ui/aspect-ratio"
+import { Skeleton } from "./ui/skeleton"
 
 interface QuizItemProps extends React.HTMLAttributes<HTMLDivElement> {
   quiz: Quiz
@@ -44,5 +45,16 @@ export function QuizItem({
         </div>
       </Link>
     </article>
+  )
+}
+
+QuizItem.Skeleton = function PostItemSkeleton() {
+  return (
+    <div className="p-4">
+      <div className="space-y-3">
+        <Skeleton className="h-5 w-2/5" />
+        <Skeleton className="h-4 w-4/5" />
+      </div>
+    </div>
   )
 }

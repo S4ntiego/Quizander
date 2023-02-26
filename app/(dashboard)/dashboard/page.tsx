@@ -5,10 +5,11 @@ import { redirect } from "next/navigation"
 import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
-import { DashboardShell } from "@/components/Dashboard/DashboardContainer"
+import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 import { DashboardQuizItem } from "@/components/Dashboard/DashboardQuizItem"
 import { EmptyPlaceholder } from "@/components/Dashboard/EmptyPlaceholder"
+import { Icons } from "@/components/Icons"
 import { buttonVariants } from "@/components/ui/button"
 
 const getQuizzes = cache(async () => {
@@ -43,18 +44,19 @@ export default async function DashboardPage() {
   const quizzes = await getQuizzes()
 
   return (
-    <DashboardShell>
+    <DashboardContainer>
       <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
         <Link
           className={cn(buttonVariants({ variant: "default" }))}
           href="/dashboard/editor"
         >
-          Add quiz
+          <Icons.add className="w-4 h-4 mr-2" />
+          Create Quiz
         </Link>
       </DashboardHeader>
       <div>
         {quizzes?.length ? (
-          <div className="grid grid-cols-3 gap-2">
+          <div className="divide-y dark:divide-slate-600 divide-neutral-200 rounded-md border dark:border-slate-600 border-slate-200">
             {quizzes.map((quiz) => (
               <DashboardQuizItem key={quiz.id} quiz={quiz} />
             ))}
@@ -62,19 +64,22 @@ export default async function DashboardPage() {
         ) : (
           <EmptyPlaceholder>
             <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No quizzes created</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Title>
+              There are no quizzes yet
+            </EmptyPlaceholder.Title>
             <EmptyPlaceholder.Description>
-              You don&apos;t have any quizzes yet. Click below to add quiz.
+              Click below to start creating content.
             </EmptyPlaceholder.Description>
             <Link
               className={cn(buttonVariants({ variant: "default" }))}
               href="/dashboard/editor"
             >
-              Add quiz
+              <Icons.add className="w-4 h-4 mr-2" />
+              Create Quiz
             </Link>
           </EmptyPlaceholder>
         )}
       </div>
-    </DashboardShell>
+    </DashboardContainer>
   )
 }

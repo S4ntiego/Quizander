@@ -1,24 +1,36 @@
+import { cache } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { Quiz } from "@prisma/client"
 
+import prisma from "@/lib/prisma"
 import { cn, formatDate } from "@/lib/utils"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
-interface Quiz {
-  id: string
-  title: string
-  description: string
-  category: string
-  questions?: []
-  coverImage: string
-  createdBy: string
-  createdAt: string
-  updatedAt: string
-}
+const getQuizzes = cache(async () => {
+  const quizzes = await prisma.quiz.findMany({
+    include: {
+      questions: {
+        select: {
+          question: true,
+          answers: { select: { answer: true, isCorrect: true } },
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  })
+
+  for (const quiz of quizzes) {
+    quiz.coverImage = "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+  }
+
+  return quizzes
+})
 
 export default async function IndexPage() {
-  const res = await fetch("http://localhost:3000/api/quiz/get-quizzes")
-  const quizzes = await res.json()
+  const quizzes = await getQuizzes()
 
   return (
     <div>
@@ -34,7 +46,7 @@ export default async function IndexPage() {
 
         <div className="relative flex space-x-4">
           {quizzes.map((quiz) => (
-            <QuizArtwork key={quiz.title} quiz={quiz} className="w-96" />
+            <QuizArtwork key={quiz.title} quiz={quiz} className=" w-80" />
           ))}
         </div>
       </section>
@@ -74,7 +86,7 @@ function QuizArtwork({
           </p>
           {quiz.createdAt && (
             <p className="text-xs text-slate-600">
-              {formatDate(quiz?.createdAt)}
+              {formatDate(quiz.createdAt)}
             </p>
           )}
           <span className="sr-only">Play Quiz</span>

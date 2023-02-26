@@ -15,6 +15,7 @@ import { Session } from "next-auth"
 import { SessionProvider } from "next-auth/react"
 import { ThemeProvider } from "next-themes"
 
+import { Toaster } from "@/components/ui/toast"
 import { StateContextProvider } from "../context/index"
 
 const queryClient = new QueryClient({
@@ -72,6 +73,7 @@ export default function RootLayout({
               <ReactQueryDevtools initialIsOpen={false} />
             </SessionProvider>
           </QueryClientProvider>
+          <Toaster position="bottom-right" />
         </ThemeProvider>
       </body>
     </html>

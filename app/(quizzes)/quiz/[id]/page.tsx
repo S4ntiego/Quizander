@@ -1,8 +1,18 @@
 import { Quiz } from "@/components/Quiz"
 
-export async function getQuiz(id: string) {
-  const res = await fetch(`http://localhost:3000/api/quiz/${id}`)
-  const quiz = res.json()
+export async function getQuiz(quizId: string) {
+  const quiz = await prisma.quiz.findUnique({
+    where: { id: quizId as string },
+    include: {
+      questions: {
+        select: {
+          question: true,
+          answers: { select: { answer: true, isCorrect: true } },
+        },
+      },
+    },
+  })
+
   return quiz
 }
 
@@ -11,7 +21,7 @@ interface QuizPageProps {
 }
 
 export default async function QuizPage({ params }: QuizPageProps) {
-  const quiz = await getQuiz(params?.id)
+  const quiz = await getQuiz(params.id)
 
   return <Quiz quiz={quiz} />
 }

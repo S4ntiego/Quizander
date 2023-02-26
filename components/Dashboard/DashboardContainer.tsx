@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 interface DashboardContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function DashboardShell({
+export function DashboardContainer({
   children,
   className,
   ...props

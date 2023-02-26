@@ -1,8 +1,8 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
-import { unstable_getServerSession } from "next-auth/next"
+import { getServerSession } from "next-auth/next"
 
 export async function getSession() {
-  return await unstable_getServerSession(authOptions)
+  return await getServerSession(authOptions)
 }
 
 export async function getCurrentUser() {

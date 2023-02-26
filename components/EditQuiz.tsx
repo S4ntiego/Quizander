@@ -1,18 +1,15 @@
 "use client"
 
-import React, { useEffect } from "react"
+import React, { useEffect, useState, useTransition } from "react"
 import Image from "next/image"
-import { updateQuizFn } from "@/api/quizApi"
-import { IQuizResponse } from "@/types"
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Quiz } from "@prisma/client"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { pickBy } from "lodash"
 import { useForm } from "react-hook-form"
-import { toast } from "react-toastify"
 import { TypeOf, object, string, z } from "zod"
 
 import Question from "@/components/Question"
+import { toast } from "./ui/toast"
 
 const updateQuizSchema = object({
   coverImage: z.any(),
@@ -24,31 +21,35 @@ const updateQuizSchema = object({
 
 type UpdateQuizForm = TypeOf<typeof updateQuizSchema>
 
-export default function QuizzesForm({ quiz }) {
-  const queryClient = useQueryClient()
-  const { isLoading, mutate: updateQuiz } = useMutation(
-    ({ id, formData }: { id: string; formData: FormData }) =>
-      updateQuizFn(id, formData),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["quizzes"])
-        toast.success("Quiz updated successfully")
-      },
-      onError: (error: any) => {
-        if (Array.isArray(error.response.data.error)) {
-          error.data.error.forEach((el: any) =>
-            toast.error(el.message, {
-              position: "top-right",
-            })
-          )
-        } else {
-          toast.error(error.response.data.message, {
-            position: "top-right",
-          })
-        }
-      },
+export default function QuizEditor({ quiz }) {
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition()
+  const [isFetching, setIsFetching] = useState(false)
+
+  async function updateQuiz(quizId: string, formData: FormData) {
+    try {
+      setIsFetching(true)
+      const response = await fetch(`/api/quiz/${quizId}`, {
+        method: "PATCH",
+        body: formData,
+      })
+
+      if (!response?.ok) {
+        toast({
+          title: "Something went wrong.",
+          message: "Your post was not deleted. Please try again.",
+          type: "error",
+        })
+      }
+
+      startTransition(() => {
+        setIsFetching(false)
+        router.refresh()
+      })
+    } catch (err) {
+      console.log(err)
     }
-  )
+  }
 
   //object returned will have the same shape as UpdateQuizForm
   const methods = useForm<UpdateQuizForm>({
@@ -73,7 +74,7 @@ export default function QuizzesForm({ quiz }) {
       formData.append(key, JSON.stringify(val))
     }
 
-    updateQuiz({ id: quiz.id, formData })
+    updateQuiz(quiz.id, formData)
   }
 
   useEffect(() => {
