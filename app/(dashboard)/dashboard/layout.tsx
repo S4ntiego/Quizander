@@ -22,7 +22,7 @@ export default async function DashboardLayout({
         <aside className="hidden w-[200px] flex-col md:flex ">
           <DashboardNav items={dashboardConfig.sidebarNav} />
         </aside>
-        <main className="flex w-full flex-1 flex-col overflow-hidden">
+        <main className="flex w-full p-1 flex-1 flex-col overflow-hidden">
           {children}
         </main>
       </div>

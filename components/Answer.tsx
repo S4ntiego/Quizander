@@ -28,22 +28,24 @@ export default function Answers({ nestIndex, control, register }: any) {
           >
             <span>{k + 1}.</span>
             <Input
-              type="answer"
+              type="text"
               {...register(`questions[${nestIndex}].answers[${k}].answer`)}
             />
+
             <Input
               htmlFor={`questions[${nestIndex}].answers[${k}].answer`}
               type="checkbox"
-              className="w-10 h-10"
+              className="appearance-none h-10 w-12 shrink-0 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900 flex items-center justify-center dark:checked:bg-slate-400"
               {...register(`questions[${nestIndex}].answers[${k}].isCorrect`)}
             />
+
             <Button
-              className="dark:hover:bg-red-800"
+              className="dark:hover:bg-red-800 hover:bg-red-500"
               variant="subtle"
               type="button"
               onClick={() => remove(k)}
             >
-              <Icons.trash />
+              <Icons.trash className="h-4 w-4" />
             </Button>
           </div>
         ))}

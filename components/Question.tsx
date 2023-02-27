@@ -24,11 +24,11 @@ export default function Questions({
 
   return (
     <>
-      <ul className="grid w-full gap-8">
+      <ul className="grid w-full gap-2">
         {fields.map((item, index) => {
           return (
             <li
-              className="border border-slate-600 p-6 rounded-md"
+              className="border dark:border-slate-600 border-slate-300 p-6 rounded-md"
               key={item.id}
             >
               <div className="grid w-full items-center gap-1.5">
@@ -46,7 +46,7 @@ export default function Questions({
                     type="button"
                     onClick={() => remove(index)}
                   >
-                    <Icons.trash />
+                    <Icons.trash className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
@@ -65,7 +65,7 @@ export default function Questions({
 
       <Button
         type="button"
-        variant="outline"
+        variant="subtle"
         onClick={() => {
           //work like append() from useFieldArray
           setValue("questions", [

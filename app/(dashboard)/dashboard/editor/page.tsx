@@ -103,7 +103,7 @@ export default function QuizzesForm() {
   return (
     <form
       onSubmit={methods.handleSubmit(onSubmit)}
-      className="grid w-full gap-4"
+      className="grid w-full gap-2"
     >
       <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="coverImage">Cover Image</Label>

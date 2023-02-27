@@ -9,6 +9,10 @@ import { useForm } from "react-hook-form"
 import { TypeOf, object, string, z } from "zod"
 
 import Question from "@/components/Question"
+import { Icons } from "./Icons"
+import { Button } from "./ui/button"
+import { Input } from "./ui/input"
+import { Label } from "./ui/label"
 import { toast } from "./ui/toast"
 
 const updateQuizSchema = object({
@@ -91,35 +95,53 @@ export default function QuizEditor({ quiz }) {
   }, [quiz])
 
   return (
-    <form onSubmit={methods.handleSubmit(onSubmit)}>
-      <Image
-        src={quiz.coverImage}
-        alt={quiz.title}
-        width={402}
-        height={226}
-        className="rounded-md border border-slate-200 bg-slate-200 transition-colors group-hover:border-slate-900"
-      />
-      <label htmlFor="coverImage">Cover Image</label>
-      <br />
-      <input
-        {...methods.register("coverImage", { required: true })}
-        type="file"
-      />
-      <br />
-      <label htmlFor="title">Title</label>
-      <br />
-      <input type="text" {...methods.register(`title`)} />
-      <br />
-      <label htmlFor="category">Category</label>
-      <br />
-      <input type="text" {...methods.register(`category`)} />
-      <br />
-      <label htmlFor="description">Description</label>
-      <br />
-      <input type="text" {...methods.register(`description`)} />
-      <hr />
+    <form className="grid gap-2" onSubmit={methods.handleSubmit(onSubmit)}>
+      <div className="grid w-full items-center gap-1.5 -mb-4">
+        <Label htmlFor="coverImage">Cover Image</Label>
+        <Image
+          src={quiz.coverImage}
+          alt={quiz.title}
+          width={402}
+          height={226}
+          className="rounded-md transition-colors group-hover:border-slate-900"
+        />
+        <Input
+          id="imgInp"
+          className="flex items-center justify-center rounded-md dark:border-none p-0 border-none"
+          placeholder="Email"
+          {...methods.register("coverImage", { required: true })}
+          type="file"
+        />
+      </div>
+
+      <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="title">Title</Label>
+        <Input placeholder="title" type="text" {...methods.register(`title`)} />
+      </div>
+      <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="category">Category</Label>
+        <Input
+          placeholder="category"
+          type="text"
+          {...methods.register(`category`)}
+        />
+      </div>
+      <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="description">Description</Label>
+        <Input type="text" {...methods.register(`description`)} />
+      </div>
+
       <Question {...{ control, register, getValues, setValue }} />
-      <input type="submit" />
+      <Button type="submit">
+        <span className="flex flex-row">
+          {isFetching ? (
+            <Icons.spinner className="h-4 w-4 animate-spin" />
+          ) : (
+            <Icons.trash className="h-4 w-4" />
+          )}
+          <span>Create quiz</span>
+        </span>
+      </Button>
     </form>
   )
 }
