@@ -199,6 +199,7 @@ export default function QuizzesForm() {
       <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="category">Category</Label>
         <Input
+          id="category"
           placeholder="category"
           type="text"
           {...methods.register(`category`)}
@@ -206,7 +207,11 @@ export default function QuizzesForm() {
       </div>
       <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="description">Description</Label>
-        <Input type="text" {...methods.register(`description`)} />
+        <Input
+          id="description"
+          type="text"
+          {...methods.register(`description`)}
+        />
       </div>
 
       <Question {...{ control, register, getValues, setValue }} />
