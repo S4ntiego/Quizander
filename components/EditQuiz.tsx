@@ -133,12 +133,10 @@ export default function QuizEditor({ quiz }) {
 
       <Question {...{ control, register, getValues, setValue }} />
       <Button type="submit">
-        <span className="flex flex-row">
+        <span className="flex flex-row justify-center items-center">
           {isFetching ? (
             <Icons.spinner className="h-4 w-4 animate-spin" />
-          ) : (
-            <Icons.trash className="h-4 w-4" />
-          )}
+          ) : null}
           <span>Create quiz</span>
         </span>
       </Button>

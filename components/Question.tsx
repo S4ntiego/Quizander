@@ -82,7 +82,10 @@ export default function Questions({
           ])
         }}
       >
-        Add Question
+        <span className="flex justify-center items-center flex-row">
+          <Icons.add className="h-4 w-4 mr-1" />
+          <span>Add question</span>
+        </span>
       </Button>
     </>
   )
