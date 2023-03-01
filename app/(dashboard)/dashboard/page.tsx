@@ -27,9 +27,12 @@ const getQuizzes = cache(async () => {
     },
   })
 
-  for (const quiz of quizzes) {
+  if(quizzes){
+for (const quiz of quizzes) {
     quiz.coverImage = "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
   }
+  }
+  
 
   return quizzes
 })

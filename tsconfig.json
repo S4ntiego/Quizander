@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -19,20 +23,37 @@
       "@/*": [
         "./*"
       ],
-      "@/components/*": ["components/*"],
-      "@/ui/*": ["ui/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/lib/*": ["lib/*"],
-      "@/config/*": ["config/*"],
-      "@/styles/*": ["styles/*"],
-      "@/prisma/*": ["prisma/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/ui/*": [
+        "ui/*"
+      ],
+      "@/hooks/*": [
+        "hooks/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/config/*": [
+        "config/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "@/prisma/*": [
+        "prisma/*"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ]
     },
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
@@ -42,5 +63,7 @@
     ".contentlayer/generated",
     "content/pages/about.mdx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
