@@ -65,7 +65,7 @@ const UserDropdown = () => {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-10 w-10 rounded-full">
               <Avatar>
-                <AvatarImage src={`${image}`} alt={name} />
+                <AvatarImage src={`${image}`} alt={"A"} />
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
