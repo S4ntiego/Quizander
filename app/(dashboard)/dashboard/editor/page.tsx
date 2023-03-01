@@ -194,15 +194,11 @@ export default function QuizzesForm() {
 
       <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="title">Title</Label>
-        <Input placeholder="title" type="text" {...methods.register(`title`)} />
-      </div>
-      <div className="grid w-full items-center gap-1.5">
-        <Label htmlFor="category">Category</Label>
         <Input
-          id="category"
-          placeholder="category"
+          id="title"
+          placeholder="title"
           type="text"
-          {...methods.register(`category`)}
+          {...methods.register(`title`)}
         />
       </div>
       <div className="grid w-full items-center gap-1.5">
@@ -211,6 +207,15 @@ export default function QuizzesForm() {
           id="description"
           type="text"
           {...methods.register(`description`)}
+        />
+      </div>
+      <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="category">Category</Label>
+        <Input
+          id="category"
+          placeholder="category"
+          type="text"
+          {...methods.register(`category`)}
         />
       </div>
 

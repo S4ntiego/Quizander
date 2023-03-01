@@ -59,6 +59,7 @@ export default function RootLayout({
 }) {
   return (
     <html
+      lang="en"
       suppressHydrationWarning
       className={`${playfair.variable} ${fontSans.variable} ${domine.variable} ${fraunces.variable} lang="en"`}
     >

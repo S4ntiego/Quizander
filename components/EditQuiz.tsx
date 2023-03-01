@@ -188,16 +188,16 @@ export default function QuizEditor({ quiz }) {
         <Input placeholder="title" type="text" {...methods.register(`title`)} />
       </div>
       <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="description">Description</Label>
+        <Input type="text" {...methods.register(`description`)} />
+      </div>
+      <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="category">Category</Label>
         <Input
           placeholder="category"
           type="text"
           {...methods.register(`category`)}
         />
-      </div>
-      <div className="grid w-full items-center gap-1.5">
-        <Label htmlFor="description">Description</Label>
-        <Input type="text" {...methods.register(`description`)} />
       </div>
 
       <Question {...{ control, register, getValues, setValue }} />

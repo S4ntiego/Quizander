@@ -26,14 +26,20 @@ export default function Answers({ nestIndex, control, register }: any) {
             key={item.id}
             className="flex flex-row space-x-2 justify-center items-center"
           >
-            <span>{k + 1}.</span>
+            <Label htmlFor={`questions[${nestIndex}].answers[${k}].answer`}>
+              {k + 1}.
+            </Label>
             <Input
+              id={`questions[${nestIndex}].answers[${k}].answer`}
               type="text"
               {...register(`questions[${nestIndex}].answers[${k}].answer`)}
             />
 
-            <Input
+            <Label
               htmlFor={`questions[${nestIndex}].answers[${k}].answer`}
+            ></Label>
+            <Input
+              id={`questions[${nestIndex}].answers[${k}].answer`}
               type="checkbox"
               className="appearance-none h-10 w-12 shrink-0 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900 flex items-center justify-center checked:bg-slate-800 dark:checked:bg-slate-400"
               {...register(`questions[${nestIndex}].answers[${k}].isCorrect`)}
@@ -43,6 +49,7 @@ export default function Answers({ nestIndex, control, register }: any) {
               className="dark:hover:bg-red-800 hover:bg-red-500"
               variant="subtle"
               type="button"
+              aria-label="deleteAnswer"
               onClick={() => remove(k)}
             >
               <Icons.trash className="h-4 w-4" />
@@ -53,6 +60,7 @@ export default function Answers({ nestIndex, control, register }: any) {
         <Button
           type="button"
           variant="subtle"
+          aria-label="appendAnswer"
           onClick={() =>
             append({
               answer: "",
