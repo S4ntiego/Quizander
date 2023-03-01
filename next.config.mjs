@@ -10,6 +10,7 @@ const nextConfig = {
   },
   experimental: {
     appDir: true,
+    serverComponentsExternalPackages: ["@prisma/client"],
     fontLoaders: [
       {
         loader: "@next/font/google",

@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation"
-
 import { getCurrentUser } from "@/lib/session"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
@@ -9,7 +8,7 @@ export default async function SettingsPage() {
   const user = await getCurrentUser()
 
   if (!user) {
-    redirect("/login")
+    redirect('/login')
   }
 
   return (
@@ -19,7 +18,7 @@ export default async function SettingsPage() {
         text="Manage account and website settings."
       />
       <div className="grid gap-10">
-        <UserNameForm user={{ id: user.id as string, name: user.name as string}} />
+        <UserNameForm user={{ id: user.id, name: user.name }} />
       </div>
     </DashboardContainer>
   )
