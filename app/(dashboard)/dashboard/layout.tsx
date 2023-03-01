@@ -3,13 +3,7 @@ import { DashboardNav } from "@/components/DashboardNav"
 import { MainNav } from "@/components/MainNav"
 import UserDropdown from "@/components/UserDropdown"
 
-interface DashboardLayoutProps {
-  children?: React.ReactNode
-}
-
-export default async function DashboardLayout({
-  children,
-}: DashboardLayoutProps) {
+export default async function DashboardLayout(children?: React.ReactNode) {
   return (
     <div className="mx-auto flex flex-col space-y-6">
       <header className="container sticky top-0 z-40 dark:bg-slate-900 bg-white">

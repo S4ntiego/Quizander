@@ -50,11 +50,7 @@ const fraunces = Fraunces({
   display: "optional",
 })
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactElement
-}) {
+export default function RootLayout({ children, ...props }: { children: any }) {
   return (
     <html
       lang="en"
