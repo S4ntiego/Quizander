@@ -10,12 +10,12 @@ import { toast } from "react-toastify"
 import { TypeOf, object, string, z } from "zod"
 
 const updateUserSchema = object({
-  name: string().min(1, "Name is required").max(100),
+  name: string().min(1, "Name is required").max(100).optional(),
   email: string()
     .min(1, "Email address is required")
-    .email("Email Address is invalid"),
-  createdAt: string().min(1, "Member since is required"),
-})
+    .email("Email Address is invalid").optional(),
+  createdAt: string().min(1, "Member since is required").optional(),
+}).partial()
 
 type UpdateUserInput = TypeOf<typeof updateUserSchema>
 
@@ -24,7 +24,7 @@ export function Profile() {
   const user = stateContext.state.authUser
 
   const { isLoading, mutate: updateUser } = useMutation(
-    (updateData: UpdateUserInput | undefined) => updateUserFn(updateData),
+    (updateData: any) => updateUserFn(updateData),
     {
       onSuccess: () => {
         toast.success("User updated successfully")
