@@ -15,7 +15,7 @@ const updateUserSchema = object({
     .min(1, "Email address is required")
     .email("Email Address is invalid"),
   createdAt: string().min(1, "Member since is required"),
-}).partial()
+})
 
 type UpdateUserInput = TypeOf<typeof updateUserSchema>
 
@@ -24,7 +24,7 @@ export function Profile() {
   const user = stateContext.state.authUser
 
   const { isLoading, mutate: updateUser } = useMutation(
-    (updateData: UpdateUserInput) => updateUserFn(updateData),
+    (updateData: UpdateUserInput | undefined) => updateUserFn(updateData),
     {
       onSuccess: () => {
         toast.success("User updated successfully")
@@ -56,9 +56,9 @@ export function Profile() {
   useEffect(() => {
     if (user) {
       methods.reset({
-        name: user.name,
-        email: user.email,
-        createdAt: user.createdAt,
+        name: user.name as string,
+        email: user.email as string,
+        createdAt: user.createdAt as string,
       })
     }
   }, [user, methods])
