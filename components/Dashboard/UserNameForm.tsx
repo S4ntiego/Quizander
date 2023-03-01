@@ -77,7 +77,6 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
             <Input
               id="name"
               className="w-[350px] dark:bg-slate-800"
-              name="name"
               {...register("name")}
             />
             {errors?.name && (
