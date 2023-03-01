@@ -91,34 +91,37 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
           error: "",
         })
       } else {
-        await prisma.quiz.update({
-          where: {
-            id: quiz.id as string,
-          },
-          data: {
-            title: JSON.parse(req.body.title),
-            description: JSON.parse(req.body.description),
-            category: JSON.parse(req.body.category),
-            questions: {
-              deleteMany: {},
-              create: JSON.parse(req.body.questions).map((question: any) => ({
-                question: question.question,
-                answers: {
-                  create: question.answers.map((answer: any) => ({
-                    answer: answer.answer,
-                    isCorrect: answer.isCorrect,
-                  })),
-                },
-              })),
+        if(quiz){
+          await prisma.quiz.update({
+            where: {
+              id: quiz.id as string,
             },
-            createdById: session.user.id,
-          },
-        })
-
-        return res.json({
-          quiz: quiz,
-          error: "",
-        })
+            data: {
+              title: JSON.parse(req.body.title),
+              description: JSON.parse(req.body.description),
+              category: JSON.parse(req.body.category),
+              questions: {
+                deleteMany: {},
+                create: JSON.parse(req.body.questions).map((question: any) => ({
+                  question: question.question,
+                  answers: {
+                    create: question.answers.map((answer: any) => ({
+                      answer: answer.answer,
+                      isCorrect: answer.isCorrect,
+                    })),
+                  },
+                })),
+              },
+              createdById: session.user.id,
+            },
+          })
+  
+          return res.json({
+            quiz: quiz,
+            error: "",
+          })
+        }
+        
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
