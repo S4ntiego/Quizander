@@ -5,7 +5,6 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { IQuizResponse } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { pickBy } from "lodash"
 import { useForm } from "react-hook-form"
 import { TypeOf, object, string, z } from "zod"
 
@@ -85,10 +84,7 @@ export default function QuizzesForm() {
 
   const onSubmit = (values: any) => {
     const formData = new FormData()
-    const filteredFormData = pickBy(
-      values,
-      (value) => value !== "" && value !== undefined
-    )
+    const filteredFormData = values
     const { coverImage, ...quizBody } = filteredFormData
     if (typeof coverImage === "object") {
       formData.append("coverImage", filteredFormData.coverImage[0])

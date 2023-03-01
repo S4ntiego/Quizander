@@ -2,7 +2,6 @@
 
 import React from "react"
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { LogOut, Settings, User } from "lucide-react"
 import { signOut, useSession } from "next-auth/react"
 
@@ -29,7 +28,7 @@ const UserDropdown = () => {
   if (!email) return null
 
   return (
-    <motion.div className="relative inline-block text-left">
+    <div className="relative inline-block text-left">
       <div className="flex">
         <nav className="mr-4 flex items-center space-x-1">
           <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
@@ -105,7 +104,7 @@ const UserDropdown = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
