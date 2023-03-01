@@ -91,7 +91,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
           error: "",
         })
       } else {
-        if(quiz){
+        if(quiz && session){
           await prisma.quiz.update({
             where: {
               id: quiz.id as string,
