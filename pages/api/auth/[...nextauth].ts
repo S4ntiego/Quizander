@@ -7,6 +7,10 @@ import prisma from "@/lib/prisma"
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   secret: 'IamVeryHandsome',
+  pages: {
+    signIn: '/login',
+    error: '/login'
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
