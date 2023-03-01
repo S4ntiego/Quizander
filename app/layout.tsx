@@ -11,10 +11,10 @@ import {
 } from "@next/font/google"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import { Session } from "next-auth"
 import { SessionProvider } from "next-auth/react"
 import { ThemeProvider } from "next-themes"
 
+import AuthContext from "@/components/Dashboard/AuthContext"
 import { Toaster } from "@/components/ui/toast"
 import { StateContextProvider } from "../context/index"
 
@@ -52,10 +52,8 @@ const fraunces = Fraunces({
 
 export default function RootLayout({
   children,
-  session,
 }: {
   children: React.ReactElement
-  session: any
 }) {
   return (
     <html
@@ -67,12 +65,12 @@ export default function RootLayout({
       <body className="min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <QueryClientProvider client={queryClient}>
-            <SessionProvider session={session}>
+            <AuthContext>
               <StateContextProvider>
                 <AuthMiddleware>{children}</AuthMiddleware>
               </StateContextProvider>
               <ReactQueryDevtools initialIsOpen={false} />
-            </SessionProvider>
+            </AuthContext>
           </QueryClientProvider>
           <Toaster position="bottom-right" />
         </ThemeProvider>
