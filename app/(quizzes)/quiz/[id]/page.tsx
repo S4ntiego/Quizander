@@ -1,6 +1,6 @@
 import { Quiz } from "@/components/Quiz"
 
-export async function getQuiz(quizId: string) {
+async function getQuiz(quizId: string) {
   const quiz = await prisma.quiz.findUnique({
     where: { id: quizId as string },
     include: {
