@@ -47,7 +47,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
       await runMiddleware(req, res, upload.single("coverImage"))
 
-      if (req.file) {
+      if (req.file && quiz) {
         await deleteS3(
           process.env.AWS_S3_BUCKET_NAME as string,
           quiz.coverImage
