@@ -55,7 +55,7 @@ export default function RootLayout({
   session,
 }: {
   children: React.ReactElement
-  session: Session
+  session: any
 }) {
   return (
     <html
