@@ -47,7 +47,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
       await runMiddleware(req, res, upload.single("coverImage"))
 
-      if (req.file && quiz) {
+      if (req.file && quiz && session) {
         await deleteS3(
           process.env.AWS_S3_BUCKET_NAME as string,
           quiz.coverImage
@@ -62,7 +62,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
         await prisma.quiz.update({
           where: {
-            id: quiz.id,
+            id: quiz.id as string,
           },
           data: {
             title: JSON.parse(req.body.title),
@@ -93,7 +93,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
       } else {
         await prisma.quiz.update({
           where: {
-            id: quiz.id,
+            id: quiz.id as string,
           },
           data: {
             title: JSON.parse(req.body.title),
