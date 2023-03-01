@@ -4,10 +4,6 @@ datasource db {
   relationMode = "prisma"
 }
 
-generator client {
-  provider        = "prisma-client-js"
-}
-
 model Account {
   id                 String  @id @default(cuid())
   userId             String
@@ -90,4 +86,9 @@ model Quiz {
   scores       Float[]
   questions    Question[]
   @@index([createdById])
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  output = "../node_modules/.prisma/client"
 }
