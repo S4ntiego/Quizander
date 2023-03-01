@@ -1,4 +1,5 @@
 import { Quiz } from "@/components/Quiz"
+import prisma from "@/lib/prisma"
 
 async function getQuiz(quizId: string) {
   const quiz = await prisma.quiz.findUnique({
