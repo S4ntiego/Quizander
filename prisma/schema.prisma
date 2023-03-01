@@ -1,3 +1,8 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../client/node_modules/@prisma/client"
+}
+
 datasource db {
   provider     = "postgresql"
   url          = env("DATABASE_URL")
@@ -89,9 +94,4 @@ model Quiz {
   questions   Question[]
 
   @@index([createdById])
-}
-
-generator client {
-  provider = "prisma-client-js"
-  output   = "../../client/node_modules/.prisma/client" // Root of the monorepo
 }
