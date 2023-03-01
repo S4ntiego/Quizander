@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import { useStateContext } from "@/context";
-import { useForm } from "react-hook-form";
-import { TypeOf, z, string, object } from "zod";
-import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { updateUserFn } from "@/api/authApi";
+import React, { useEffect, useState } from "react"
+import { updateUserFn } from "@/api/authApi"
+import { useStateContext } from "@/context"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation } from "@tanstack/react-query"
+import { useForm } from "react-hook-form"
+import { toast } from "react-toastify"
+import { TypeOf, object, string, z } from "zod"
 
 const updateUserSchema = object({
   name: string().min(1, "Name is required").max(100),
@@ -15,19 +15,19 @@ const updateUserSchema = object({
     .min(1, "Email address is required")
     .email("Email Address is invalid"),
   createdAt: string().min(1, "Member since is required"),
-}).partial();
+}).partial()
 
-type UpdateUserInput = TypeOf<typeof updateUserSchema>;
+type UpdateUserInput = TypeOf<typeof updateUserSchema>
 
 export function Profile() {
-  const stateContext = useStateContext();
-  const user = stateContext.state.authUser;
+  const stateContext = useStateContext()
+  const user = stateContext.state.authUser
 
   const { isLoading, mutate: updateUser } = useMutation(
     (updateData: UpdateUserInput) => updateUserFn(updateData),
     {
       onSuccess: () => {
-        toast.success("User updated successfully");
+        toast.success("User updated successfully")
       },
       onError: (error: any) => {
         if (Array.isArray(error.response.data.error)) {
@@ -35,23 +35,23 @@ export function Profile() {
             toast.error(el.message, {
               position: "top-right",
             })
-          );
+          )
         } else {
           toast.error(error.response.data.message, {
             position: "top-right",
-          });
+          })
         }
       },
     }
-  );
+  )
 
   const methods = useForm<UpdateUserInput>({
     resolver: zodResolver(updateUserSchema),
-  });
+  })
 
   const onSubmit = (updateData: any) => {
-    updateUser(updateData);
-  };
+    updateUser(updateData)
+  }
 
   useEffect(() => {
     if (user) {
@@ -59,9 +59,9 @@ export function Profile() {
         name: user.name,
         email: user.email,
         createdAt: user.createdAt,
-      });
+      })
     }
-  }, [user]);
+  }, [user, methods])
 
   return (
     <div className="container h-full max-w-4xl py-6 lg:py-10">
@@ -83,5 +83,5 @@ export function Profile() {
         </form>
       </div>
     </div>
-  );
+  )
 }

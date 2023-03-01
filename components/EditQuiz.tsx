@@ -104,7 +104,7 @@ export default function QuizEditor({ quiz }) {
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl)
-  }, [selectedFile])
+  }, [selectedFile, quiz.coverImage])
 
   const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
