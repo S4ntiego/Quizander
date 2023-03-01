@@ -20,8 +20,10 @@ async function getQuiz(id: Quiz["id"]) {
     },
   })
 
-  quiz.coverImage = "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
-
+  if(quiz){
+    quiz.coverImage = "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+  }
+  
   return JSON.parse(JSON.stringify(quiz))
 }
 
