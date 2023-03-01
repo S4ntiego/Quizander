@@ -44,7 +44,7 @@ export function Quiz({ quiz }) {
     if (user) {
       saveQuizDataFn(quiz._id, correctAnswersCount, quiz.title)
     } else {
-      console.log("siema")
+      console.log("quiz completed")
     }
   }
 

@@ -30,8 +30,6 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
     if (req.method === "POST") {
       await runMiddleware(req, res, upload.single("coverImage"));
-      console.log(req.file);
-      console.log(req.body);
 
       if (!req.file) return res.status(400).json({ error: "File empty" });
 

@@ -91,7 +91,6 @@ export default function QuizzesForm() {
       formData.append(key, JSON.stringify(val))
     }
 
-    console.log(values)
     createQuiz(formData)
   }
 

@@ -47,8 +47,6 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
       await runMiddleware(req, res, upload.single("coverImage"))
 
-      console.log(quiz.coverImage)
-
       if (req.file) {
         await deleteS3(
           process.env.AWS_S3_BUCKET_NAME as string,
@@ -123,7 +121,6 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
         })
       }
     } catch (error) {
-      console.log(error)
       if (error instanceof z.ZodError) {
         return res.status(422).json(error.issues)
       }

@@ -28,7 +28,6 @@ export function QuizAnswer({
         isCorrectAnswer
       )}
       onClick={() => {
-        console.log(answer)
         onSelectAnswer(answer)
       }}
     >
