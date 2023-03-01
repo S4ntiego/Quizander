@@ -104,7 +104,7 @@ export function SiteHeader() {
                     <DialogTitle>Login</DialogTitle>
                     <DialogDescription>
                       Join the Quizander community. Have fun solving quizzes
-                      from the the Harry Potter's universe and save your
+                      from the the Harry Potter universe and save your
                       achievements!
                     </DialogDescription>
                     <Separator />

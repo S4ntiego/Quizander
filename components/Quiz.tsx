@@ -88,7 +88,7 @@ export function Quiz({ quiz }) {
         <div className="flex flex-col text-center items-center justify-center">
           <div>
             <h1 className="font-playfair scroll-m-20 text-xl">
-              Congratulations! You've finished the <br /> {quiz.title} quiz.
+              Congratulations! You have finished the <br /> {quiz.title} quiz.
             </h1>
           </div>
           <div>
