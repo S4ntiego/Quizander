@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { logoutUserFn } from "@/api/authApi"
 import { useMutation } from "@tanstack/react-query"
 import { signIn, useSession } from "next-auth/react"
 import { toast } from "react-toastify"
@@ -26,37 +25,10 @@ export function SiteHeader() {
   const { data: session, status } = useSession()
   const { image, name } = session?.user || {}
 
-  const { mutate: logoutUser, isLoading } = useMutation(
-    async () => await logoutUserFn(),
-    {
-      onSuccess: (data) => {
-        window.location.href = "/login"
-      },
-      onError: (error: any) => {
-        if (Array.isArray(error.response.data.error)) {
-          error.data.error.forEach((el: any) =>
-            toast.error(el.message, {
-              position: "top-right",
-            })
-          )
-        } else {
-          toast.error(error.response.data.message, {
-            position: "top-right",
-          })
-        }
-      },
-    }
-  )
-
-  const onLogoutHandler = async () => {
-    logoutUser()
-  }
-
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         <MainNav items={siteConfig.mainNav} />
-
         <div className="flex flex-1 items-center justify-end gap-6 space-x-4">
           {!session && status !== "loading" ? (
             <div className="flex">

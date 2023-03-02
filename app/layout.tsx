@@ -2,7 +2,6 @@
 
 import "@/styles/globals.css"
 import React from "react"
-import AuthMiddleware from "@/middleware/GetUserMiddleware"
 import {
   Domine,
   Inter as FontSans,
@@ -50,7 +49,7 @@ const fraunces = Fraunces({
   display: "optional",
 })
 
-export default function RootLayout({ children, ...props }: { children: any }) {
+export default function RootLayout({ children }: { children: any }) {
   return (
     <html
       lang="en"
@@ -62,9 +61,7 @@ export default function RootLayout({ children, ...props }: { children: any }) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <QueryClientProvider client={queryClient}>
             <AuthContext>
-              <StateContextProvider>
-                <AuthMiddleware>{children}</AuthMiddleware>
-              </StateContextProvider>
+              <StateContextProvider>{children}</StateContextProvider>
               <ReactQueryDevtools initialIsOpen={false} />
             </AuthContext>
           </QueryClientProvider>
