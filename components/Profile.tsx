@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { updateUserFn } from "@/api/authApi"
 import { useStateContext } from "@/context"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
@@ -13,7 +12,8 @@ const updateUserSchema = object({
   name: string().min(1, "Name is required").max(100).optional(),
   email: string()
     .min(1, "Email address is required")
-    .email("Email Address is invalid").optional(),
+    .email("Email Address is invalid")
+    .optional(),
   createdAt: string().min(1, "Member since is required").optional(),
 }).partial()
 
@@ -23,34 +23,12 @@ export function Profile() {
   const stateContext = useStateContext()
   const user = stateContext.state.authUser
 
-  const { isLoading, mutate: updateUser } = useMutation(
-    (updateData: any) => updateUserFn(updateData),
-    {
-      onSuccess: () => {
-        toast.success("User updated successfully")
-      },
-      onError: (error: any) => {
-        if (Array.isArray(error.response.data.error)) {
-          error.data.error.forEach((el: any) =>
-            toast.error(el.message, {
-              position: "top-right",
-            })
-          )
-        } else {
-          toast.error(error.response.data.message, {
-            position: "top-right",
-          })
-        }
-      },
-    }
-  )
-
   const methods = useForm<UpdateUserInput>({
     resolver: zodResolver(updateUserSchema),
   })
 
   const onSubmit = (updateData: any) => {
-    updateUser(updateData)
+    console.log("update user submit")
   }
 
   useEffect(() => {

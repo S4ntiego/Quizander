@@ -2,7 +2,6 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { saveQuizDataFn } from "@/api/quizApi"
 import { useStateContext } from "@/context"
 
 import { Icons } from "@/components/Icons"
@@ -41,11 +40,13 @@ export function Quiz({ quiz }) {
   }
 
   const onCompleteHandle = () => {
-    if (user) {
-      saveQuizDataFn(quiz._id, correctAnswersCount, quiz.title)
-    } else {
-      console.log("quiz completed")
-    }
+    // if (user) {
+    //   saveQuizDataFn(quiz._id, correctAnswersCount, quiz.title)
+    // } else {
+    //   console.log("quiz completed")
+    // }
+
+    console.log("TODO")
   }
 
   return (
