@@ -108,7 +108,12 @@ export function SiteHeader() {
                       achievements!
                     </DialogDescription>
                     <Separator />
-                    <Button onClick={() => signIn("google")}>
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault()
+                        signIn("google")
+                      }}
+                    >
                       Sign in with Google
                     </Button>
                   </DialogHeader>
