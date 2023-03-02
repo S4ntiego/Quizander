@@ -27,12 +27,12 @@ const getQuizzes = cache(async () => {
     },
   })
 
-  if(quizzes){
-for (const quiz of quizzes) {
-    quiz.coverImage = "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+  if (quizzes) {
+    for (const quiz of quizzes) {
+      quiz.coverImage =
+        "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+    }
   }
-  }
-  
 
   return quizzes
 })
@@ -86,3 +86,5 @@ export default async function DashboardPage() {
     </DashboardContainer>
   )
 }
+
+export const revalidate = 60
