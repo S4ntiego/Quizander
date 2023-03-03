@@ -71,7 +71,6 @@ export default function QuizzesForm() {
 
     startTransition(() => {
       setIsFetching(false)
-      router.refresh()
     })
   }
 
