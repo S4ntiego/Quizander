@@ -30,6 +30,8 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
         },
       })
 
+      await res.revalidate("/")
+
       return res.status(204).end()
     } catch (error) {
       return res.status(500).end()
@@ -85,13 +87,15 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
           },
         })
 
+        await res.revalidate("/")
+
         return res.json({
           quiz: quiz,
           src: uploadImageParams.Location,
           error: "",
         })
       } else {
-        if(quiz && session){
+        if (quiz && session) {
           await prisma.quiz.update({
             where: {
               id: quiz.id as string,
@@ -115,13 +119,14 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
               createdById: session.user.id,
             },
           })
-  
+
+          await res.revalidate("/")
+
           return res.json({
             quiz: quiz,
             error: "",
           })
         }
-        
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
