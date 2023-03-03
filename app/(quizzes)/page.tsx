@@ -38,6 +38,7 @@ const getQuizzes = cache(async () => {
 })
 
 export default async function DashboardPage() {
+  const user = await getCurrentUser()
   const quizzes = await getQuizzes()
 
   return (
