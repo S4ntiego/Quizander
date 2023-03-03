@@ -12,13 +12,20 @@ import { EmptyPlaceholder } from "@/components/Dashboard/EmptyPlaceholder"
 import { Icons } from "@/components/Icons"
 import { buttonVariants } from "@/components/ui/button"
 
-async function getQuizzes() {
-  const response = await fetch(`/api/quiz/get-quizzes`, {
-    next: { revalidate: 60 },
-    method: "GET",
+const getQuizzes = cache(async () => {
+  const quizzes = await prisma.quiz.findMany({
+    include: {
+      questions: {
+        select: {
+          question: true,
+          answers: { select: { answer: true, isCorrect: true } },
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
   })
-
-  const quizzes = await response.json()
 
   if (quizzes) {
     for (const quiz of quizzes) {
@@ -28,7 +35,7 @@ async function getQuizzes() {
   }
 
   return quizzes
-}
+})
 
 export default async function DashboardPage() {
   const user = await getCurrentUser()
