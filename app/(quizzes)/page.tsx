@@ -98,5 +98,3 @@ function QuizArtwork({
     </article>
   )
 }
-
-export const dynamic = "auto"
