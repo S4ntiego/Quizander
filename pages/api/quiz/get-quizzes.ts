@@ -1,5 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/lib/prisma";
+import { NextApiRequest, NextApiResponse } from "next"
+
+import prisma from "@/lib/prisma"
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
@@ -13,19 +14,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             },
           },
         },
-      });
+      })
+
       for (const quiz of quizzes) {
         quiz.coverImage =
-          "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage;
+          "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
       }
 
-      return res.status(200).json(quizzes);
+      return res.status(200).json(quizzes)
     } catch (error) {
-      return res
-        .status(500)
-        .json({ error: error.name, message: error.message });
+      return res.status(500).json({ error: error.name, message: error.message })
     }
   }
-};
+}
 
-export default handler;
+export default handler
