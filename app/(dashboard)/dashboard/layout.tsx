@@ -27,5 +27,3 @@ export default async function DashboardLayout({ children }: LayoutProps) {
     </div>
   )
 }
-
-export const revalidate = 60
