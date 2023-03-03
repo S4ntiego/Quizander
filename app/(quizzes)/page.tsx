@@ -7,7 +7,7 @@ import prisma from "@/lib/prisma"
 import { cn, formatDate } from "@/lib/utils"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
-async function getQuizzes() {
+const getQuizzes = cache(async () => {
   const quizzes = await prisma.quiz.findMany({
     include: {
       questions: {
@@ -17,14 +17,20 @@ async function getQuizzes() {
         },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   })
 
-  for (const quiz of quizzes) {
-    quiz.coverImage = "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+  if (quizzes) {
+    for (const quiz of quizzes) {
+      quiz.coverImage =
+        "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+    }
   }
 
   return quizzes
-}
+})
 
 export default async function IndexPage() {
   const quizzes = await getQuizzes()
