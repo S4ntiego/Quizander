@@ -72,12 +72,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
         },
       })
 
-      await fetch(
-        `https://quizander-dqzb.vercel.app/api/revalidate?secret=test`,
-        {
-          method: "GET",
-        }
-      )
+      await res.revalidate("/")
 
       return res.json({ quiz: quiz, src: uploadResult.Location, error: "" })
     }
