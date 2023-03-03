@@ -73,7 +73,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
       })
 
       await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/revalidate?secret=${process.env.MY_SECRET_TOKEN}`,
+        `https://quizander-dqzb.vercel.app/api/revalidate?secret=test`,
         {
           method: "GET",
         }
