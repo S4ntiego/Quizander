@@ -100,4 +100,4 @@ function QuizArtwork({
   )
 }
 
-export const revalidate = 0
+export const revalidate = 20
