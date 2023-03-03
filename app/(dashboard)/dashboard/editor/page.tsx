@@ -70,7 +70,6 @@ export default function QuizzesForm() {
     }
 
     setIsFetching(false)
-    await router.refresh()
   }
 
   const methods = useForm<ICreateQuiz>({
