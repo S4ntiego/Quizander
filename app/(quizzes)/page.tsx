@@ -99,4 +99,4 @@ function QuizArtwork({
   )
 }
 
-export const revalidate = false
+export const dynamic = "auto"
