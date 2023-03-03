@@ -86,5 +86,3 @@ export default async function DashboardPage() {
     </DashboardContainer>
   )
 }
-
-export const revalidate = 60

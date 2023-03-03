@@ -8,10 +8,6 @@ import prisma from "@/lib/prisma"
 import { cn, formatDate } from "@/lib/utils"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
-export function preload() {
-  void getQuizzes()
-}
-
 const getQuizzes = cache(async () => {
   const quizzes = await prisma.quiz.findMany({
     include: {
@@ -103,3 +99,5 @@ function QuizArtwork({
     </article>
   )
 }
+
+export const revalidate = 0
