@@ -30,6 +30,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
         },
       })
 
+      res.revalidate("/")
       return res.status(204).end()
     } catch (error) {
       return res.status(500).end()

@@ -71,6 +71,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
         },
       })
 
+      res.revalidate("/")
       return res.json({ quiz: quiz, src: uploadResult.Location, error: "" })
     }
 
