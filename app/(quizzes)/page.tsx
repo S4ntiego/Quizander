@@ -4,7 +4,6 @@ import Link from "next/link"
 import { Quiz } from "@prisma/client"
 
 import prisma from "@/lib/prisma"
-import { getCurrentUser } from "@/lib/session"
 import { cn, formatDate } from "@/lib/utils"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
@@ -34,7 +33,6 @@ const getQuizzes = cache(async () => {
 })
 
 export default async function IndexPage() {
-  const user = await getCurrentUser()
   const quizzes = await getQuizzes()
 
   return (
@@ -100,3 +98,5 @@ function QuizArtwork({
     </article>
   )
 }
+
+export const revalidate = 60
