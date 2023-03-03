@@ -1,50 +1,52 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import multer from "multer";
-import runMiddleware from "@/lib/runMiddleware";
-import uploadS3 from "@/lib/awsUpload";
-import crypto from "crypto";
-import { getSession } from "next-auth/react";
-import prisma from "@/lib/prisma";
+import crypto from "crypto"
+import { NextApiRequest, NextApiResponse } from "next"
+import jwt from "jsonwebtoken"
+import multer from "multer"
+import { getSession } from "next-auth/react"
+
+import uploadS3 from "@/lib/awsUpload"
+import prisma from "@/lib/prisma"
+import runMiddleware from "@/lib/runMiddleware"
 
 interface RequestWithFile extends NextApiRequest {
-  file?: any;
+  file?: any
 }
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
 
 export const config = {
   api: {
     bodyParser: false,
   },
-};
+}
 
 const handler = async (req: RequestWithFile, res: NextApiResponse) => {
   try {
-    const session = await getSession({ req });
-    const coverImageName = crypto.randomBytes(32).toString("hex");
+    const session = await getSession({ req })
+    const coverImageName = crypto.randomBytes(32).toString("hex")
 
     if (!session) {
-      return res.status(400).json({ error: "User not logged in" });
+      return res.status(400).json({ error: "User not logged in" })
     }
 
     if (req.method === "POST") {
-      await runMiddleware(req, res, upload.single("coverImage"));
+      await runMiddleware(req, res, upload.single("coverImage"))
 
-      if (!req.file) return res.status(400).json({ error: "File empty" });
+      if (!req.file) return res.status(400).json({ error: "File empty" })
 
-      const { title, description, questions, category } = req.body;
+      const { title, description, questions, category } = req.body
 
       if (!title || !description || !questions || !category) {
-        return res.status(400).json({ error: "Please provide all values" });
+        return res.status(400).json({ error: "Please provide all values" })
       }
 
       const uploadResult = (await uploadS3(
         process.env.AWS_S3_BUCKET_NAME as string,
         coverImageName,
         req.file.buffer,
-        req.file.mimetype,
-      )) as { Location: string };
+        req.file.mimetype
+      )) as { Location: string }
 
       const quiz = await prisma.quiz.create({
         data: {
@@ -68,15 +70,22 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
         select: {
           id: true,
         },
-      });
+      })
 
-      return res.json({ quiz: quiz, src: uploadResult.Location, error: "" });
+      await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/revalidate?secret=${process.env.MY_SECRET_TOKEN}`,
+        {
+          method: "GET",
+        }
+      )
+
+      return res.json({ quiz: quiz, src: uploadResult.Location, error: "" })
     }
 
-    return res.status(404).json({ error: "404 not found" });
+    return res.status(404).json({ error: "404 not found" })
   } catch (error: any) {
-    return res.status(500).json({ error: error.name, message: error.message });
+    return res.status(500).json({ error: error.name, message: error.message })
   }
-};
+}
 
-export default handler;
+export default handler
