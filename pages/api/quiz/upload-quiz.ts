@@ -1,7 +1,5 @@
 import crypto from "crypto"
 import { NextApiRequest, NextApiResponse } from "next"
-import { useRouter } from "next/navigation"
-import jwt from "jsonwebtoken"
 import multer from "multer"
 import { getSession } from "next-auth/react"
 
@@ -23,7 +21,6 @@ export const config = {
 }
 
 const handler = async (req: RequestWithFile, res: NextApiResponse) => {
-  const router = useRouter()
   try {
     const session = await getSession({ req })
     const coverImageName = crypto.randomBytes(32).toString("hex")
@@ -73,9 +70,6 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
           id: true,
         },
       })
-
-      await res.revalidate("/")
-      await router.refresh()
 
       return res.json({ quiz: quiz, src: uploadResult.Location, error: "" })
     }

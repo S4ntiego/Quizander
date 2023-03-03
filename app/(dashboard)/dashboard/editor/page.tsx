@@ -69,9 +69,8 @@ export default function QuizzesForm() {
       })
     }
 
-    startTransition(() => {
-      setIsFetching(false)
-    })
+    setIsFetching(false)
+    await router.refresh()
   }
 
   const methods = useForm<ICreateQuiz>({
