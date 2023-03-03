@@ -49,6 +49,7 @@ const defaultValues = {
 
 export default function QuizzesForm() {
   const router = useRouter()
+  console.log(router)
   const [isPending, startTransition] = useTransition()
   const [isFetching, setIsFetching] = useState(false)
   const [selectedFile, setSelectedFile] = useState()
@@ -71,6 +72,7 @@ export default function QuizzesForm() {
 
     startTransition(() => {
       setIsFetching(false)
+
       router.refresh()
     })
   }
