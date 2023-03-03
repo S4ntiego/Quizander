@@ -72,8 +72,8 @@ export default function QuizzesForm() {
 
     startTransition(() => {
       setIsFetching(false)
-
       router.refresh()
+      fetch(`/api/revalidate?secret=${process.env.MY_SECRET_TOKEN}`)
     })
   }
 
