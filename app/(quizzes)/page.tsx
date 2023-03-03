@@ -3,9 +3,14 @@ import Image from "next/image"
 import Link from "next/link"
 import { Quiz } from "@prisma/client"
 
+import "server-only"
 import prisma from "@/lib/prisma"
 import { cn, formatDate } from "@/lib/utils"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
+
+export function preload() {
+  void getQuizzes()
+}
 
 const getQuizzes = cache(async () => {
   const quizzes = await prisma.quiz.findMany({
