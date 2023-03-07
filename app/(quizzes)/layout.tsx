@@ -13,7 +13,7 @@ const layout = ({ children }: QuizzesProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
-      <main className="flex-1">{children}</main>
+      <main className="flex flex-1">{children}</main>
       <SiteFooter />
     </div>
   )

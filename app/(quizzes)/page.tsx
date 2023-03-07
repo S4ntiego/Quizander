@@ -36,24 +36,22 @@ export default async function IndexPage() {
   const quizzes = await getQuizzes()
 
   return (
-    <div>
-      <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
-        <div className="flex max-w-[980px] flex-col items-start gap-2">
-          <h1 className="text-3xl font-playfair font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
-            Harry Potter Trivia
-          </h1>
-          <p className="max-w-[700px] text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
-            Verify your knowledge about the universe.
-          </p>
-        </div>
+    <section className="container py-6 lg:py-10">
+      <div className="flex max-w-[980px] flex-col items-start gap-2">
+        <h1 className="text-3xl font-playfair font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
+          Harry Potter Trivia
+        </h1>
+        <p className="max-w-[700px] mb-4 text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
+          Verify your knowledge about the universe.
+        </p>
+      </div>
 
-        <div className="relative flex space-x-4">
-          {quizzes.map((quiz) => (
-            <QuizArtwork key={quiz.title} quiz={quiz} className=" w-80" />
-          ))}
-        </div>
-      </section>
-    </div>
+      <div className="grid gap-10 sm:grid-cols-4">
+        {quizzes.map((quiz) => (
+          <QuizArtwork key={quiz.title} quiz={quiz} className="w-80" />
+        ))}
+      </div>
+    </section>
   )
 }
 

@@ -10,7 +10,7 @@ import { buttonVariants } from "@/components/ui/button"
 export default function DashboardLoading() {
   return (
     <DashboardContainer>
-      <DashboardHeader heading="Posts" text="Create and manage posts.">
+      <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
         <Link
           className={cn(buttonVariants({ variant: "default" }))}
           href="/dashboard/editor"

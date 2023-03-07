@@ -24,11 +24,13 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
   if (req.method === "DELETE") {
     try {
-      await prisma.quiz.delete({
+      const quiz = await prisma.quiz.delete({
         where: {
           id: req.query.quizId as string,
         },
       })
+
+      await deleteS3(process.env.AWS_S3_BUCKET_NAME as string, quiz.coverImage)
 
       return res.status(204).end()
     } catch (error) {

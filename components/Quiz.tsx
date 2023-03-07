@@ -50,7 +50,7 @@ export function Quiz({ quiz }) {
   }
 
   return (
-    <div className="container max-w-3xl py-6 lg:py-10 dark:text-slate-400">
+    <div className="container flex items-center justify-center  dark:text-slate-400">
       {!showResults ? (
         <div>
           <div className="flex flex-col h-full items-center justify-center text-center gap-2">
@@ -75,7 +75,7 @@ export function Quiz({ quiz }) {
             )}
           </div>
           <Separator />
-          <div className="flex justify-center py-6 lg:py-10">
+          <div className="flex justify-center pt-6 pt:py-10">
             <Link
               href="/"
               className="inline-flex items-center justify-center text-sm font-medium dark:text-slate-400 text-slate-600 hover:text-slate-900"
@@ -89,7 +89,8 @@ export function Quiz({ quiz }) {
         <div className="flex flex-col text-center items-center justify-center">
           <div>
             <h1 className="font-playfair scroll-m-20 text-xl">
-              Congratulations! You have finished the <br /> {quiz.title} quiz.
+              Congratulations! You have finished the <br />{" "}
+              <span className="italic">{quiz.title}</span> quiz.
             </h1>
           </div>
           <div>

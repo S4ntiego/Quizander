@@ -9,7 +9,7 @@ export function QuizAnswer({
 }: any) {
   const isCorrectAnswer =
     currentAnswer && answer?.isCorrect === true
-      ? "dark:bg-green-800 bg-green-700 text-slate-50 disabled:opacity-100 border-green-600"
+      ? "dark:bg-green-800 hover:bg-green-700 dark:hover:bg-green-800 bg-green-700 text-slate-50 disabled:opacity-100 border-green-600"
       : ""
   const isWrongAnswer =
     currentAnswer === answer && answer?.isCorrect === false
