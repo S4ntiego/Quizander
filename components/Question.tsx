@@ -37,6 +37,7 @@ export default function Questions({
                 </Label>
                 <div className="flex flex-row">
                   <Input
+                    placeholder="Question"
                     id={`questions[${index}].question`}
                     type="text"
                     {...register(`questions[${index}].question`)}

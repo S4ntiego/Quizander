@@ -30,6 +30,7 @@ export default function Answers({ nestIndex, control, register }: any) {
               {k + 1}.
             </Label>
             <Input
+              placeholder="Answer"
               id={`questions[${nestIndex}].answers[${k}].answer`}
               type="text"
               {...register(`questions[${nestIndex}].answers[${k}].answer`)}

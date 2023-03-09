@@ -91,6 +91,9 @@ model Quiz {
   scores      Float[]
   createdBy   User       @relation(fields: [createdById], references: [id])
   questions   Question[]
+  lowScore    String
+  mediumScore String
+  highScore   String
 
   @@index([createdById])
 }

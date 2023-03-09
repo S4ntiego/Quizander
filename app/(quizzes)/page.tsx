@@ -46,9 +46,9 @@ export default async function IndexPage() {
         </p>
       </div>
 
-      <div className="grid gap-10 sm:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-3">
         {quizzes.map((quiz) => (
-          <QuizArtwork key={quiz.title} quiz={quiz} className="w-80" />
+          <QuizArtwork key={quiz.title} quiz={quiz} />
         ))}
       </div>
     </section>
@@ -67,7 +67,13 @@ function QuizArtwork({
   ...props
 }: QuizArtworkProps) {
   return (
-    <article className={cn("space-y-3 relative group", className)} {...props}>
+    <div
+      className={cn(
+        "relative group rounded-md hover:outline hover:outline-slate-300 p-2",
+        className
+      )}
+      {...props}
+    >
       <Link href={`/quiz/${quiz.id}`}>
         <AspectRatio ratio={aspectRatio} className="overflow-hidden rounded-md">
           <Image
@@ -75,14 +81,14 @@ function QuizArtwork({
             src={quiz.coverImage}
             alt={quiz.title}
             fill
-            className="object-cover transition-all hover:scale-105"
+            className="object-cover transition-all group-hover:scale-105"
           />
         </AspectRatio>
-        <div className="space-y-1 mt-2 text-sm">
+        <div className="space-y-3 mt-2 text-sm">
           <h3 className="font-playfair font-bold text-2xl leading-none">
             {quiz.title}
           </h3>
-          <p className="text-normal text-slate-500 dark:text-slate-400">
+          <p className="text-normal text-justify line-clamp-3 text-slate-500 dark:text-slate-400">
             {quiz.description}
           </p>
           {quiz.createdAt && (
@@ -93,6 +99,6 @@ function QuizArtwork({
           <span className="sr-only">Play Quiz</span>
         </div>
       </Link>
-    </article>
+    </div>
   )
 }

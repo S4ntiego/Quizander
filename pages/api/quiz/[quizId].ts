@@ -70,6 +70,9 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
             title: JSON.parse(req.body.title),
             description: JSON.parse(req.body.description),
             category: JSON.parse(req.body.category),
+            lowScore: JSON.parse(req.body.lowScore),
+            mediumScore: JSON.parse(req.body.mediumScore),
+            highScore: JSON.parse(req.body.highScore),
             questions: {
               deleteMany: {},
               create: JSON.parse(req.body.questions).map((question: any) => ({

@@ -34,7 +34,15 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
       if (!req.file) return res.status(400).json({ error: "File empty" })
 
-      const { title, description, questions, category } = req.body
+      const {
+        title,
+        description,
+        questions,
+        category,
+        lowScore,
+        mediumScore,
+        highScore,
+      } = req.body
 
       if (!title || !description || !questions || !category) {
         return res.status(400).json({ error: "Please provide all values" })
@@ -52,6 +60,9 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
           title: JSON.parse(title),
           description: JSON.parse(description),
           category: JSON.parse(category),
+          lowScore: JSON.parse(lowScore),
+          mediumScore: JSON.parse(mediumScore),
+          highScore: JSON.parse(highScore),
           questions: {
             create: JSON.parse(questions).map((question: any) => ({
               question: question.question,
