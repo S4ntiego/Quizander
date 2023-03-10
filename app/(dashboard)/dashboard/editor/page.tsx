@@ -24,7 +24,9 @@ interface ICreateQuizProp {
 const createQuizSchema = object({
   coverImage: z.any(),
   title: string().min(1, "Title is required"),
-  description: string().min(1, "Description is required"),
+  description: string()
+    .min(1, "Description is required")
+    .max(140, "Max description length amounts to 140 characters."),
   category: string().min(1, "Please select a category from the dropdown list."),
   questions: z.any(),
   lowScore: string(),

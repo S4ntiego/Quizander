@@ -22,7 +22,7 @@ export function QuizAnswer({
       variant="subtle"
       disabled={disabled}
       className={cn(
-        `outline-none focus:ring-0`,
+        `h-16 outline-none focus:ring-0`,
         isOtherAnswer,
         isWrongAnswer,
         isCorrectAnswer

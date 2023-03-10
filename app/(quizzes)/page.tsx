@@ -67,13 +67,7 @@ function QuizArtwork({
   ...props
 }: QuizArtworkProps) {
   return (
-    <div
-      className={cn(
-        "relative group rounded-md hover:outline hover:outline-slate-300 p-2",
-        className
-      )}
-      {...props}
-    >
+    <div className={cn("relative group rounded-md", className)} {...props}>
       <Link href={`/quiz/${quiz.id}`}>
         <AspectRatio ratio={aspectRatio} className="overflow-hidden rounded-md">
           <Image
@@ -96,6 +90,7 @@ function QuizArtwork({
               {formatDate(quiz.createdAt)}
             </p>
           )}
+
           <span className="sr-only">Play Quiz</span>
         </div>
       </Link>

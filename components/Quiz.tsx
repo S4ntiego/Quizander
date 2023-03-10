@@ -32,6 +32,20 @@ export function Quiz({ quiz }) {
     }, 1000)
   }
 
+  const renderScore = (score, questions, quiz) => {
+    const scorePercentage = score / questions
+    switch (true) {
+      case scorePercentage >= 0 && scorePercentage < 0.4:
+        return quiz?.lowScore
+      case scorePercentage >= 0.4 && scorePercentage < 0.8:
+        return quiz?.mediumScore
+      case scorePercentage >= 0.8 && scorePercentage <= 1:
+        return quiz?.highScore
+      default:
+        return null
+    }
+  }
+
   const handleRetake = () => {
     setCurrentAnswer("")
     setCorrectAnswersCount(0)
@@ -50,10 +64,10 @@ export function Quiz({ quiz }) {
   }
 
   return (
-    <div className="container flex items-center justify-center  dark:text-slate-400">
+    <div className="container flex items-center justify-center w-[896px] dark:text-slate-400">
       {!showResults ? (
         <div>
-          <div className="flex flex-col h-full items-center justify-center text-center gap-2">
+          <div className="flex flex-col h-full items-center justify-center text-center gap-6">
             <p className="text-md">
               {currentQuestionIndex + 1} / {quiz.questions.length}
             </p>
@@ -61,7 +75,7 @@ export function Quiz({ quiz }) {
               {quiz.questions[currentQuestionIndex].question}
             </h1>
           </div>
-          <div className="flex flex-col justify-center my-10 gap-10">
+          <div className="flex flex-col justify-center my-10 gap-4">
             {quiz.questions[currentQuestionIndex].answers.map(
               (answer, index) => (
                 <QuizAnswer
@@ -86,7 +100,7 @@ export function Quiz({ quiz }) {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col text-center items-center justify-center">
+        <div className="flex flex-col text-center items-center justify-center max-w-2xl">
           <div>
             <h1 className="font-playfair scroll-m-20 text-xl">
               Congratulations! You have finished the <br />{" "}
@@ -102,7 +116,7 @@ export function Quiz({ quiz }) {
             </h1>
           </div>
           <h1 className="font-playfair scroll-m-20 text-xl mt-10">
-            Well done! You are a true Potterhead.
+            {renderScore(correctAnswersCount, quiz.questions.length, quiz)}
           </h1>
           <div className="flex flex-row gap-2 mt-10">
             <Button variant="outline" onClick={() => handleRetake()}>
