@@ -55,8 +55,8 @@ const UserDropdown = () => {
                 className: "text-slate-700 dark:text-slate-400",
               })}
             >
-              <Icons.twitter className="h-5 w-5 fill-current" />
-              <span className="sr-only">Twitter</span>
+              <Icons.linkedIn className="h-5 w-5 fill-current" />
+              <span className="sr-only">LinkedIn</span>
             </div>
           </Link>
           <ThemeToggle />

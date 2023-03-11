@@ -1,7 +1,7 @@
 import { notFound, redirect } from "next/navigation"
 import { Quiz } from "@prisma/client"
 
-import prisma from "@/lib/prisma"
+import { prisma } from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 import EditQuiz from "@/components/EditQuiz"
 
@@ -20,10 +20,10 @@ async function getQuiz(id: Quiz["id"]) {
     },
   })
 
-  if(quiz){
+  if (quiz) {
     quiz.coverImage = "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
   }
-  
+
   return JSON.parse(JSON.stringify(quiz))
 }
 

@@ -3,7 +3,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { getServerSession } from "next-auth/next"
 import * as z from "zod"
 
-import prisma from "@/lib/prisma"
+import { prisma } from "@/lib/prisma"
 
 export const schema = z.object({
   quizId: z.string(),
@@ -16,7 +16,7 @@ export function withQuiz(handler: NextApiHandler) {
 
       // Check if the user has access to this post.
       const session = await getServerSession(req, res, authOptions)
-      if(session){
+      if (session) {
         const count = await prisma.quiz.count({
           where: {
             id: query.quizId,
@@ -28,8 +28,6 @@ export function withQuiz(handler: NextApiHandler) {
           return res.status(403).end()
         }
       }
-
-      
 
       return handler(req, res)
     } catch (error) {

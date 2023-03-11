@@ -46,6 +46,19 @@ model User {
   accounts      Account[]
   sessions      Session[]
   quiz          Quiz[]
+  quizScores QuizScore[]
+}
+
+model QuizScore {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id])
+  quizId String
+  quiz Quiz @relation(fields: [quizId], references: [id])
+  score Float
+
+  @@index([userId])
+  @@index([quizId])
 }
 
 model VerificationToken {
@@ -88,7 +101,7 @@ model Quiz {
   createdById String
   plays       Int        @default(0)
   type        String     @default("multiple choice")
-  scores      Float[]
+  quizScores      QuizScore[]
   createdBy   User       @relation(fields: [createdById], references: [id])
   questions   Question[]
   lowScore    String

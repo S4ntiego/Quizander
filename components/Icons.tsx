@@ -15,6 +15,7 @@ import {
   Image,
   ImagePlus,
   Laptop,
+  Linkedin,
   Loader2,
   LogOut,
   Icon as LucideIcon,
@@ -35,6 +36,7 @@ export type Icon = LucideIcon
 
 export const Icons = {
   logo: Glasses,
+  linkedIn: Linkedin,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,

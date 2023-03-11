@@ -4,10 +4,23 @@ import React, { useState } from "react"
 import Link from "next/link"
 import { useStateContext } from "@/context"
 
+import { prisma } from "@/lib/prisma"
 import { Icons } from "@/components/Icons"
 import { QuizAnswer } from "./QuizAnswer"
 import { Button } from "./ui/button"
 import { Separator } from "./ui/separator"
+
+async function saveQuizResults(quizId, userId, score) {
+  const quiz = await prisma.quizScore.create({
+    data: {
+      score: score,
+      userId: userId,
+      quizId: quizId,
+    },
+  })
+
+  return quiz
+}
 
 export function Quiz({ quiz }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -54,13 +67,11 @@ export function Quiz({ quiz }) {
   }
 
   const onCompleteHandle = () => {
-    // if (user) {
-    //   saveQuizDataFn(quiz._id, correctAnswersCount, quiz.title)
-    // } else {
-    //   console.log("quiz completed")
-    // }
-
-    console.log("TODO")
+    if (user) {
+      saveQuizResults(quiz.id, user._id, correctAnswersCount)
+    } else {
+      console.log("quiz completed")
+    }
   }
 
   return (

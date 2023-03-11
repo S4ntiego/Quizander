@@ -32,9 +32,7 @@ const FormInput: FC<IFormInputProps> = ({ name, id }: any) => {
             <SelectValue placeholder="Category" className="w-[180px]" id={id} />
           </SelectTrigger>
           <SelectContent className="ml-4">
-            <SelectItem className="text-red-600" value="gravity falls">
-              Gravity Falls
-            </SelectItem>
+            <SelectItem value="gravity falls">Gravity Falls</SelectItem>
             <SelectItem value="harry potter">Harry Potter</SelectItem>
             <SelectItem value="need for speed">Need For Speed</SelectItem>
           </SelectContent>

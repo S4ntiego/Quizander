@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Quiz } from "@prisma/client"
 
-import prisma from "@/lib/prisma"
+import { prisma } from "@/lib/prisma"
 import { cn, formatDate } from "@/lib/utils"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 

@@ -38,6 +38,16 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "QuizScore" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "quizId" TEXT NOT NULL,
+    "score" DOUBLE PRECISION NOT NULL,
+
+    CONSTRAINT "QuizScore_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "VerificationToken" (
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,
@@ -76,7 +86,9 @@ CREATE TABLE "Quiz" (
     "createdById" TEXT NOT NULL,
     "plays" INTEGER NOT NULL DEFAULT 0,
     "type" TEXT NOT NULL DEFAULT 'multiple choice',
-    "scores" DOUBLE PRECISION[],
+    "lowScore" TEXT NOT NULL,
+    "mediumScore" TEXT NOT NULL,
+    "highScore" TEXT NOT NULL,
 
     CONSTRAINT "Quiz_pkey" PRIMARY KEY ("id")
 );
@@ -95,6 +107,12 @@ CREATE INDEX "Session_userId_idx" ON "Session"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE INDEX "QuizScore_userId_idx" ON "QuizScore"("userId");
+
+-- CreateIndex
+CREATE INDEX "QuizScore_quizId_idx" ON "QuizScore"("quizId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token");
