@@ -26,7 +26,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
     try {
       const quiz = await prisma.quiz.delete({
         where: {
-          id: req.query.quizId as string,
+          id: req.query.quizId,
         },
       })
 
@@ -40,7 +40,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
   if (req.method === "PATCH") {
     try {
-      const quizId = req.query.quizId as string
+      const quizId = req.query.quizId
       const quiz = await prisma.quiz.findUnique({
         where: {
           id: quizId,
@@ -64,12 +64,12 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
         await prisma.quiz.update({
           where: {
-            id: quiz.id as string,
+            id: quiz.id,
           },
           data: {
             title: JSON.parse(req.body.title),
             description: JSON.parse(req.body.description),
-            category: JSON.parse(req.body.category),
+            category: parseInt(JSON.parse(req.body.category)),
             lowScore: JSON.parse(req.body.lowScore),
             mediumScore: JSON.parse(req.body.mediumScore),
             highScore: JSON.parse(req.body.highScore),

@@ -3,69 +3,88 @@
 import React, { useEffect, useState, useTransition } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { IQuizResponse } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { FormProvider, useForm } from "react-hook-form"
-import { TypeOf, object, string, z } from "zod"
+import { TypeOf, number, object, string, z } from "zod"
 
 import { cn } from "@/lib/utils"
+import CategorySelect from "@/components/CategorySelect"
+import { Icons } from "@/components/Icons"
 import Question from "@/components/Question"
-import CategorySelect from "./CategorySelect"
-import { Icons } from "./Icons"
-import { Button, buttonVariants } from "./ui/button"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
-import { toast } from "./ui/toast"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { toast } from "@/components/ui/toast"
 
-const updateQuizSchema = object({
+interface ICreateQuizProp {
+  quiz: IQuizResponse
+}
+
+const createQuizSchema = object({
   coverImage: z.any(),
   title: string().min(1, "Title is required"),
   description: string()
     .min(1, "Description is required")
     .max(140, "Max description length amounts to 140 characters."),
-  category: string().min(1, "Please select a category from the dropdown list."),
+  category: z.any(),
   questions: z.any(),
   lowScore: string(),
   mediumScore: string(),
   highScore: string(),
 }).partial()
 
-type UpdateQuizForm = TypeOf<typeof updateQuizSchema>
+type ICreateQuiz = TypeOf<typeof createQuizSchema>
 
-export default function QuizEditor({ quiz, categories }) {
+const defaultValues = {
+  coverImage: "",
+  title: "test",
+  description: "test",
+  questions: [
+    {
+      question: "test",
+      answers: [
+        { answer: "true", isCorrect: true },
+        { answer: "false", isCorrect: false },
+        { answer: "false", isCorrect: false },
+        { answer: "false", isCorrect: false },
+      ],
+    },
+  ],
+}
+
+export default function QuizzesForm({ categories }) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [isFetching, setIsFetching] = useState(false)
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState<string | undefined>()
+  const [valuez, setValuez] = React.useState("france")
 
-  async function updateQuiz(quizId: string, formData: FormData) {
-    try {
-      setIsFetching(true)
-      const response = await fetch(`/api/quiz/${quizId}`, {
-        method: "PATCH",
-        body: formData,
+  async function createQuiz(formData: FormData) {
+    setIsFetching(true)
+    const response = await fetch(`/api/quiz/upload-quiz`, {
+      method: "POST",
+      body: formData,
+    })
+
+    if (!response?.ok) {
+      toast({
+        title: "Something went wrong.",
+        message: "Your quiz was not created. Please try again.",
+        type: "error",
       })
-
-      if (!response?.ok) {
-        toast({
-          title: "Something went wrong.",
-          message: "Your post was not deleted. Please try again.",
-          type: "error",
-        })
-      }
-
-      startTransition(() => {
-        setIsFetching(false)
-        router.refresh()
-      })
-    } catch (err) {
-      console.log(err)
     }
+
+    startTransition(() => {
+      setIsFetching(false)
+      router.refresh()
+    })
   }
 
-  //object returned will have the same shape as UpdateQuizForm
-  const methods = useForm<UpdateQuizForm>({
-    resolver: zodResolver(updateQuizSchema),
+  const methods = useForm<ICreateQuiz>({
+    defaultValues: defaultValues,
+    resolver: zodResolver(createQuizSchema),
   })
 
   const { register, control, getValues, setValue } = methods
@@ -77,34 +96,17 @@ export default function QuizEditor({ quiz, categories }) {
     if (typeof coverImage === "object") {
       formData.append("coverImage", filteredFormData.coverImage[0])
     }
-
     for (let [key, val] of Object.entries(quizBody)) {
       // append each item to the formData (converted to JSON strings)
       formData.append(key, JSON.stringify(val))
     }
-
-    updateQuiz(quiz.id, formData)
+    createQuiz(formData)
   }
 
-  useEffect(() => {
-    if (quiz) {
-      methods.reset({
-        title: quiz.title,
-        category: quiz.categoryId,
-        description: quiz.description,
-        questions: quiz.questions,
-        coverImage: quiz.coverImage,
-        lowScore: quiz.lowScore,
-        mediumScore: quiz.mediumScore,
-        highScore: quiz.highScore,
-      })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quiz])
-
+  // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
     if (!selectedFile) {
-      setPreview(quiz.coverImage)
+      setPreview(undefined)
       return
     }
 
@@ -113,7 +115,7 @@ export default function QuizEditor({ quiz, categories }) {
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl)
-  }, [selectedFile, quiz.coverImage])
+  }, [selectedFile])
 
   const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -126,7 +128,10 @@ export default function QuizEditor({ quiz, categories }) {
 
   return (
     <FormProvider {...methods}>
-      <form className="grid gap-2" onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        onSubmit={methods.handleSubmit(onSubmit)}
+        className="grid w-full gap-2"
+      >
         <Label htmlFor="coverImage">Cover Image</Label>
         <div className="grid w-full items-center gap-1.5">
           <Label
@@ -155,8 +160,8 @@ export default function QuizEditor({ quiz, categories }) {
                 </span>
               </div>
             </div>
-            {preview && (
-              <div className="h-full w-full group relative">
+            {selectedFile && preview && (
+              <div className="h-full w-full group">
                 <div className="absolute flex-col h-full w-full flex items-center justify-center opacity-0 hover:opacity-100 z-40">
                   <Icons.fileEdit className="text-slate-50 w-8 h-8" />
 
@@ -192,14 +197,20 @@ export default function QuizEditor({ quiz, categories }) {
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="title">Title</Label>
           <Input
-            placeholder="title"
+            id="title"
+            placeholder="Title"
             type="text"
             {...methods.register(`title`)}
           />
         </div>
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="description">Description</Label>
-          <Input type="text" {...methods.register(`description`)} />
+          <Input
+            placeholder="Description"
+            id="description"
+            type="text"
+            {...methods.register(`description`)}
+          />
         </div>
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="category">Quiz Category</Label>
@@ -236,7 +247,6 @@ export default function QuizEditor({ quiz, categories }) {
             {...methods.register(`highScore`)}
           />
         </div>
-
         <Question {...{ control, register, getValues, setValue }} />
         <Button type="submit">
           <span className="flex flex-row justify-center items-center">

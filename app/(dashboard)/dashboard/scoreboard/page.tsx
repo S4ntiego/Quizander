@@ -1,5 +1,5 @@
-import { notFound, redirect } from "next/navigation"
-import { Quiz, User } from "@prisma/client"
+import { redirect } from "next/navigation"
+import { User } from "@prisma/client"
 
 import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
@@ -8,15 +8,14 @@ import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 import Scoreboard from "@/components/Dashboard/Scoreboard"
 
 async function getScoreboard(userId: User["id"]) {
-  const scoreboard = await prisma.quizScore.findMany({
-    where: {
-      userId: userId,
-    },
+  const scoreboard = await prisma.quizCategory.findMany({
     include: {
-      quiz: {
-        select: {
-          category: true,
-          description: true,
+      quizzes: {
+        include: {
+          quizScores: {
+            where: { userId: userId },
+            orderBy: { createdAt: "desc" },
+          },
         },
       },
     },

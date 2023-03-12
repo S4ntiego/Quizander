@@ -2,9 +2,9 @@ import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 import { Quiz } from "@/components/Quiz"
 
-async function getQuiz(quizId: string) {
+async function getQuiz(quizId) {
   const quiz = await prisma.quiz.findUnique({
-    where: { id: quizId as string },
+    where: { id: parseInt(quizId) },
     include: {
       questions: {
         select: {
@@ -19,7 +19,7 @@ async function getQuiz(quizId: string) {
 }
 
 interface QuizPageProps {
-  params: { id: string }
+  params: { id: number }
 }
 
 export default async function QuizPage({ params }: QuizPageProps) {

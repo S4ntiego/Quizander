@@ -59,7 +59,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
         data: {
           title: JSON.parse(title),
           description: JSON.parse(description),
-          category: JSON.parse(category),
+          categoryId: parseInt(JSON.parse(category)),
           lowScore: JSON.parse(lowScore),
           mediumScore: JSON.parse(mediumScore),
           highScore: JSON.parse(highScore),
@@ -75,10 +75,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
             })),
           },
           coverImage: coverImageName,
-          createdById: session.user.id,
-        },
-        select: {
-          id: true,
+          createdById: session.user.id as number,
         },
       })
 

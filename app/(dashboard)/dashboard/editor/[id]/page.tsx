@@ -5,26 +5,36 @@ import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 import EditQuiz from "@/components/EditQuiz"
 
-async function getQuiz(id: Quiz["id"]) {
-  const quiz = await prisma.quiz.findFirst({
-    where: {
-      id: id,
-    },
-    include: {
-      questions: {
-        select: {
-          question: true,
-          answers: { select: { answer: true, isCorrect: true } },
+function getQuiz(id: Quiz["id"]) {
+  const quiz = prisma.quiz
+    .findFirst({
+      where: {
+        id: id,
+      },
+      include: {
+        questions: {
+          select: {
+            question: true,
+            answers: { select: { answer: true, isCorrect: true } },
+          },
         },
       },
-    },
-  })
+    })
+    .then((quiz) => {
+      if (quiz) {
+        quiz.coverImage =
+          "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+      }
+      return JSON.parse(JSON.stringify(quiz))
+    })
 
-  if (quiz) {
-    quiz.coverImage = "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
-  }
+  return quiz
+}
 
-  return JSON.parse(JSON.stringify(quiz))
+function getCategories() {
+  const categories = prisma.quizCategory.findMany()
+
+  return categories
 }
 
 interface EditorPageProps {
@@ -38,11 +48,9 @@ export default async function EditorPage({ params }: EditorPageProps) {
     redirect("/login")
   }
 
-  const quiz = await getQuiz(params.id)
+  const quizPromise = getQuiz(parseInt(params.id))
+  const categoriesPromise = getCategories()
+  const [quiz, categories] = await Promise.all([quizPromise, categoriesPromise])
 
-  if (!quiz) {
-    notFound()
-  }
-
-  return <EditQuiz quiz={quiz} />
+  return <EditQuiz quiz={quiz} categories={categories} />
 }

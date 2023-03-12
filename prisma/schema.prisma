@@ -9,8 +9,8 @@ datasource db {
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
+  id                Int  @id @default(autoincrement())
+  userId            Int
   type              String
   provider          String
   providerAccountId String
@@ -28,9 +28,9 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid())
+  id           Int   @id @default(autoincrement())
   sessionToken String   @unique
-  userId       String
+  userId       Int
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -38,7 +38,7 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            Int    @id @default(autoincrement())
   name          String?
   email         String?   @unique
   emailVerified DateTime?
@@ -51,20 +51,20 @@ model User {
 }
 
 model QuizCategory {
-  id String @id @default(cuid())
+  id Int @id @default(autoincrement())
   name String
   quizzes Quiz[]
 }
 
 model Quiz {
-  id          String     @id @default(uuid())
+  id          Int     @id @default(autoincrement())
   title       String
   description String
   category    QuizCategory @relation(fields: [categoryId], references: [id])
-  categoryId  String
+  categoryId  Int
   coverImage  String
   createdAt   DateTime   @default(now())
-  createdById String
+  createdById Int
   plays       Int        @default(0)
   type        String     @default("multiple choice")
   quizScores  QuizScore[]
@@ -79,10 +79,10 @@ model Quiz {
 }
 
 model QuizScore {
-  id String @id @default(cuid())
-  userId String
+  id Int @id @default(autoincrement())
+  userId Int
   user User @relation(fields: [userId], references: [id])
-  quizId String
+  quizId Int
   quiz Quiz @relation(fields: [quizId], references: [id])
   score Int
   createdAt DateTime @default(now())
@@ -100,20 +100,20 @@ model VerificationToken {
 }
 
 model Answer {
-  id         String   @id @default(uuid())
+  id         Int   @id @default(autoincrement())
   answer     String
   isCorrect  Boolean
   createdAt  DateTime @default(now())
-  questionId String
+  questionId Int
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
   @@index([questionId])
 }
 
 model Question {
-  id        String   @id @default(uuid())
+  id        Int   @id @default(autoincrement())
   question  String
-  quizId    String
+  quizId    Int
   createdAt DateTime @default(now())
   answers   Answer[]
   quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
