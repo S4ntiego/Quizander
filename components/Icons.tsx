@@ -27,6 +27,7 @@ import {
   Settings,
   SunMedium,
   Trash,
+  Trophy,
   Twitter,
   User,
   X,
@@ -35,6 +36,7 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
+  trophy: Trophy,
   logo: Glasses,
   linkedIn: Linkedin,
   close: X,

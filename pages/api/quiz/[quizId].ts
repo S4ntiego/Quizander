@@ -8,7 +8,7 @@ import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { withQuiz } from "@/lib/api-middlewares/with-quiz"
 import deleteS3 from "@/lib/awsDelete"
 import uploadS3 from "@/lib/awsUpload"
-import { prisma } from "@/lib/prisma"
+import prisma from "@/lib/prisma"
 import runMiddleware from "@/lib/runMiddleware"
 import { authOptions } from "../auth/[...nextauth]"
 

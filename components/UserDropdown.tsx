@@ -2,7 +2,7 @@
 
 import React from "react"
 import Link from "next/link"
-import { LogOut, Settings, User } from "lucide-react"
+import { LogOut, Settings, Trophy, User } from "lucide-react"
 import { signOut, useSession } from "next-auth/react"
 
 import { siteConfig } from "@/config/site"
@@ -78,6 +78,13 @@ const UserDropdown = () => {
                   <User className="mr-2 h-4 w-4" />
                   <span>Profile</span>
                   <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/dashboard/scoreboard">
+                <DropdownMenuItem>
+                  <Trophy className="mr-2 h-4 w-4" />
+                  <span>Scoreboard</span>
+                  <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
               <Link href="/dashboard">

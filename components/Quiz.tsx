@@ -2,35 +2,29 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useStateContext } from "@/context"
 
-import { prisma } from "@/lib/prisma"
 import { Icons } from "@/components/Icons"
 import { QuizAnswer } from "./QuizAnswer"
 import { Button } from "./ui/button"
 import { Separator } from "./ui/separator"
 
-async function saveQuizResults(quizId, userId, score) {
-  const quiz = await prisma.quizScore.create({
-    data: {
-      score: score,
-      userId: userId,
-      quizId: quizId,
-    },
+async function saveQuizResults(data) {
+  const response = await fetch(`/api/quiz/saveResults`, {
+    body: JSON.stringify(data),
+    method: "POST",
   })
 
-  return quiz
+  const quizzes = await response.json()
+
+  console.log(quizzes)
 }
 
-export function Quiz({ quiz }) {
+export function Quiz({ quiz, user }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [currentAnswer, setCurrentAnswer] = useState("")
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0)
   const [showResults, setShowResults] = useState(false)
   const [disabled, setDisabled] = useState(false)
-
-  const stateContext = useStateContext()
-  const user = stateContext.state.authUser
 
   const selectAnswer = (answer) => {
     setCurrentAnswer(answer)
@@ -66,12 +60,13 @@ export function Quiz({ quiz }) {
     setCurrentQuestionIndex(0)
   }
 
-  const onCompleteHandle = () => {
-    if (user) {
-      saveQuizResults(quiz.id, user._id, correctAnswersCount)
-    } else {
-      console.log("quiz completed")
+  const onCompleteHandle = async () => {
+    const data = {
+      quizId: quiz.id,
+      userId: user.id,
+      score: correctAnswersCount,
     }
+    await saveQuizResults(data)
   }
 
   return (

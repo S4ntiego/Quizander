@@ -43,10 +43,39 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  createdAt DateTime @default(now())
   accounts      Account[]
   sessions      Session[]
   quiz          Quiz[]
   quizScores QuizScore[]
+}
+
+model QuizCategory {
+  id String @id @default(cuid())
+  name String
+  quizzes Quiz[]
+}
+
+model Quiz {
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  category    QuizCategory @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  coverImage  String
+  createdAt   DateTime   @default(now())
+  createdById String
+  plays       Int        @default(0)
+  type        String     @default("multiple choice")
+  quizScores  QuizScore[]
+  createdBy   User       @relation(fields: [createdById], references: [id])
+  questions   Question[]
+  lowScore    String
+  mediumScore String
+  highScore   String
+
+  @@index([createdById])
+  @@index([categoryId])
 }
 
 model QuizScore {
@@ -55,7 +84,8 @@ model QuizScore {
   user User @relation(fields: [userId], references: [id])
   quizId String
   quiz Quiz @relation(fields: [quizId], references: [id])
-  score Float
+  score Int
+  createdAt DateTime @default(now())
 
   @@index([userId])
   @@index([quizId])
@@ -91,22 +121,4 @@ model Question {
   @@index([quizId])
 }
 
-model Quiz {
-  id          String     @id @default(uuid())
-  title       String
-  description String
-  category    String
-  coverImage  String
-  createdAt   DateTime   @default(now())
-  createdById String
-  plays       Int        @default(0)
-  type        String     @default("multiple choice")
-  quizScores      QuizScore[]
-  createdBy   User       @relation(fields: [createdById], references: [id])
-  questions   Question[]
-  lowScore    String
-  mediumScore String
-  highScore   String
 
-  @@index([createdById])
-}

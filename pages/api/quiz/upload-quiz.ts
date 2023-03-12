@@ -4,7 +4,7 @@ import multer from "multer"
 import { getSession } from "next-auth/react"
 
 import uploadS3 from "@/lib/awsUpload"
-import { prisma } from "@/lib/prisma"
+import prisma from "@/lib/prisma"
 import runMiddleware from "@/lib/runMiddleware"
 
 interface RequestWithFile extends NextApiRequest {

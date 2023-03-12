@@ -7,10 +7,9 @@ import {
   Inter as FontSans,
   Fraunces,
   Playfair_Display,
-} from "@next/font/google"
+} from "next/font/google"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import { SessionProvider } from "next-auth/react"
 import { ThemeProvider } from "next-themes"
 
 import AuthContext from "@/components/Dashboard/AuthContext"

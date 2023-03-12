@@ -13,7 +13,7 @@ const nextConfig = {
     serverComponentsExternalPackages: ["@prisma/client"],
     fontLoaders: [
       {
-        loader: "@next/font/google",
+        loader: "next/font/google",
         options: { subsets: ["latin"] },
       },
     ],

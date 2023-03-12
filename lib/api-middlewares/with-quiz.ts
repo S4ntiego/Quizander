@@ -3,7 +3,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { getServerSession } from "next-auth/next"
 import * as z from "zod"
 
-import { prisma } from "@/lib/prisma"
+import prisma from "@/lib/prisma"
 
 export const schema = z.object({
   quizId: z.string(),
