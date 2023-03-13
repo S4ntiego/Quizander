@@ -19,7 +19,7 @@ export function withQuiz(handler: NextApiHandler) {
       if (session) {
         const count = await prisma.quiz.count({
           where: {
-            id: query.quizId,
+            id: parseInt(query.quizId),
             createdById: session.user.id,
           },
         })
