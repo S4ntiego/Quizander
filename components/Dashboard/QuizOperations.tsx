@@ -38,7 +38,7 @@ export function QuizOperations({ quiz }: QuizOperationsProps) {
   const [isFetching, setIsFetching] = useState(false)
   const [showDeleteAlert, setShowDeleteAlert] = React.useState<boolean>(false)
 
-  async function deletePost(quizId: string) {
+  async function deletePost(quizId: number) {
     setIsFetching(true)
     const response = await fetch(`/api/quiz/${quizId}`, {
       method: "DELETE",

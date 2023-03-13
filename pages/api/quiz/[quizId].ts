@@ -26,7 +26,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
     try {
       const quiz = await prisma.quiz.delete({
         where: {
-          id: req.query.quizId,
+          id: parseInt(req.query.quizId as string),
         },
       })
 
@@ -34,16 +34,20 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
       return res.status(204).end()
     } catch (error) {
-      return res.status(500).end()
+      if (error instanceof z.ZodError) {
+        return res.status(422).json(error.issues)
+      }
+
+      return res.status(422).end()
     }
   }
 
   if (req.method === "PATCH") {
     try {
-      const quizId = req.query.quizId
+      const quizId = req.query.quizId as string
       const quiz = await prisma.quiz.findUnique({
         where: {
-          id: quizId,
+          id: parseInt(quizId),
         },
       })
 
@@ -69,7 +73,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
           data: {
             title: JSON.parse(req.body.title),
             description: JSON.parse(req.body.description),
-            category: parseInt(JSON.parse(req.body.category)),
+            categoryId: parseInt(JSON.parse(req.body.category)),
             lowScore: JSON.parse(req.body.lowScore),
             mediumScore: JSON.parse(req.body.mediumScore),
             highScore: JSON.parse(req.body.highScore),
@@ -99,12 +103,12 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
         if (quiz && session) {
           await prisma.quiz.update({
             where: {
-              id: quiz.id as string,
+              id: quiz.id,
             },
             data: {
               title: JSON.parse(req.body.title),
               description: JSON.parse(req.body.description),
-              category: JSON.parse(req.body.category),
+              categoryId: parseInt(JSON.parse(req.body.category)),
               questions: {
                 deleteMany: {},
                 create: JSON.parse(req.body.questions).map((question: any) => ({
@@ -143,4 +147,4 @@ export const config = {
   },
 }
 
-export default withMethods(["DELETE", "PATCH"], withQuiz(handler))
+export default handler
