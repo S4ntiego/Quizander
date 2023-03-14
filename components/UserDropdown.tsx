@@ -30,7 +30,7 @@ const UserDropdown = () => {
   return (
     <div className="relative inline-block text-left">
       <div className="flex">
-        <nav className="mr-4 flex items-center space-x-1">
+        <nav className="mr-2 flex items-center space-x-1">
           <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
             <div
               className={buttonVariants({
@@ -63,13 +63,22 @@ const UserDropdown = () => {
         </nav>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+            <Button
+              variant="ghost"
+              className="relative flex items-center justify-center h-10 w-10 bg-center rounded-full"
+            >
               <Avatar>
                 <AvatarImage src={`${image}`} alt={"A"} />
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56" align="end" forceMount>
+          <DropdownMenuContent
+            align="end"
+            sideOffset={24}
+            alignOffset={0}
+            className="w-[200px] slide-in-from-top-2 overflow-auto"
+            forceMount
+          >
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>

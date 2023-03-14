@@ -1,7 +1,7 @@
 import crypto from "crypto"
 import { NextApiRequest, NextApiResponse } from "next"
 import multer from "multer"
-import { unstable_getServerSession } from "next-auth"
+import { getServerSession } from "next-auth"
 import { z } from "zod"
 
 import { withMethods } from "@/lib/api-middlewares/with-methods"
@@ -20,7 +20,7 @@ interface RequestWithFile extends NextApiRequest {
 }
 
 const handler = async (req: RequestWithFile, res: NextApiResponse) => {
-  const session = await unstable_getServerSession(req, res, authOptions)
+  const session = await getServerSession(req, res, authOptions)
 
   if (req.method === "DELETE") {
     try {

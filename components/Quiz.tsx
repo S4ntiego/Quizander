@@ -15,8 +15,6 @@ async function saveQuizResults(data) {
   })
 
   const quizzes = await response.json()
-
-  console.log(quizzes)
 }
 
 export function Quiz({ quiz, user }) {

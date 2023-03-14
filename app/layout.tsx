@@ -57,7 +57,7 @@ export default function RootLayout({ children }: { children: any }) {
     >
       <head />
       <body className="min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <QueryClientProvider client={queryClient}>
             <AuthContext>
               <StateContextProvider>{children}</StateContextProvider>

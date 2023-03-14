@@ -1,7 +1,7 @@
 import { cache } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Quiz } from "@prisma/client"
+import { Quiz, QuizCategory } from "@prisma/client"
 
 import prisma from "@/lib/prisma"
 import { cn, formatDate } from "@/lib/utils"
@@ -10,6 +10,11 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 const getQuizzes = cache(async () => {
   const quizzes = await prisma.quiz.findMany({
     include: {
+      category: {
+        select: {
+          name: true,
+        },
+      },
       questions: {
         select: {
           question: true,
@@ -46,7 +51,7 @@ export default async function IndexPage() {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-3">
         {quizzes.map((quiz) => (
           <QuizArtwork key={quiz.title} quiz={quiz} />
         ))}
@@ -55,8 +60,15 @@ export default async function IndexPage() {
   )
 }
 
+interface QuizWithCategory extends Quiz {
+  category: {
+    id?: number
+    name?: string
+  }
+}
+
 interface QuizArtworkProps extends React.HTMLAttributes<HTMLDivElement> {
-  quiz: Quiz
+  quiz: QuizWithCategory
   aspectRatio?: number
 }
 
@@ -78,15 +90,18 @@ function QuizArtwork({
             className="object-cover transition-all group-hover:scale-105"
           />
         </AspectRatio>
-        <div className="space-y-3 mt-2 text-sm">
-          <h3 className="font-playfair font-bold text-2xl leading-none">
+        <div className="mt-6">
+          <p className="uppercase dark:text-slate-500 text-xs tracking-widest text">
+            {quiz.category.name}
+          </p>
+          <h3 className="font-playfair mt-2 font-black text-3xl leading-none">
             {quiz.title}
           </h3>
-          <p className="text-normal text-justify line-clamp-3 text-slate-500 dark:text-slate-400">
+          <p className="text-normal mt-4 text-justify line-clamp-3 text-slate-500 dark:text-slate-200">
             {quiz.description}
           </p>
           {quiz.createdAt && (
-            <p className="text-xs text-slate-600">
+            <p className="text-xs mt-2 dark:text-slate-500">
               {formatDate(quiz.createdAt)}
             </p>
           )}
