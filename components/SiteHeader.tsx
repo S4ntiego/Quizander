@@ -80,17 +80,21 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
                     asChild
                     className="flex items-center justify-center relative"
                   >
-                    <Icons.user className="flex hover:bg-slate-100 dark:hover:text-slate-100 cursor-pointer items-center justify-center h-9 w-9 px-2 ml-3 rounded-full bg-slate-100 dark:bg-slate-800 dark:text-slate-400" />
+                    <Icons.user
+                      style={{
+                        WebkitTapHighlightColor: "rgba(255, 255, 255, 0)",
+                      }}
+                      className="flex hover:bg-slate-100 dark:hover:text-slate-100 cursor-pointer items-center justify-center h-9 w-9 px-2 ml-3 rounded-full bg-slate-100 dark:bg-slate-800 dark:text-slate-400"
+                    />
                   </DialogTrigger>
                   <DialogContent>
-                    <DialogHeader>
+                    <DialogHeader className="flex space-y-4">
                       <DialogTitle>Login</DialogTitle>
                       <DialogDescription>
                         Join the Quizander community. Have fun solving quizzes
                         from the the Harry Potter universe and save your
                         achievements!
                       </DialogDescription>
-                      <Separator />
                       <Button
                         onClick={(e) => {
                           e.preventDefault()

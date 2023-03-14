@@ -13,17 +13,19 @@ export function QuizAnswer({
       : ""
   const isWrongAnswer =
     currentAnswer === answer && answer?.isCorrect === false
-      ? "dark:bg-red-800 bg-red-700 text-slate-50 disabled:opacity-100 border-red-600"
+      ? "dark:bg-red-800 dark:hover:bg-red-800 hover:bg-red-700 bg-red-700 text-slate-50 disabled:opacity-100 border-red-600"
       : ""
-  const isOtherAnswer = currentAnswer && currentAnswer !== answer ? "" : ""
 
   return (
     <Button
       variant="subtle"
       disabled={disabled}
+      style={{
+        WebkitTapHighlightColor: "rgba(255, 255, 255, 0)",
+      }}
       className={cn(
-        `h-16 outline-none focus:ring-0`,
-        isOtherAnswer,
+        `transition-all ease-in-out duration-500 h-16 outline-none w-full answer-text`,
+
         isWrongAnswer,
         isCorrectAnswer
       )}
@@ -31,7 +33,7 @@ export function QuizAnswer({
         onSelectAnswer(answer)
       }}
     >
-      <div className="answer-text">{answer?.answer}</div>
+      {answer?.answer}
     </Button>
   )
 }
