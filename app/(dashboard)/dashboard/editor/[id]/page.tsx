@@ -45,7 +45,7 @@ export default async function EditorPage({ params }: EditorPageProps) {
   const user = await getCurrentUser()
 
   if (!user) {
-    redirect("/login")
+    redirect("/")
   }
 
   const quizPromise = getQuiz(parseInt(params.id))

@@ -28,7 +28,7 @@ export default async function ScoreboardPage() {
   const user = await getCurrentUser()
 
   if (!user) {
-    redirect("/login")
+    redirect("/")
   }
 
   const scoreboard = await getScoreboard(user.id)

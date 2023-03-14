@@ -42,7 +42,10 @@ export function MobileNav({ mobileConfig }: MobileNavProps) {
         className="w-[300px] overflow-auto"
       >
         <DropdownMenuItem asChild>
-          <Link href="/" className="flex items-center text-slate-50">
+          <Link
+            href="/"
+            className="flex items-center text-slate-900 font-black dark:text-slate-50"
+          >
             <Icons.logo className="mr-2 h-4 w-4" /> {siteConfig.name}
           </Link>
         </DropdownMenuItem>

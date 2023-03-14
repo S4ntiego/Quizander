@@ -30,8 +30,8 @@ export function MainNav({ mainConfig }: MainNavProps) {
       </Link>
       <NavigationMenu>
         <NavigationMenuList>
-          {mainConfig.map((item) => (
-            <NavigationMenuItem className="hidden md:flex">
+          {mainConfig.map((item, i) => (
+            <NavigationMenuItem key={i} className="hidden md:flex">
               <Link href={`${item.href}`} legacyBehavior passHref>
                 <NavigationMenuLink
                   className={cn(navigationMenuTriggerStyle(), "h-9")}

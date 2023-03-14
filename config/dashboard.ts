@@ -2,6 +2,7 @@ import { MainNavItem, MobileNavItem } from "types/nav"
 
 interface DashboardConfig {
   mainNav: MainNavItem[]
+  mainDashboardNav: MainNavItem[]
   mobileNav: MobileNavItem[]
   mobileDashboardNav: MobileNavItem[]
   dashboardNav: MainNavItem[]
@@ -14,6 +15,7 @@ export const dashboardConfig: DashboardConfig = {
       href: "/",
     },
   ],
+  mainDashboardNav: [],
   dashboardNav: [
     {
       title: "Quizzes",

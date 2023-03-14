@@ -15,7 +15,7 @@ export default async function CreatorPage() {
   const user = await getCurrentUser()
 
   if (!user) {
-    redirect("/login")
+    redirect("/")
   }
 
   const categories = await getCategories()

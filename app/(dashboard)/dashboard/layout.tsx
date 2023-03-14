@@ -9,13 +9,13 @@ interface LayoutProps {
 
 export default async function DashboardLayout({ children }: LayoutProps) {
   return (
-    <div className="mx-auto flex flex-col min-h-screen">
-      <header className="sticky top-0 z-40 dark:bg-slate-900 bg-white">
+    <header className="mx-auto flex flex-col min-h-screen">
+      <div className="sticky top-0 z-40 dark:bg-slate-900 bg-white">
         <SiteHeader
-          mainConfig={dashboardConfig.mainNav}
+          mainConfig={dashboardConfig.mainDashboardNav}
           mobileConfig={dashboardConfig.mobileDashboardNav}
         />
-      </header>
+      </div>
       <div className="container flex-1 grid gap-12 py-8 md:grid-cols-[200px_1fr]">
         <aside className="hidden w-[200px] flex-col md:flex ">
           <DashboardNav />
@@ -25,6 +25,6 @@ export default async function DashboardLayout({ children }: LayoutProps) {
         </main>
       </div>
       <SiteFooter />
-    </div>
+    </header>
   )
 }
