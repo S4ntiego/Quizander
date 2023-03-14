@@ -37,7 +37,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
         <MobileNav mobileConfig={mobileConfig} />
         <div className="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
           <div className="w-full flex-1 md:w-auto md:flex-none"></div>
-          <nav className="flex items-center space-x-1">
+          <nav className="flex items-center">
             {!session && status !== "loading" ? (
               <div className="flex justify-center items-center">
                 <nav className="flex items-center space-x-1">
@@ -80,7 +80,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
                     asChild
                     className="flex items-center justify-center relative"
                   >
-                    <Icons.user className="flex items-center justify-center h-9 w-9 px-2 ml-1 rounded-full bg-slate-100" />
+                    <Icons.user className="flex hover:bg-slate-100 dark:hover:text-slate-100 cursor-pointer items-center justify-center h-9 w-9 px-2 ml-3 rounded-full bg-slate-100 dark:bg-slate-800 dark:text-slate-400" />
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
