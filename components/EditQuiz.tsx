@@ -132,7 +132,7 @@ export default function QuizEditor({ quiz, categories }) {
           <Label
             htmlFor="coverImage"
             className={cn(
-              "flex cursor-pointer relative items-center justify-center w-[402px] h-[226px] border border-slate-300 dark:border-slate-600 border-dashed overflow-hidden rounded-md hover:border-none  hover:ring-slate-300 hover:ring-2 dark:hover:border-none dark:hover:ring-slate-600",
+              "flex cursor-pointer relative items-center justify-center w-[320px] h-[320px] border border-slate-300 dark:border-slate-600 border-dashed overflow-hidden rounded-md hover:border-none  hover:ring-slate-300 hover:ring-2 dark:hover:border-none dark:hover:ring-slate-600",
               preview && "border-solid"
             )}
           >
@@ -243,7 +243,7 @@ export default function QuizEditor({ quiz, categories }) {
             {isFetching ? (
               <Icons.spinner className="h-4 w-4 animate-spin" />
             ) : null}
-            <span>Create quiz</span>
+            <span>Add Quiz</span>
           </span>
         </Button>
       </form>

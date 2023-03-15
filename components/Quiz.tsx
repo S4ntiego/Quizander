@@ -68,14 +68,14 @@ export function Quiz({ quiz, user }) {
   }
 
   return (
-    <div className="flex container items-center justify-center py-8 flex-1 dark:text-slate-400">
+    <div className="flex container py-8 dark:text-slate-400 min-h-screen content-start">
       {!showResults ? (
         <div className="w-full">
-          <div className="flex flex-col h-full items-center justify-center text-center gap-6 w-full">
+          <div className="flex flex-col items-center justify-center text-center gap-6 w-full">
             <p className="text-sm sm:text-md">
               {currentQuestionIndex + 1} / {quiz.questions.length}
             </p>
-            <h1 className="tracking-tight text-3xl sm:text-4xl font-black font-playfair leading-tight dark:text-slate-50 text-slate-900 lg:text-5xl">
+            <h1 className="text-xl sm:text-4xl font-bold leading-snug dark:text-slate-50 text-slate-900 lg:text-5xl">
               {quiz.questions[currentQuestionIndex].question}
             </h1>
           </div>

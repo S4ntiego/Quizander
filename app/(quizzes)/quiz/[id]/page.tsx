@@ -15,7 +15,7 @@ async function getQuiz(quizId) {
     },
   })
 
-  return quiz
+  return JSON.parse(JSON.stringify(quiz))
 }
 
 interface QuizPageProps {

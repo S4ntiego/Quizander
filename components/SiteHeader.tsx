@@ -19,7 +19,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
-import { Separator } from "./ui/separator"
 
 interface SiteHeaderProps {
   mainConfig: MainNavItem[]
@@ -31,7 +30,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
   const { image, name } = session?.user || {}
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
+    <div className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
       <div className="container flex h-16 items-center">
         <MainNav mainConfig={mainConfig} />
         <MobileNav mobileConfig={mobileConfig} />
@@ -123,6 +122,6 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
           </nav>
         </div>
       </div>
-    </header>
+    </div>
   )
 }

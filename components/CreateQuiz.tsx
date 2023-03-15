@@ -24,9 +24,7 @@ interface ICreateQuizProp {
 const createQuizSchema = object({
   coverImage: z.any(),
   title: string().min(1, "Title is required"),
-  description: string()
-    .min(1, "Description is required")
-    .max(140, "Max description length amounts to 140 characters."),
+  description: string().min(1, "Description is required"),
   category: z.any(),
   questions: z.any(),
   lowScore: string(),
@@ -137,7 +135,7 @@ export default function QuizzesForm({ categories }) {
           <Label
             htmlFor="coverImage"
             className={cn(
-              "flex cursor-pointer relative items-center justify-center w-[402px] h-[226px] border border-slate-300 dark:border-slate-600 border-dashed overflow-hidden rounded-md hover:border-none  hover:ring-slate-300 hover:ring-2 dark:hover:border-none dark:hover:ring-slate-600",
+              "flex cursor-pointer relative items-center justify-center w-[320px] h-[320[px] border border-slate-300 dark:border-slate-600 border-dashed overflow-hidden rounded-md hover:border-none  hover:ring-slate-300 hover:ring-2 dark:hover:border-none dark:hover:ring-slate-600",
               preview && "border-solid"
             )}
           >
@@ -253,7 +251,7 @@ export default function QuizzesForm({ categories }) {
             {isFetching ? (
               <Icons.spinner className="h-4 w-4 animate-spin" />
             ) : null}
-            <span>Create quiz</span>
+            <span>Add Quiz</span>
           </span>
         </Button>
       </form>

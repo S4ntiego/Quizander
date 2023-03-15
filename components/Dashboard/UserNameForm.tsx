@@ -57,7 +57,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
 
   return (
     <form
-      className={cn(className)}
+      className={cn("overflow-hidden")}
       onSubmit={handleSubmit(onSubmit)}
       {...props}
     >
@@ -74,13 +74,9 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
             <label className="sr-only" htmlFor="name">
               Name
             </label>
-            <Input
-              id="name"
-              className="w-[350px] dark:bg-slate-800"
-              {...register("name")}
-            />
+            <Input id="name" className="" {...register("name")} />
             {errors?.name && (
-              <p className="px-1 text-xs text-red-600">{errors.name.message}</p>
+              <p className="px-2 text-xs text-red-600">{errors.name.message}</p>
             )}
           </div>
         </Card.Content>

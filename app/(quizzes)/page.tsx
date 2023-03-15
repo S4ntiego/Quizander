@@ -1,7 +1,7 @@
 import { cache } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Quiz, QuizCategory } from "@prisma/client"
+import { Quiz } from "@prisma/client"
 
 import prisma from "@/lib/prisma"
 import { cn, formatDate } from "@/lib/utils"
@@ -46,12 +46,12 @@ export default async function IndexPage() {
         <h1 className="text-3xl font-playfair font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
           Harry Potter Trivia
         </h1>
-        <p className="max-w-[700px] mb-4 text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
+        <p className="max-w-[700px] mb-12 text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
           Verify your knowledge about the universe.
         </p>
       </div>
 
-      <div className="grid gap-8 sm:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
         {quizzes.map((quiz) => (
           <QuizArtwork key={quiz.title} quiz={quiz} />
         ))}
@@ -74,7 +74,7 @@ interface QuizArtworkProps extends React.HTMLAttributes<HTMLDivElement> {
 
 function QuizArtwork({
   quiz,
-  aspectRatio = 4 / 3,
+  aspectRatio = 1 / 1,
   className,
   ...props
 }: QuizArtworkProps) {
@@ -83,21 +83,19 @@ function QuizArtwork({
       <Link href={`/quiz/${quiz.id}`}>
         <AspectRatio ratio={aspectRatio} className="overflow-hidden rounded-md">
           <Image
+            fill
             priority
             src={quiz.coverImage}
             alt={quiz.title}
-            fill
             className="object-cover transition-all group-hover:scale-105"
           />
         </AspectRatio>
-        <div className="mt-6">
-          <p className="uppercase dark:text-slate-500 text-xs tracking-widest text">
+        <div className="mt-4">
+          <p className="uppercase dark:text-slate-500 text-[10px] font-semibold tracking-widest text">
             {quiz.category.name}
           </p>
-          <h3 className="font-playfair mt-2 font-black text-3xl leading-none">
-            {quiz.title}
-          </h3>
-          <p className="text-normal mt-4 text-justify line-clamp-3 text-slate-500 dark:text-slate-200">
+          <h3 className="mt-3 font-bold text-xl leading-snug">{quiz.title}</h3>
+          <p className="text-sm mt-6 text-justify line-clamp-4 text-slate-500 dark:text-slate-200">
             {quiz.description}
           </p>
           {quiz.createdAt && (

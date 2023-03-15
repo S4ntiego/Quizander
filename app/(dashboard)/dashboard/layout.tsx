@@ -17,10 +17,10 @@ export default async function DashboardLayout({ children }: LayoutProps) {
         />
       </div>
       <div className="container flex-1 grid gap-12 py-8 md:grid-cols-[200px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex ">
+        <aside className="hidden w-[200px] flex-col md:flex sticky left-0">
           <DashboardNav />
         </aside>
-        <main className="flex w-full flex-1 flex-col overflow-hidden">
+        <main className="flex w-full flex-1 flex-col overflow-hidden md:px-1">
           {children}
         </main>
       </div>

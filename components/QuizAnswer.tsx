@@ -25,7 +25,6 @@ export function QuizAnswer({
       }}
       className={cn(
         `transition-all ease-in-out duration-500 h-16 outline-none w-full answer-text`,
-
         isWrongAnswer,
         isCorrectAnswer
       )}

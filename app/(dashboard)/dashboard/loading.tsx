@@ -12,11 +12,11 @@ export default function DashboardLoading() {
     <DashboardContainer>
       <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
         <Link
-          className={cn(buttonVariants({ variant: "default" }))}
+          className={cn(buttonVariants({ variant: "default" }), "w-32")}
           href="/dashboard/editor"
         >
           <Icons.add className="w-4 h-4 mr-2" />
-          Create Quiz
+          Add Quiz
         </Link>
       </DashboardHeader>
       <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">

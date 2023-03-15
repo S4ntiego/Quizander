@@ -50,11 +50,11 @@ export default async function DashboardPage() {
     <DashboardContainer>
       <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
         <Link
-          className={cn(buttonVariants({ variant: "default" }))}
+          className={cn(buttonVariants({ variant: "default" }), "w-32")}
           href="/dashboard/editor"
         >
           <Icons.add className="w-4 h-4 mr-2" />
-          Create Quiz
+          <span>Add Quiz</span>
         </Link>
       </DashboardHeader>
       <div>
@@ -78,7 +78,7 @@ export default async function DashboardPage() {
               href="/dashboard/editor"
             >
               <Icons.add className="w-4 h-4 mr-2" />
-              Create Quiz
+              Add Quiz
             </Link>
           </EmptyPlaceholder>
         )}
