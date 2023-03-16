@@ -18,7 +18,9 @@ const layout = ({ children }: QuizzesProps) => {
           mainConfig={dashboardConfig.mainNav}
           mobileConfig={dashboardConfig.mobileNav}
         />
-        <main className="flex flex-auto">{children}</main>
+        <main className="flex flex-auto max-h-full overflow-auto">
+          {children}
+        </main>
       </div>
       <SiteFooter />
     </>

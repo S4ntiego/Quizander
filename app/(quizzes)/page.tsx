@@ -94,7 +94,9 @@ function QuizArtwork({
           <p className="uppercase dark:text-slate-500 text-[10px] font-semibold tracking-widest text">
             {quiz.category.name}
           </p>
-          <h3 className="mt-3 font-bold text-xl leading-snug">{quiz.title}</h3>
+          <h3 className="mt-3 font-bold text-xl leading-snug text-justify">
+            {quiz.title}
+          </h3>
           <p className="text-sm mt-6 text-justify line-clamp-4 text-slate-500 dark:text-slate-200">
             {quiz.description}
           </p>

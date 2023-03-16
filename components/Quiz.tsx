@@ -1,12 +1,8 @@
 "use client"
 
 import React, { useState } from "react"
-import Link from "next/link"
 
-import { Icons } from "@/components/Icons"
 import { QuizAnswer } from "./QuizAnswer"
-import { Button } from "./ui/button"
-import { Separator } from "./ui/separator"
 
 async function saveQuizResults(data) {
   const response = await fetch(`/api/quiz/saveResults`, {
@@ -68,7 +64,44 @@ export function Quiz({ quiz, user }) {
   }
 
   return (
-    <div className="flex flex-col items-center container overflow-y-auto py-8 dark:text-slate-400">
+    <div className="container grid grid-rows-6 py-8 gap-4">
+      {!showResults ? (
+        <>
+          <div className="row-span-2 gap-2 grid grid-rows-[auto,1fr]">
+            <div className="text-center">
+              <span className="text-xs">
+                {currentQuestionIndex + 1} / {quiz.questions.length}
+              </span>
+            </div>
+            <div className="px-3  font-bold text-center overflow-auto">
+              <span className="m-auto">
+                {quiz.questions[currentQuestionIndex].question}
+              </span>
+            </div>
+          </div>
+          <div className="row-span-4 grid grid-rows-4 gap-4">
+            {quiz.questions[currentQuestionIndex].answers.map(
+              (answer, index) => (
+                <QuizAnswer
+                  key={index}
+                  onSelectAnswer={selectAnswer}
+                  answer={answer}
+                  disabled={disabled}
+                  currentAnswer={currentAnswer}
+                />
+              )
+            )}
+          </div>
+        </>
+      ) : (
+        <>xD</>
+      )}
+    </div>
+  )
+}
+
+{
+  /* <div className="flex flex-col items-center container overflow-y-auto py-8 dark:text-slate-400">
       {!showResults ? (
         <div className="w-full">
           <div className="flex flex-col items-center justify-center text-center gap-6 w-full">
@@ -130,6 +163,5 @@ export function Quiz({ quiz, user }) {
           </div>
         </div>
       )}
-    </div>
-  )
+    </div> */
 }

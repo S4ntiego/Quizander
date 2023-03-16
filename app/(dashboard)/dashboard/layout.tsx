@@ -20,7 +20,7 @@ export default async function DashboardLayout({ children }: LayoutProps) {
         <aside className="hidden w-[200px] flex-col md:flex sticky left-0">
           <DashboardNav />
         </aside>
-        <main className="flex w-full flex-1 flex-col overflow-hidden md:px-1">
+        <main className="flex w-full flex-1 flex-col overflow-hidden md:p-1">
           {children}
         </main>
       </div>

@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 import { cn } from "@/lib/utils"
 import { Button } from "./ui/button"
 
@@ -7,6 +9,23 @@ export function QuizAnswer({
   currentAnswer,
   disabled,
 }: any) {
+  const getFontSize = (textLength) => {
+    const baseSize = 160
+    if (textLength > baseSize) {
+      textLength = baseSize - 158
+    }
+    const fontSize = baseSize - (textLength + 155.1)
+    return `${fontSize}vw`
+  }
+
+  useEffect(() => {
+    const boxes = document.querySelectorAll("#box p")
+
+    boxes.forEach((box) => {
+      box.style.fontSize = getFontSize(box.textContent.length)
+    })
+  }, [])
+
   const isCorrectAnswer =
     currentAnswer && answer?.isCorrect === true
       ? "dark:bg-green-800 hover:bg-green-700 dark:hover:bg-green-800 bg-green-700 text-slate-50 disabled:opacity-100 border-green-600"
@@ -18,13 +37,14 @@ export function QuizAnswer({
 
   return (
     <Button
+      id="box"
       variant="subtle"
       disabled={disabled}
       style={{
         WebkitTapHighlightColor: "rgba(255, 255, 255, 0)",
       }}
       className={cn(
-        `transition-all ease-in-out duration-500 h-16 outline-none w-full answer-text`,
+        `transition-all ease-in-out duration-500 h-full outline-none text-center`,
         isWrongAnswer,
         isCorrectAnswer
       )}
@@ -32,7 +52,9 @@ export function QuizAnswer({
         onSelectAnswer(answer)
       }}
     >
-      {answer?.answer}
+      <p id="elo" className="text-sm">
+        {answer?.answer}
+      </p>
     </Button>
   )
 }
