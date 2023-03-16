@@ -68,7 +68,7 @@ export function Quiz({ quiz, user }) {
   }
 
   return (
-    <div className="flex container py-8 dark:text-slate-400 min-h-screen content-start">
+    <div className="flex flex-col items-center container overflow-y-auto py-8 dark:text-slate-400">
       {!showResults ? (
         <div className="w-full">
           <div className="flex flex-col items-center justify-center text-center gap-6 w-full">
