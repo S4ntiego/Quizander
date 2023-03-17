@@ -73,7 +73,7 @@ export function Quiz({ quiz, user }) {
                 {currentQuestionIndex + 1} / {quiz.questions.length}
               </span>
             </div>
-            <div className="px-3  font-bold text-center overflow-auto">
+            <div className="px-3 flex items-center font-bold text-center overflow-auto">
               <span className="m-auto">
                 {quiz.questions[currentQuestionIndex].question}
               </span>
