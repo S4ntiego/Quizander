@@ -27,8 +27,8 @@ export function QuizAnswer({
         WebkitTapHighlightColor: "rgba(255, 255, 255, 0)",
       }}
       className={cn(
-        `transition-all ease-in-out duration-500 h-full outline-none text-center overflow-auto`,
-        answer?.answer.length > 160 && " text-xs sm:text-sm",
+        `transition-all max-w-full block overflow-auto ease-in-out duration-500 h-full break-words sm:text-sm`,
+        answer?.answer.length > 95 && "text-xs",
         isWrongAnswer,
         isCorrectAnswer
       )}

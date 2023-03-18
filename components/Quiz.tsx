@@ -64,7 +64,7 @@ export function Quiz({ quiz, user }) {
   }
 
   return (
-    <div className="container grid grid-rows-6 py-8 gap-4">
+    <div className="container grid grid-rows-6 py-8 gap-4 sm:p-36">
       {!showResults ? (
         <>
           <div className="row-span-2 gap-2 grid grid-rows-[auto,1fr]">
@@ -74,7 +74,7 @@ export function Quiz({ quiz, user }) {
               </span>
             </div>
             <div className="px-3 flex items-center font-bold text-center overflow-auto">
-              <span className="m-auto">
+              <span className="m-auto text-base sm:text-lg break-words overflow-auto">
                 {quiz.questions[currentQuestionIndex].question}
               </span>
             </div>

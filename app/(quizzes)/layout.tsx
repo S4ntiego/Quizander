@@ -22,7 +22,6 @@ const layout = ({ children }: QuizzesProps) => {
           {children}
         </main>
       </div>
-      <SiteFooter />
     </>
   )
 }

@@ -23,7 +23,7 @@ module.exports = {
     extend: {
       fontFamily: {
         playfair: ["var(--font-playfair-display)"],
-        domine: ["var(--font-domine)"],
+        urbanist: ["var(--font-urbanist)"],
         fraunces: ["var(--font-fraunces)"],
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },

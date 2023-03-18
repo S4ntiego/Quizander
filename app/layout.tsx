@@ -3,10 +3,10 @@
 import "@/styles/globals.css"
 import React from "react"
 import {
-  Domine,
   Inter as FontSans,
   Fraunces,
   Playfair_Display,
+  Urbanist,
 } from "next/font/google"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
@@ -36,10 +36,9 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 })
 
-const domine = Domine({
+const urbanist = Urbanist({
+  variable: "--font-urbanist",
   subsets: ["latin"],
-  variable: "--font-domine",
-  display: "optional",
 })
 
 const fraunces = Fraunces({
@@ -53,7 +52,7 @@ export default function RootLayout({ children }: { children: any }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full m-0 ${playfair.variable} ${fontSans.variable} ${domine.variable} ${fraunces.variable} lang="en"`}
+      className={`h-full m-0 ${playfair.variable} ${fontSans.variable} ${urbanist.variable} ${fraunces.variable} lang="en"`}
     >
       <head />
       <body className="h-full m-0 bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
