@@ -43,8 +43,10 @@ export default async function IndexPage() {
   return (
     <section className="container py-6 lg:py-10">
       <div className="flex max-w-[980px] flex-col items-start gap-2">
-        <h1 className="text-3xl font-playfair font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
-          Harry Potter Trivia
+        <h1 className="flex flex-col items-center justify-center">
+          <p className="font-lexend">Your</p>
+          <p className="font-lex">Harry Potter</p>
+          <p className="font-lexend">Harry Potter</p>
         </h1>
         <p className="max-w-[700px] mb-12 text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
           Verify your knowledge about the universe.
@@ -81,7 +83,7 @@ function QuizArtwork({
   return (
     <div className={cn("relative group rounded-md", className)} {...props}>
       <Link href={`/quiz/${quiz.id}`}>
-        <AspectRatio ratio={aspectRatio} className="overflow-hidden rounded-md">
+        <AspectRatio ratio={aspectRatio} className="overflow-hidden rounded-xl">
           <Image
             fill
             priority
@@ -90,22 +92,21 @@ function QuizArtwork({
             className="object-cover transition-all group-hover:scale-105"
           />
         </AspectRatio>
-        <div className="mt-4">
-          <p className="uppercase dark:text-slate-500 text-[10px] font-semibold tracking-widest text">
+        <div className="flex flex-col">
+          <p className="uppercase text-slate-700 dark:text-slate-400 text-[13px] font-lexend tracking-widest py-2 mt-4">
             {quiz.category.name}
           </p>
-          <h3 className="mt-3 font-bold text-xl leading-snug text-justify">
+          <h3 className="text-xl sm:text-2xl font-bold text-justify leading-loose font-lexend mb-2 dark:text-slate-50 text-slate-900">
             {quiz.title}
           </h3>
-          <p className="text-sm mt-6 text-justify line-clamp-4 text-slate-500 dark:text-slate-200">
+          <p className="font-lexend text-justify leading-relaxed line-clamp-4 mb-2 text-slate-800 dark:text-slate-200">
             {quiz.description}
           </p>
           {quiz.createdAt && (
-            <p className="text-xs mt-2 dark:text-slate-500">
+            <p className="text-[13px] tracking-widest mt-2 uppercase text-slate-800 dark:text-slate-400">
               {formatDate(quiz.createdAt)}
             </p>
           )}
-
           <span className="sr-only">Play Quiz</span>
         </div>
       </Link>

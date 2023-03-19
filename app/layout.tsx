@@ -5,6 +5,12 @@ import React from "react"
 import {
   Inter as FontSans,
   Fraunces,
+  Inter,
+  Jost,
+  Lexend,
+  Lexend_Deca,
+  Mulish,
+  Outfit,
   Playfair_Display,
   Urbanist,
 } from "next/font/google"
@@ -36,15 +42,35 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 })
 
-const urbanist = Urbanist({
-  variable: "--font-urbanist",
-  subsets: ["latin"],
-})
-
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
   display: "optional",
+})
+
+const lexend = Lexend({
+  variable: "--font-lexend",
+  subsets: ["latin"],
+})
+
+const lex = Lexend_Deca({
+  variable: "--font-lexend-deca",
+  subsets: ["latin"],
+})
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+})
+
+const mulish = Mulish({
+  variable: "--font-mulish",
+  subsets: ["latin"],
+})
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
 })
 
 export default function RootLayout({ children }: { children: any }) {
@@ -52,7 +78,7 @@ export default function RootLayout({ children }: { children: any }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full w-full m-0 ${playfair.variable} ${fontSans.variable} ${urbanist.variable} ${fraunces.variable} lang="en"`}
+      className={`h-full w-full m-0 ${playfair.variable} ${lex.variable} ${outfit.variable} ${mulish.variable} ${inter.variable} ${fontSans.variable} ${lexend.variable} ${fraunces.variable} lang="en"`}
     >
       <head />
       <body className="h-full w-full m-0 bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
