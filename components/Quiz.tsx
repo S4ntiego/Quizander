@@ -64,7 +64,7 @@ export function Quiz({ quiz, user }) {
   }
 
   return (
-    <div className="container grid grid-rows-6 py-8 gap-4 sm:p-36">
+    <div className="container grid grid-rows-6 py-8 gap-4 sm:p-12 md:px-18 lg:px-96">
       {!showResults ? (
         <>
           <div className="row-span-2 gap-2 grid grid-rows-[auto,1fr]">

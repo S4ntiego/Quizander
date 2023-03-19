@@ -30,11 +30,11 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
   const { image, name } = session?.user || {}
 
   return (
-    <div className="sticky container py-4 items-center flex justify-between flex-initial top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
+    <div className="sticky container py-4 items-center flex justify-between top-0 z-40 border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
       <MainNav mainConfig={mainConfig} />
       <MobileNav mobileConfig={mobileConfig} />
       <div className="flex items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
-        <div className="w-full  md:w-auto md:flex-none"></div>
+        <div className="w-full md:w-auto md:flex-none"></div>
         <nav className="flex items-center">
           {!session && status !== "loading" ? (
             <div className="flex justify-center items-center">

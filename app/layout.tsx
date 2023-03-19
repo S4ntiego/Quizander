@@ -52,10 +52,10 @@ export default function RootLayout({ children }: { children: any }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full m-0 ${playfair.variable} ${fontSans.variable} ${urbanist.variable} ${fraunces.variable} lang="en"`}
+      className={`h-full w-full m-0 ${playfair.variable} ${fontSans.variable} ${urbanist.variable} ${fraunces.variable} lang="en"`}
     >
       <head />
-      <body className="h-full m-0 bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
+      <body className="h-full w-full m-0 bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
         <ThemeProvider attribute="class" defaultTheme="dark">
           <QueryClientProvider client={queryClient}>
             <AuthContext>
