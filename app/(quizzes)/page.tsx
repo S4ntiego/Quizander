@@ -93,17 +93,17 @@ function QuizArtwork({
           />
         </AspectRatio>
         <div className="flex flex-col">
-          <p className="uppercase text-slate-700 dark:text-slate-400 text-[13px] font-lexend tracking-widest  mt-2 py-2 sm:py-2 sm:mt-4">
+          <p className="uppercase text-slate-700 dark:text-slate-400 text-[13px] font-lexend tracking-widest mt-2 py-2 sm:py-2 sm:mt-4">
             {quiz.category.name}
           </p>
-          <h3 className="text-xl sm:text-2xl font-bold text-justify leading-relaxed font-lexend mb-1.5 sm:mb-2 dark:text-slate-50 text-slate-900">
+          <h3 className="text-xl sm:text-2xl font-bold text-justify leading-relaxed font-lexend mb-1 sm:mb-2 dark:text-slate-50 text-slate-900">
             {quiz.title}
           </h3>
-          <p className="font-lexend text-justify leading-normal line-clamp-4 mb-1.5 sm:mb-2 text-slate-800 dark:text-slate-200">
+          <p className="font-lexend text-justify leading-normal line-clamp-4 mb-1 sm:mb-2 text-slate-800 dark:text-slate-200">
             {quiz.description}
           </p>
           {quiz.createdAt && (
-            <p className="text-[13px] tracking-widest mt-1.5 sm:mt-2 uppercase text-slate-800 dark:text-slate-400">
+            <p className="text-[13px] tracking-widest mt-1 sm:mt-2 uppercase text-slate-800 dark:text-slate-400">
               {formatDate(quiz.createdAt)}
             </p>
           )}
