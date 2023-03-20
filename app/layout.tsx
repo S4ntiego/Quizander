@@ -53,8 +53,8 @@ const lexend = Lexend({
   subsets: ["latin"],
 })
 
-const lex = Lexend_Deca({
-  variable: "--font-lexend-deca",
+const jost = Jost({
+  variable: "--font-jost",
   subsets: ["latin"],
 })
 
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: any }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full w-full m-0 ${playfair.variable} ${lex.variable} ${outfit.variable} ${mulish.variable} ${inter.variable} ${fontSans.variable} ${lexend.variable} ${fraunces.variable} lang="en"`}
+      className={`scroll-smooth h-full w-full m-0 ${playfair.variable} ${jost.variable} ${outfit.variable} ${mulish.variable} ${inter.variable} ${fontSans.variable} ${lexend.variable} ${fraunces.variable} lang="en"`}
     >
       <head />
       <body className="h-full w-full m-0 bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">

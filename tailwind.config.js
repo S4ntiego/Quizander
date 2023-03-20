@@ -27,7 +27,7 @@ module.exports = {
         fraunces: ["var(--font-fraunces)"],
         outfit: ["var(--font-outfit)"],
         mulish: ["var(--font-mulish)"],
-        lex: ["var(--font-lexend-deca)"],
+        jost: ["var(--font-jost)"],
         inter: ["var(--font-inter)"],
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },

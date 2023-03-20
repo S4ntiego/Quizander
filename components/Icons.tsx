@@ -1,5 +1,6 @@
 import {
   AlertTriangle,
+  ArrowDown,
   ArrowRight,
   Check,
   ChevronLeft,
@@ -35,6 +36,7 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
+  arrowDown: ArrowDown,
   trophy: Trophy,
   logo: Glasses,
   linkedIn: Linkedin,
