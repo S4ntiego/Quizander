@@ -9,7 +9,7 @@ import { Button, buttonVariants } from "./ui/button"
 
 const Landing = () => {
   return (
-    <section className="flex-1 h-full grid grid-rows-16 container">
+    <section className="flex-1 h-full grid grid-rows-16 container py-4">
       <div className="row-start-1 row-span-3 flex flex-col items-center text-center justify-end">
         <p className="uppercase tracking-widest text-[13px] font-bold text-slate-600 font-lexend dark:text-slate-300">
           Yer a wizard, Harry
