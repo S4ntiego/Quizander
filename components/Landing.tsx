@@ -7,31 +7,29 @@ import { Button, buttonVariants } from "./ui/button"
 
 const Landing = () => {
   return (
-    <section className="mt-[4.5rem] flex-1 grid grid-rows-16 container justify-center text-center font-lexend overflow-clip bg-gradient-to-t from-dark-700 via-dark-600 to-dark-700">
-      <div className="row-span-1 flex justify-center items-center uppercase text-[13px] font-bold text-dark-150">
+    <section className="mt-[4.5rem] flex-1 flex flex-col container justify-center items-center text-center font-lexend bg-gradient-to-t from-dark-700 via-dark-600 to-dark-700">
+      <p className="row-span-1 flex justify-center items-center uppercase text-[13px] font-bold text-dark-150">
         Yer a wizard, Harry
-      </div>
-      <div className="row-span-2 font-medium font-lexend text-5xl text-yellow-400 [text-shadow:-1px_1px_#fc8403]">
-        <span className="">Harry Potter Trivia</span>
-      </div>
-      <div className="row-span-2 flex items-center justify-center px-4 text-dark-150">
+      </p>
+      <h1 className="row-span-2 font-medium font-lexend text-5xl text-yellow-500 [text-shadow:-1px_1px_#fc8403]">
+        Harry Potter Trivia
+      </h1>
+      <p className="row-span-2 mt-2 flex items-center justify-center px-4 text-dark-150">
         Dive into the world of magic
-      </div>
-      <div className="row-span-1  flex gap-2 items-start justify-center">
-        <Button className="dark:bg-yellow-400 dark:text-dark-900 h-12 rounded-3xl">
-          Explore quizzes
-        </Button>
-      </div>
-      <div className="row-span-7 relative flex justify-center items-center h-full w-full">
+      </p>
+      <Button className="dark:bg-yellow-500 dark:text-dark-900 mt-4 h-12 rounded-3xl">
+        Explore quizzes
+      </Button>
+      <div className="flex-1 relative flex justify-center items-center h-full w-screen">
         <div className="absolute h-64 w-64 rounded-full bg-gradient-to-b from-dark-700 to-dark-600 border border-dark-500"></div>
         <Image
           src="https://i.ibb.co/sbmJfSQ/lecimytesty-magical-hat-from-harry-potter-render-plain-backgrou-88fc2326-8994-46ef-8c95-d6b3dfb1b3e3.png"
           alt="magic hat"
           fill
-          className="object-scale-down"
+          className="object-cover"
         />
       </div>
-      <div className="row-span-2 flex items-center justify-center">
+      <div className="h-24 flex items-start justify-center">
         <a
           href="#harry_potter_quizzes"
           className={cn(
