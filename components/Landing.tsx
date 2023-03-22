@@ -7,19 +7,19 @@ import { Button, buttonVariants } from "./ui/button"
 
 const Landing = () => {
   return (
-    <section className="mt-16 flex-1 grid grid-rows-16 container justify-center text-center font-lexend overflow-clip bg-gradient-to-t from-dark-700 via-dark-600 to-dark-700">
-      <div className="row-span-1 "></div>
-      <div className="row-span-1  flex justify-center items-center uppercase text-[13px] font-bold">
+    <section className="mt-[4.5rem] flex-1 grid grid-rows-16 container justify-center text-center font-lexend overflow-clip bg-gradient-to-t from-dark-700 via-dark-600 to-dark-700">
+      <div className="row-span-1 bg-blue-500"></div>
+      <div className="row-span-1  flex justify-center items-center uppercase text-[13px] font-bold text-dark-150">
         Yer a wizard, Harry
       </div>
-      <div className="row-span-2 font-medium font-lexend text-5xl text-yellow-500 [text-shadow:-1px_1px_#fc8403]">
+      <div className="row-span-2 font-medium font-lexend text-5xl text-yellow-400 [text-shadow:-1px_1px_#fc8403]">
         <span className="">Harry Potter Trivia</span>
       </div>
-      <div className="row-span-2 flex items-center justify-center px-4">
-        Dive into the world of magic,
+      <div className="row-span-2 flex items-center justify-center px-4 text-dark-150">
+        Dive into the world of magic
       </div>
       <div className="row-span-1  flex gap-2 items-start justify-center">
-        <Button className="dark:bg-yellow-500 dark:text-slate-900 [box-shadow:-3px_3px_0_0_#fc8403]">
+        <Button className="dark:bg-yellow-400 dark:text-dark-900 h-12 rounded-3xl">
           Explore quizzes
         </Button>
       </div>
@@ -32,7 +32,7 @@ const Landing = () => {
           className="object-scale-down"
         />
       </div>
-      <div className="row-span-2 items-start justify-center">
+      <div className="row-span-2 bg-red-500 items-start justify-center">
         <a
           href="#harry_potter_quizzes"
           className={cn(
@@ -40,7 +40,7 @@ const Landing = () => {
             "rounded-full p-3 dark:border-dark-500"
           )}
         >
-          <Icons.arrowDown className="h-4 w-4 text-dark-200" />
+          <Icons.arrowDown className="h-4 w-4 text-yellow-500" />
         </a>
       </div>
     </section>
