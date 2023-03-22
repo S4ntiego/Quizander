@@ -5,6 +5,8 @@ import { signIn, useSession } from "next-auth/react"
 import { MainNavItem, MobileNavItem } from "types/nav"
 
 import { siteConfig } from "@/config/site"
+import { useScrollPosition } from "@/lib/hooks/useScrollPosition"
+import { cn } from "@/lib/utils"
 import { MainNav } from "@/components/MainNav"
 import { MobileNav } from "@/components/MobileNav"
 import { Icons } from "./Icons"
@@ -28,9 +30,16 @@ interface SiteHeaderProps {
 export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
   const { data: session, status } = useSession()
   const { image, name } = session?.user || {}
+  const scrollPosition = useScrollPosition()
 
   return (
-    <div className="fixed w-full container top-0 h-16 z-40 items-center flex justify-between border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
+    <div
+      className={cn(
+        "fixed w-full container top-0 h-[4.5rem] z-40 items-center flex justify-between border-b border-b-slate-200 bg-white dark:border-0 dark:bg-inherit",
+        scrollPosition > 64 &&
+          "dark:border-b dark:border-b-slate-700 dark:bg-dark-700"
+      )}
+    >
       <MainNav mainConfig={mainConfig} />
       <MobileNav mobileConfig={mobileConfig} />
       <div className="flex items-center justify-between space-x-2 sm:space-x-4 md:justify-end">

@@ -87,7 +87,7 @@ export default function RootLayout({ children }: { children: any }) {
       className={`scroll-smooth h-full w-full m-0 ${playfair.variable} ${dancingscript.variable} ${jost.variable} ${outfit.variable} ${mulish.variable} ${inter.variable} ${fontSans.variable} ${lexend.variable} ${fraunces.variable} lang="en"`}
     >
       <head />
-      <body className="h-full w-full m-0 bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
+      <body className="h-full w-full m-0 bg-white font-sans text-slate-900 antialiased dark:bg-dark-700 dark:text-slate-50">
         <ThemeProvider attribute="class" defaultTheme="dark">
           <QueryClientProvider client={queryClient}>
             <AuthContext>
