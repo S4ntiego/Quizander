@@ -8,8 +8,7 @@ import { Button, buttonVariants } from "./ui/button"
 const Landing = () => {
   return (
     <section className="mt-[4.5rem] flex-1 grid grid-rows-16 container justify-center text-center font-lexend overflow-clip bg-gradient-to-t from-dark-700 via-dark-600 to-dark-700">
-      <div className="row-span-1 bg-blue-500"></div>
-      <div className="row-span-1  flex justify-center items-center uppercase text-[13px] font-bold text-dark-150">
+      <div className="row-span-1 flex justify-center items-center uppercase text-[13px] font-bold text-dark-150">
         Yer a wizard, Harry
       </div>
       <div className="row-span-2 font-medium font-lexend text-5xl text-yellow-400 [text-shadow:-1px_1px_#fc8403]">
@@ -32,7 +31,7 @@ const Landing = () => {
           className="object-scale-down"
         />
       </div>
-      <div className="row-span-2 bg-red-500 items-start justify-center">
+      <div className="row-span-2 flex items-center justify-center">
         <a
           href="#harry_potter_quizzes"
           className={cn(

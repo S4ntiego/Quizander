@@ -35,7 +35,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
   return (
     <div
       className={cn(
-        "fixed w-full container top-0 h-[4.5rem] z-40 items-center flex justify-between border-b border-b-slate-200 bg-white dark:border-0 dark:bg-inherit transition-all duration-500 dark:bg-green-500",
+        "fixed w-full container top-0 h-[4.5rem] z-40 items-center flex justify-between border-b border-b-slate-200 bg-white dark:border-0 dark:bg-inherit transition-all duration-500",
         scrollPosition > 64 && "z-40 dark:bg-dark-700"
       )}
     >
