@@ -43,6 +43,7 @@ module.exports = {
         mulish: ["var(--font-mulish)"],
         jost: ["var(--font-jost)"],
         inter: ["var(--font-inter)"],
+        dancingscript: ["var(--font-dancing-script)"],
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       keyframes: {
