@@ -1,8 +1,10 @@
 "use client"
 
 import React, { useState } from "react"
+import Image from "next/image"
 
 import { QuizAnswer } from "./QuizAnswer"
+import { Button } from "./ui/button"
 
 async function saveQuizResults(data) {
   const response = await fetch(`/api/quiz/saveResults`, {
@@ -64,39 +66,82 @@ export function Quiz({ quiz, user }) {
   }
 
   return (
-    <div className="container grid grid-rows-6 py-8 gap-4 sm:p-12 md:px-18 lg:px-96">
+    <>
       {!showResults ? (
-        <>
-          <div className="row-span-2 gap-2 grid grid-rows-[auto,1fr]">
-            <div className="text-center">
-              <span className="text-xs">
-                {currentQuestionIndex + 1} / {quiz.questions.length}
-              </span>
+        <div className="container grid grid-rows-2 py-8 sm:p-12 md:px-18 lg:px-96 overflow-scroll-x">
+          <div className="flex flex-col row-span-1 font-lexend text-center gap-6 p-1 overflow-auto">
+            <div className="flex flex-col">
+              <h2 className="font-sans">Congratulations, you have finished</h2>
+              <span>{quiz.title}</span>
             </div>
-            <div className="px-3 flex items-center font-bold text-center overflow-auto">
-              <span className="m-auto text-base sm:text-lg break-words overflow-auto">
-                {quiz.questions[currentQuestionIndex].question}
-              </span>
+            <div className="flex flex-col">
+              <p className="text-[13px] tracking-widest uppercase">
+                Your Result
+              </p>
+              <h1 className="text-7xl font-jost">
+                {correctAnswersCount}
+                <span className="font-thin">/</span>
+                {quiz.questions.length}
+              </h1>
+            </div>
+            <p className="text-sm">
+              {renderScore(correctAnswersCount, quiz.questions.length, quiz)}
+            </p>
+            <div className="flex flex-row gap-2 items-center justify-center">
+              <Button variant="outline" onClick={() => handleRetake()}>
+                Retake the quiz
+              </Button>
+              <Button onClick={() => onCompleteHandle()}>Complete</Button>
             </div>
           </div>
-          <div className="row-span-4 grid grid-rows-4 gap-4">
-            {quiz.questions[currentQuestionIndex].answers.map(
-              (answer, index) => (
-                <QuizAnswer
-                  key={index}
-                  onSelectAnswer={selectAnswer}
-                  answer={answer}
-                  disabled={disabled}
-                  currentAnswer={currentAnswer}
-                />
-              )
-            )}
+          <div className="row-span-1 relative">
+            <Image
+              fill
+              className="object-cover"
+              alt="Hermione"
+              src="https://i.ibb.co/qR45hmN/lecimytesty-happy-hermione-with-a-trophy-web-icon-symmetrical-s-aac0a8b9-5c5e-4939-a1c3-c8c51ea5ddb5.png"
+            ></Image>
           </div>
-        </>
+        </div>
       ) : (
-        <>xD</>
+        <div className="container grid grid-rows-2 py-8 gap-4 sm:p-12 md:px-18 lg:px-96">
+          <div className="flex flex-col row-span-1 font-lexend text-center gap-6">
+            <div className="flex flex-col">
+              <h2>Congratulations, you have finished</h2>
+              <span>{quiz.title}</span>
+            </div>
+            <div className="flex flex-col">
+              <p className="text-[13px] text-slate-600 tracking-widest uppercase">
+                Your Result
+              </p>
+              <h1 className="text-7xl font-jost">
+                {correctAnswersCount}
+                <span className="font-thin">/</span>
+                {quiz.questions.length}
+              </h1>
+            </div>
+
+            <p>
+              {renderScore(correctAnswersCount, quiz.questions.length, quiz)}
+            </p>
+            <div className="flex flex-row gap-2 items-center justify-center">
+              <Button variant="outline" onClick={() => handleRetake()}>
+                Retake the quiz
+              </Button>
+              <Button onClick={() => onCompleteHandle()}>Complete</Button>
+            </div>
+          </div>
+          <div className="row-span-1 relative">
+            <Image
+              fill
+              className="object-scale-down"
+              alt="Hermione"
+              src="https://i.ibb.co/qR45hmN/lecimytesty-happy-hermione-with-a-trophy-web-icon-symmetrical-s-aac0a8b9-5c5e-4939-a1c3-c8c51ea5ddb5.png"
+            ></Image>
+          </div>
+        </div>
       )}
-    </div>
+    </>
   )
 }
 

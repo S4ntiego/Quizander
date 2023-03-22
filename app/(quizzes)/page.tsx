@@ -5,6 +5,7 @@ import { Quiz } from "@prisma/client"
 
 import prisma from "@/lib/prisma"
 import { cn, formatDate } from "@/lib/utils"
+import Landing from "@/components/Landing"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 const getQuizzes = cache(async () => {
@@ -43,7 +44,7 @@ export default async function IndexPage() {
   return (
     <section
       id="harry_potter_landing"
-      className="container py-6 lg:py-10 h-full"
+      className="h-screen bg-black container py-6 lg:py-10"
     >
       <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
         {quizzes.map((quiz) => (
@@ -88,10 +89,10 @@ function QuizArtwork({
           <p className="uppercase text-slate-700 dark:text-slate-400 text-[13px] font-lexend tracking-widest mt-2 py-2 sm:py-2 sm:mt-4">
             {quiz.category.name}
           </p>
-          <h3 className="text-xl sm:text-2xl font-bold text-justify leading-relaxed font-lexend mb-1 sm:mb-2 dark:text-slate-50 text-slate-900">
+          <h3 className="text-xl font-bold text-justify leading-relaxed font-lexend mb-1 sm:mb-2 dark:text-slate-50 text-slate-900">
             {quiz.title}
           </h3>
-          <p className="font-lexend text-justify leading-normal line-clamp-4 mb-1 sm:mb-2 text-slate-800 dark:text-slate-200">
+          <p className="font-lexend text-sm text-justify leading-normal line-clamp-4 mb-1 sm:mb-2 text-slate-800 dark:text-slate-200">
             {quiz.description}
           </p>
           {quiz.createdAt && (

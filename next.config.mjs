@@ -6,6 +6,7 @@ const nextConfig = {
     domains: [
       "pottertrivia.s3.eu-central-1.amazonaws.com",
       "d16toh0t29dtt4.cloudfront.net",
+      "i.ibb.co",
     ],
   },
   experimental: {

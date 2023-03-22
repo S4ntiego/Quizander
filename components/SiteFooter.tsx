@@ -3,7 +3,7 @@ import { Icons } from "@/components/Icons"
 
 export function SiteFooter() {
   return (
-    <div className="container bottom-0 flex flex-col justify-center items-center gap-2 py-4 border-t border-t-slate-200 dark:border-t-slate-700 sm:justify-between sm:flex-row sm:gap-6">
+    <div className="container flex flex-col justify-center items-center gap-2 py-4 border-t border-t-slate-200 dark:border-t-slate-700 sm:justify-between sm:flex-row sm:gap-6">
       <Icons.logo className="w-4 h-4 sm:h-6 sm:w-6" />
       <p className="text-justify text-xs leading-loose text-slate-600 dark:text-slate-400">
         Built by{" "}
