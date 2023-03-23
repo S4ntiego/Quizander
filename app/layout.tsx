@@ -84,10 +84,10 @@ export default function RootLayout({ children }: { children: any }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`scroll-smooth h-full w-full m-0 ${playfair.variable} ${dancingscript.variable} ${jost.variable} ${outfit.variable} ${mulish.variable} ${inter.variable} ${fontSans.variable} ${lexend.variable} ${fraunces.variable} lang="en"`}
+      className={`${playfair.variable} ${dancingscript.variable} ${jost.variable} ${outfit.variable} ${mulish.variable} ${inter.variable} ${fontSans.variable} ${lexend.variable} ${fraunces.variable} lang="en"`}
     >
       <head />
-      <body className="h-full w-full m-0 bg-white font-sans text-slate-900 antialiased dark:bg-dark-700 dark:text-slate-50">
+      <body className="h-full w-full p-0 m-0">
         <ThemeProvider attribute="class" defaultTheme="dark">
           <QueryClientProvider client={queryClient}>
             <AuthContext>

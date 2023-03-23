@@ -35,10 +35,10 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
   return (
     <div
       className={cn(
-        "fixed w-full container top-0 h-[4.5rem] z-40 items-center flex justify-between border-b border-b-slate-200 bg-white dark:border-0 dark:bg-inherit transition-all duration-500",
-        scrollPosition > 36 && "z-40 dark:bg-dark-700"
+        "fixed w-full top-0 flex justify-center shadow-sm z-20 transition-all duration-200 py-6 bg-inherit", scrollPosition > 20 && "dark:bg-dark-700 py-4 opacity-95"        
       )}
     >
+      <div className={cn("flex justify-between container")}>
       <MainNav mainConfig={mainConfig} />
       <MobileNav mobileConfig={mobileConfig} />
       <div className="flex items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
@@ -128,6 +128,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
           )}
         </nav>
       </div>
+    </div>
     </div>
   )
 }

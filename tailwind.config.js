@@ -13,10 +13,23 @@ module.exports = {
     "*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      
+      "sm": "575px",
+      "md": "767px",
+      "lg": "1025px",
+      "xl":"1202px",
+      "2xl": "1440px",
+    },
     container: {
       center: true,
-      padding: "1.9rem",
+      padding: "1rem",
       screens: {
+        
+        "sm": "575px",
+        "md": "767px",
+        "lg": "1025px",
+        "xl":"1202px",
         "2xl": "1440px",
       },
     },

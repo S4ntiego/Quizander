@@ -13,17 +13,15 @@ interface QuizzesProps {
 
 const layout = ({ children }: QuizzesProps) => {
   return (
-    <div className="h-full">
-      <div className="flex flex-col h-full items-center">
-        <SiteHeader
-          mainConfig={dashboardConfig.mainNav}
-          mobileConfig={dashboardConfig.mobileNav}
-        />
-        <Landing />
-      </div>
+    <>
+      <SiteHeader
+        mainConfig={dashboardConfig.mainNav}
+        mobileConfig={dashboardConfig.mobileNav}
+      />
+      <Landing />
       <div>{children}</div>
       <SiteFooter />
-    </div>
+    </>
   )
 }
 
