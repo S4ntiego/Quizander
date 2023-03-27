@@ -44,7 +44,7 @@ export default async function IndexPage() {
   return (
     <section
       id="harry_potter_quizzes"
-      className="h-screen bg-black container py-6 lg:py-10"
+      className="h-screen bg-dark-700 container py-6 lg:py-10"
     >
       <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
         {quizzes.map((quiz) => (
