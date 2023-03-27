@@ -9,33 +9,34 @@ import { Button, buttonVariants } from "./ui/button"
 const Landing = () => {
   return (
     <section className="pt-20 bg-gradient-to-b from-dark-900 via-slate-900 to-dark-700">
-      <div className="flex flex-col">
-        <div className="flex flex-col text-center container items-center mb-6">
-          <h1 className="uppercase font-lexend font-bold text-5xl mb-1">
+      <div className="flex flex-col md:flex-row md:justify-between container xl:px-28">
+        <div className="flex flex-col text-center items-center md:items-start md:justify-center md:basis-2/3 md:text-start md:py-16 mb-6">
+          <h1 className="uppercase font-lexend font-bold text-5xl md:text-7xl mb-1">
             Harry Potter Trivia
           </h1>
-          <p className="font-lexend font-bold text-xs uppercase tracking-widest mb-6 text-dark-150">
+          <p className="font-lexend font-bold text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-widest mb-6 text-dark-150">
             Yer a wizard, Harry
           </p>
           <a
             className={cn(
               buttonVariants({ variant: "default" }),
-              "w-36 dark:bg-yellow-500 dark:text-dark-900 font-bold"
+              "w-36 lg:w-64 lg:rounded-full lg:p-8 lg:text-xl dark:bg-yellow-500 dark:text-dark-900 font-bold cursor-pointer"
             )}
+            href="#harry_potter_quizzes"
           >
             Explore Quizzes
           </a>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center md:basis-1/3 md:justify-end h-full w-full">
           <Image
             alt="wizard"
             src="/images/hero/wizard_ratio.png"
             height={866}
             width={606}
-            className="w-64"
+            className="w-64 md:w-96 xl:w-[29rem]"
           />
         </div>
-        <div className="flex justify-center py-16">
+        <div className="flex justify-center py-16 md:hidden">
           <p>
             <Icons.arrowDown className="w-6 h-6 p-1 text-yellow-500 border-yellow-500 rounded-full border" />
           </p>

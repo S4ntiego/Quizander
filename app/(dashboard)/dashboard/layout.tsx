@@ -16,7 +16,7 @@ export default async function DashboardLayout({ children }: LayoutProps) {
           mobileConfig={dashboardConfig.mobileDashboardNav}
         />
       </div>
-      <div className="container flex-1 grid gap-12 py-8 md:grid-cols-[200px_1fr]">
+      <div className="container flex-1 grid gap-12 md:grid-cols-[200px_1fr] py-20">
         <aside className="hidden w-[200px] flex-col md:flex sticky left-0">
           <DashboardNav />
         </aside>

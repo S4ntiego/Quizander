@@ -47,7 +47,7 @@ export default async function DashboardPage() {
   const quizzes = await getQuizzes()
 
   return (
-    <DashboardContainer>
+    <DashboardContainer className="py-20">
       <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
         <Link
           className={cn(buttonVariants({ variant: "default" }), "w-32")}

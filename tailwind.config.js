@@ -14,21 +14,23 @@ module.exports = {
   ],
   theme: {
     screens: {
-      sm: "575px",
-      md: "767px",
-      lg: "1000px",
-      xl: "1150px",
-      "2xl": "1450px",
+      xs: "575px",
+      sm: "768px",
+      md: "1024px",
+      lg: "1180px",
+      xl: "1340px",
+      "2xl": "1408px",
     },
     container: {
       center: true,
       padding: "1.9rem",
       screens: {
-        sm: "575px",
-        md: "767px",
-        lg: "1000px",
-        xl: "1150px",
-        "2xl": "1450px",
+        xs: "575px",
+        sm: "768px",
+        md: "1024px",
+        lg: "1180px",
+        xl: "1340px",
+        "2xl": "1408px",
       },
     },
     extend: {

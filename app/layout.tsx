@@ -84,19 +84,21 @@ export default function RootLayout({ children }: { children: any }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full w-full box-border ${playfair.variable} ${dancingscript.variable} ${jost.variable} ${outfit.variable} ${mulish.variable} ${inter.variable} ${fontSans.variable} ${lexend.variable} ${fraunces.variable} lang="en"`}
+      className={`h-full w-full box-border scroll-smooth ${playfair.variable} ${dancingscript.variable} ${jost.variable} ${outfit.variable} ${mulish.variable} ${inter.variable} ${fontSans.variable} ${lexend.variable} ${fraunces.variable} lang="en"`}
     >
       <head />
-      <body className="h-full w-full box-border m-0 p-0 font-sans antialiased scroll-smooth dark:bg-dark-700 bg-dark-50">
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <QueryClientProvider client={queryClient}>
-            <AuthContext>
-              <StateContextProvider>{children}</StateContextProvider>
-              <ReactQueryDevtools initialIsOpen={false} />
-            </AuthContext>
-          </QueryClientProvider>
-          <Toaster position="bottom-right" />
-        </ThemeProvider>
+      <body className="h-full w-full box-border m-0 p-0 font-sans antialiased dark:bg-dark-700 bg-dark-50">
+        <div className="top-0 bottom-0 fixed w-full overflow-x-auto">
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            <QueryClientProvider client={queryClient}>
+              <AuthContext>
+                <StateContextProvider>{children}</StateContextProvider>
+                <ReactQueryDevtools initialIsOpen={false} />
+              </AuthContext>
+            </QueryClientProvider>
+            <Toaster position="bottom-right" />
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   )
