@@ -8,7 +8,7 @@ import { Button, buttonVariants } from "./ui/button"
 
 const Landing = () => {
   return (
-    <section className="pt-16 bg-gradient-to-b from-dark-900 via-slate-900 to-dark-700">
+    <section className="pt-20 bg-gradient-to-b from-dark-900 via-slate-900 to-dark-700">
       <div className="flex flex-col">
         <div className="flex flex-col text-center container items-center mb-6">
           <h1 className="uppercase font-lexend font-bold text-5xl mb-1">
@@ -20,7 +20,7 @@ const Landing = () => {
           <a
             className={cn(
               buttonVariants({ variant: "default" }),
-              "w-36 dark:bg-yellow-500 dark:text-dark-900"
+              "w-36 dark:bg-yellow-500 dark:text-dark-900 font-bold"
             )}
           >
             Explore Quizzes
