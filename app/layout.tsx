@@ -91,14 +91,14 @@ export default function RootLayout({ children }: { children: any }) {
   return (
     <>
       <html
-        className="scroll-smooth min-h-screen flex flex-col"
+        className="scroll-smooth h-full flex flex-col"
         lang="en"
         suppressHydrationWarning
       >
         <head />
         <body
           className={cn(
-            "flex-1 bg-dark-50 overflow-hidden relative font-lexend text-dark-900 antialiased dark:bg-dark-700 dark:text-dark-50",
+            "h-full bg-dark-50 font-lexend text-dark-900 antialiased dark:bg-dark-700 dark:text-dark-50",
             playfair.variable,
             dancingscript.variable,
             jost.variable,
