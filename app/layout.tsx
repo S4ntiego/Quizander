@@ -112,7 +112,9 @@ export default function RootLayout({ children }: { children: any }) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="dark">
-            <AuthContext>{children}</AuthContext>
+            <AuthContext>
+              <StateContextProvider>{children}</StateContextProvider>
+            </AuthContext>
           </ThemeProvider>
           <Toaster position="bottom-right" />
         </body>
