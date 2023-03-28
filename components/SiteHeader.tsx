@@ -35,7 +35,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
   return (
     <div
       className={cn(
-        "fixed top-0 w-full flex flex-initial items-center justify-center z-20 h-20 bg-transparent transition-all duration-200 overflow-auto",
+        "sticky top-0 w-full flex flex-initial items-center justify-center z-40 h-20 bg-transparent transition-all duration-200 overflow-auto",
         scrollPosition > 15 && "dark:bg-dark-700"
       )}
     >

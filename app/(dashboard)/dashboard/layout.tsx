@@ -1,3 +1,5 @@
+import { RemoveScroll } from "react-remove-scroll"
+
 import { dashboardConfig } from "@/config/dashboard"
 import { DashboardNav } from "@/components/DashboardNav"
 import { SiteFooter } from "@/components/SiteFooter"
@@ -9,22 +11,20 @@ interface LayoutProps {
 
 export default async function DashboardLayout({ children }: LayoutProps) {
   return (
-    <header className="mx-auto flex flex-col min-h-screen">
-      <div className="sticky top-0 z-40 dark:bg-slate-900 bg-white">
-        <SiteHeader
-          mainConfig={dashboardConfig.mainDashboardNav}
-          mobileConfig={dashboardConfig.mobileDashboardNav}
-        />
-      </div>
-      <div className="container flex-1 grid gap-12 md:grid-cols-[200px_1fr] py-20">
-        <aside className="hidden w-[200px] flex-col md:flex sticky left-0">
-          <DashboardNav />
-        </aside>
-        <main className="flex w-full flex-1 flex-col overflow-hidden md:p-1">
-          {children}
-        </main>
+    <div className="flex min-h-screen flex-col ">
+      <SiteHeader
+        mainConfig={dashboardConfig.mainNav}
+        mobileConfig={dashboardConfig.mobileNav}
+      />
+      <div className="flex-1">
+        <div className="container h-full w-full relative grid gap-12 md:grid-cols-[200px_1fr]">
+          <aside className="hidden w-[200px] flex-col md:flex sticky">
+            <DashboardNav />
+          </aside>
+          <main className="h-full w-full p-1 mb-12">{children}</main>
+        </div>
       </div>
       <SiteFooter />
-    </header>
+    </div>
   )
 }

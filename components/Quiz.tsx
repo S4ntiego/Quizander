@@ -2,9 +2,13 @@
 
 import React, { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 
+import { Icons } from "./Icons"
 import { QuizAnswer } from "./QuizAnswer"
+import { AspectRatio } from "./ui/aspect-ratio"
 import { Button } from "./ui/button"
+import { Separator } from "./ui/separator"
 
 async function saveQuizResults(data) {
   const response = await fetch(`/api/quiz/saveResults`, {
@@ -66,98 +70,22 @@ export function Quiz({ quiz, user }) {
   }
 
   return (
-    <>
+    <div className="h-screen dark:bg-gradient-to-b -mt-20 pt-20 from-dark-600 to-dark-800 container py-8 grid grid-rows-12 gap-4 sm:p-12 md:px-18 lg:px-96 font-lexend">
       {!showResults ? (
-        <div className="container grid grid-rows-2 py-8 sm:p-12 md:px-18 lg:px-96 overflow-scroll-x">
-          <div className="flex flex-col row-span-1 font-lexend text-center gap-6 p-1 overflow-auto">
-            <div className="flex flex-col">
-              <h2 className="font-sans">Congratulations, you have finished</h2>
-              <span>{quiz.title}</span>
+        <>
+          <div className="row-span-4 gap-2 grid grid-rows-[auto,1fr]">
+            <div className="text-center">
+              <span className="text-xs">
+                {currentQuestionIndex + 1} / {quiz.questions.length}
+              </span>
             </div>
-            <div className="flex flex-col">
-              <p className="text-[13px] tracking-widest uppercase">
-                Your Result
-              </p>
-              <h1 className="text-7xl font-jost">
-                {correctAnswersCount}
-                <span className="font-thin">/</span>
-                {quiz.questions.length}
-              </h1>
-            </div>
-            <p className="text-sm">
-              {renderScore(correctAnswersCount, quiz.questions.length, quiz)}
-            </p>
-            <div className="flex flex-row gap-2 items-center justify-center">
-              <Button variant="outline" onClick={() => handleRetake()}>
-                Retake the quiz
-              </Button>
-              <Button onClick={() => onCompleteHandle()}>Complete</Button>
+            <div className="px-3 flex items-center font-bold text-center overflow-auto">
+              <span className="m-auto text-base sm:text-lg break-words overflow-auto">
+                {quiz.questions[currentQuestionIndex].question}
+              </span>
             </div>
           </div>
-          <div className="row-span-1 relative">
-            <Image
-              fill
-              className="object-cover"
-              alt="Hermione"
-              src="https://i.ibb.co/qR45hmN/lecimytesty-happy-hermione-with-a-trophy-web-icon-symmetrical-s-aac0a8b9-5c5e-4939-a1c3-c8c51ea5ddb5.png"
-            ></Image>
-          </div>
-        </div>
-      ) : (
-        <div className="container grid grid-rows-2 py-8 gap-4 sm:p-12 md:px-18 lg:px-96">
-          <div className="flex flex-col row-span-1 font-lexend text-center gap-6">
-            <div className="flex flex-col">
-              <h2>Congratulations, you have finished</h2>
-              <span>{quiz.title}</span>
-            </div>
-            <div className="flex flex-col">
-              <p className="text-[13px] text-slate-600 tracking-widest uppercase">
-                Your Result
-              </p>
-              <h1 className="text-7xl font-jost">
-                {correctAnswersCount}
-                <span className="font-thin">/</span>
-                {quiz.questions.length}
-              </h1>
-            </div>
-
-            <p>
-              {renderScore(correctAnswersCount, quiz.questions.length, quiz)}
-            </p>
-            <div className="flex flex-row gap-2 items-center justify-center">
-              <Button variant="outline" onClick={() => handleRetake()}>
-                Retake the quiz
-              </Button>
-              <Button onClick={() => onCompleteHandle()}>Complete</Button>
-            </div>
-          </div>
-          <div className="row-span-1 relative">
-            <Image
-              fill
-              className="object-scale-down"
-              alt="Hermione"
-              src="https://i.ibb.co/qR45hmN/lecimytesty-happy-hermione-with-a-trophy-web-icon-symmetrical-s-aac0a8b9-5c5e-4939-a1c3-c8c51ea5ddb5.png"
-            ></Image>
-          </div>
-        </div>
-      )}
-    </>
-  )
-}
-
-{
-  /* <div className="flex flex-col items-center container overflow-y-auto py-8 dark:text-slate-400">
-      {!showResults ? (
-        <div className="w-full">
-          <div className="flex flex-col items-center justify-center text-center gap-6 w-full">
-            <p className="text-sm sm:text-md">
-              {currentQuestionIndex + 1} / {quiz.questions.length}
-            </p>
-            <h1 className="text-xl sm:text-4xl font-bold leading-snug dark:text-slate-50 text-slate-900 lg:text-5xl">
-              {quiz.questions[currentQuestionIndex].question}
-            </h1>
-          </div>
-          <div className="flex flex-col justify-center my-10 gap-4">
+          <div className="row-span-8 grid grid-rows-4 gap-4">
             {quiz.questions[currentQuestionIndex].answers.map(
               (answer, index) => (
                 <QuizAnswer
@@ -170,43 +98,47 @@ export function Quiz({ quiz, user }) {
               )
             )}
           </div>
-          <Separator />
-          <div className="flex justify-center pt-6 pt:py-10">
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center text-sm font-medium dark:text-slate-400 text-slate-600 hover:text-slate-900"
-            >
-              <Icons.chevronLeft className="mr-2 h-4 w-4" />
-              See all quizzes
-            </Link>
-          </div>
-        </div>
+        </>
       ) : (
-        <div className="flex flex-col text-center items-center justify-center max-w-2xl">
-          <div>
-            <h1 className="font-playfair scroll-m-20 text-xl">
-              Congratulations! You have finished the <br />{" "}
-              <span className="italic">{quiz.title}</span> quiz.
-            </h1>
-          </div>
-          <div>
-            <h1 className="font-playfair scroll-m-20 mt-10 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 border-b dark:border-b-slate-200 border-b-slate-400">
+        <>
+          <div className="row-span-10 flex flex-col text-center items-center">
+            <h2 className="text-xl font-bold">Congratulations !</h2>
+            <p className="mb-6 dark:text-dark-150 text-dark-400">
+              You have just completed <br /> {quiz.title} quiz
+            </p>
+            <div className="rounded-full flex items-center justify-center mb-6 p-16 border border-dark-700 dark:border-dark-50 relative dark:text-dark-50 text-dark-700">
+              <Icons.trophy className="absolute h-16 w-16" />
+            </div>
+            <h1 className="text-4xl font-bold font-fraunces mb-6">
               Your score:
+              <p>
+                {correctAnswersCount} / {quiz.questions.length}
+              </p>
             </h1>
-            <h1 className="scroll-m-20 text-7xl text-slate-900 font-fraunces mt-2 font-bold dark:text-slate-50 ">
-              {correctAnswersCount}/{quiz.questions.length}
-            </h1>
+            <p className="flex-1 overflow-auto text-dark-400 dark:text-dark-150">
+              {renderScore(correctAnswersCount, quiz.questions.length, quiz)}
+            </p>
           </div>
-          <h1 className="font-playfair scroll-m-20 text-xl mt-10">
-            {renderScore(correctAnswersCount, quiz.questions.length, quiz)}
-          </h1>
-          <div className="flex flex-row gap-2 mt-10">
-            <Button variant="outline" onClick={() => handleRetake()}>
+          <div className="row-span-2 flex flex-col justify-start gap-2">
+            <Button
+              className="dark:border-yellow-300 dark:bg-dark-700"
+              variant="outline"
+              onClick={() => handleRetake()}
+            >
               Retake the quiz
             </Button>
-            <Button onClick={() => onCompleteHandle()}>Complete</Button>
+            <Button
+              className="dark:bg-yellow-300"
+              onClick={() => onCompleteHandle()}
+            >
+              Complete
+            </Button>
           </div>
-        </div>
+        </>
       )}
-    </div> */
+    </div>
+  )
+}
+
+{
 }

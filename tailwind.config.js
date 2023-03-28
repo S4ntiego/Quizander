@@ -72,6 +72,7 @@ module.exports = {
         jost: ["var(--font-jost)"],
         inter: ["var(--font-inter)"],
         dancingscript: ["var(--font-dancing-script)"],
+        space: ["var(--font-space-grotesk)"],
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       keyframes: {

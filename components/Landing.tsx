@@ -8,83 +8,42 @@ import { Button, buttonVariants } from "./ui/button"
 
 const Landing = () => {
   return (
-    <section className="pt-20 bg-gradient-to-b from-dark-900 via-slate-900 to-dark-700">
+    <section className="-mt-20 pt-20 mb-28 w-full bg-gradient-to-b from-dark-900 via-slate-900 to-dark-700">
       <div className="flex flex-col md:flex-row md:justify-between container xl:px-28">
-        <div className="flex flex-col text-center items-center md:items-start md:justify-center md:basis-2/3 md:text-start md:py-16 mb-6">
-          <h1 className="uppercase font-lexend font-bold text-5xl md:text-7xl mb-1">
-            Harry Potter Trivia
-          </h1>
-          <p className="font-lexend font-bold text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-widest mb-6 text-dark-150">
+        <div className="flex flex-col text-center items-center md:items-start md:justify-center md:basis-2/3 xl:basis-1/2 md:text-start md:py-16 mb-6">
+          <p className="font-lexend text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-widest mb-1 text-dark-150">
             Yer a wizard, Harry
           </p>
+          <h1 className="uppercase font-lexend font-bold text-5xl md:text-7xl mb-6">
+            Harry Potter Trivia
+          </h1>
+
           <a
             className={cn(
               buttonVariants({ variant: "default" }),
-              "w-36 lg:w-64 lg:rounded-full lg:p-8 lg:text-xl dark:bg-yellow-500 dark:text-dark-900 font-bold cursor-pointer"
+              "w-36 rounded-full dark:bg-yellow-500 dark:text-dark-900 cursor-pointer"
             )}
             href="#harry_potter_quizzes"
           >
             Explore Quizzes
           </a>
         </div>
-        <div className="flex items-center justify-center md:basis-1/3 md:justify-end h-full w-full">
+        <div className="flex items-center justify-center md:basis-1/3 xl:basis-1/2 h-full w-full">
           <Image
             alt="wizard"
             src="/images/hero/wizard_ratio.png"
             height={866}
             width={606}
-            className="w-64 md:w-96 xl:w-[29rem]"
+            className="w-[17rem] xs:w-80 md:w-96 xl:w-[30rem]"
           />
         </div>
-        <div className="flex justify-center py-16 md:hidden">
-          <p>
+        <div className="flex justify-center py-10 md:hidden">
+          <a href="#harry_potter_quizzes">
             <Icons.arrowDown className="w-6 h-6 p-1 text-yellow-500 border-yellow-500 rounded-full border" />
-          </p>
+          </a>
         </div>
       </div>
     </section>
-    // <section className="relative md:pt-32 h-full">
-    //
-    //   <div className="container mx-auto">
-    //     <div className="grid items-center gap-4 md:grid-cols-12">
-    //       <div className="col-span-6 flex flex-col items-center justify-center pb-10 pt-20 md:items-start md:py-20 xl:col-span-5">
-    //         <p className="font-lexend text-center text-xs font-bold text-dark-150 uppercase tracking-widest md:text-left">
-    //           Yer a wizard, Harry
-    //         </p>
-    //         <h1 className="font-lexend font-bold mb-5 text-center text-5xl dark:text-white md:text-left lg:text-6xl xl:text-7xl leading-tight">
-    //           Harry Potter Trivia
-    //         </h1>
-
-    //         <div className="flex space-x-4">
-    //           <a
-    //             className={cn(
-    //               buttonVariants({ variant: "default" }),
-    //               "dark:bg-gradient-to-r from-yellow-600 to-yellow-400 rounded-full py-6 px-8 text-center font-semibold"
-    //             )}
-    //             href="/create"
-    //           >
-    //             Explore quizzes
-    //           </a>
-    //         </div>
-    //       </div>
-    //       <div className="col-span-6 xl:col-span-7">
-    //         <div className="relative text-center md:px-16 md:text-right">
-    //           <img
-    //             src="/images/hero/wizard_4.png"
-    //             alt=""
-    //             className="align-middle mt-8 inline-block w-72 rotate-[8deg] sm:w-64 lg:w-[23rem] xl:w-[35rem] object-center max-w-full rounded-[32%]"
-    //           />
-
-    //           <img
-    //             src="/images/hero/3D_elements.png"
-    //             alt=""
-    //             className="absolute top-0 sm:px-16 md:-right-[10%]"
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
   )
 }
 

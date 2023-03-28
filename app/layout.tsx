@@ -9,17 +9,20 @@ import {
   Inter,
   Jost,
   Lexend,
-  Lexend_Deca,
   Mulish,
   Outfit,
   Playfair_Display,
-  Urbanist,
+  Space_Grotesk,
 } from "next/font/google"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { ThemeProvider } from "next-themes"
 
+import { dashboardConfig } from "@/config/dashboard"
+import { cn } from "@/lib/utils"
 import AuthContext from "@/components/Dashboard/AuthContext"
+import { SiteFooter } from "@/components/SiteFooter"
+import { SiteHeader } from "@/components/SiteHeader"
 import { Toaster } from "@/components/ui/toast"
 import { StateContextProvider } from "../context/index"
 
@@ -79,27 +82,41 @@ const dancingscript = Dancing_Script({
   subsets: ["latin"],
 })
 
+const space = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+})
+
 export default function RootLayout({ children }: { children: any }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`h-full w-full box-border scroll-smooth ${playfair.variable} ${dancingscript.variable} ${jost.variable} ${outfit.variable} ${mulish.variable} ${inter.variable} ${fontSans.variable} ${lexend.variable} ${fraunces.variable} lang="en"`}
-    >
-      <head />
-      <body className="h-full w-full box-border m-0 p-0 font-sans antialiased dark:bg-dark-700 bg-dark-50">
-        <div className="top-0 bottom-0 fixed w-full overflow-x-auto">
+    <>
+      <html
+        className="scroll-smooth min-h-screen flex flex-col"
+        lang="en"
+        suppressHydrationWarning
+      >
+        <head />
+        <body
+          className={cn(
+            "flex-1 bg-dark-50 font-lexend text-dark-900 antialiased dark:bg-dark-700 dark:text-dark-50",
+            playfair.variable,
+            dancingscript.variable,
+            jost.variable,
+            outfit.variable,
+            mulish.variable,
+            inter.variable,
+            fontSans.variable,
+            lexend.variable,
+            fraunces.variable,
+            space.variable
+          )}
+        >
           <ThemeProvider attribute="class" defaultTheme="dark">
-            <QueryClientProvider client={queryClient}>
-              <AuthContext>
-                <StateContextProvider>{children}</StateContextProvider>
-                <ReactQueryDevtools initialIsOpen={false} />
-              </AuthContext>
-            </QueryClientProvider>
-            <Toaster position="bottom-right" />
+            <AuthContext>{children}</AuthContext>
           </ThemeProvider>
-        </div>
-      </body>
-    </html>
+          <Toaster position="bottom-right" />
+        </body>
+      </html>
+    </>
   )
 }

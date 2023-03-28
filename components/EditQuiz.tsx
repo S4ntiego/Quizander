@@ -241,7 +241,7 @@ export default function QuizEditor({ quiz, categories }) {
             {isFetching ? (
               <Icons.spinner className="h-4 w-4 animate-spin" />
             ) : null}
-            <span>Add Quiz</span>
+            <span>Update Quiz</span>
           </span>
         </Button>
       </form>

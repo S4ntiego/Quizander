@@ -11,10 +11,7 @@ export function DashboardContainer({
   ...props
 }: DashboardContainerProps) {
   return (
-    <div
-      className={cn("grid content-start gap-8 min-h-screen", className)}
-      {...props}
-    >
+    <div className={cn("grid content-start gap-8", className)} {...props}>
       {children}
     </div>
   )
