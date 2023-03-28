@@ -13,12 +13,12 @@ interface QuizzesProps {
 
 const layout = ({ children }: QuizzesProps) => {
   return (
-    <div className="h-screen overflow-y-hidden flex flex-col ">
+    <div className="h-[calc(100vh-5rem)] flex flex-col ">
       <SiteHeader
         mainConfig={dashboardConfig.mainNav}
         mobileConfig={dashboardConfig.mobileNav}
       />
-      <div className="flex flex-col h-[calc(100vh-5rem)]">{children}</div>
+      <div className="flex flex-col flex-1">{children}</div>
     </div>
   )
 }
