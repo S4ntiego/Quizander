@@ -8,10 +8,10 @@ import { Button, buttonVariants } from "./ui/button"
 
 const Landing = () => {
   return (
-    <section className="-mt-20 pt-20 mb-28 w-full bg-gradient-to-b from-dark-900 via-slate-900 to-dark-700">
+    <section className="-mt-20 pt-20 mb-28 w-full dark:bg-gradient-to-b from-dark-900 via-slate-900 to-dark-700">
       <div className="flex flex-col md:flex-row md:justify-between container xl:px-28">
         <div className="flex flex-col text-center items-center md:items-start md:justify-center md:basis-2/3 xl:basis-1/2 md:text-start md:py-16 mb-6">
-          <p className="font-lexend text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-widest mb-1 text-dark-150">
+          <p className="font-lexend text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-widest mb-1 text-dark-400 dark:text-dark-150">
             Yer a wizard, Harry
           </p>
           <h1 className="uppercase font-lexend font-bold text-5xl md:text-7xl mb-6">
@@ -21,7 +21,7 @@ const Landing = () => {
           <a
             className={cn(
               buttonVariants({ variant: "default" }),
-              "w-36 rounded-full dark:bg-yellow-500 dark:text-dark-900 cursor-pointer"
+              "w-36 rounded-full bg-yellow-500 text-dark-700 dark:bg-yellow-500 dark:text-dark-900 cursor-pointer"
             )}
             href="#harry_potter_quizzes"
           >

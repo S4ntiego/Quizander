@@ -8,7 +8,7 @@ import { AspectRatio } from "./ui/aspect-ratio"
 
 export default function QuizList({ quizzes }) {
   return (
-    <section id="harry_potter_quizzes" className="container mb-24">
+    <section id="harry_potter_quizzes" className="container mb-24 xl:px-28">
       <h2 className="mb-12 text-4xl font-bold font-lexend">
         Dive into the world of magic.
       </h2>
