@@ -70,7 +70,7 @@ export function Quiz({ quiz, user }) {
   }
 
   return (
-    <div className="dark:bg-gradient-to-b -mt-20 pt-20 from-dark-600 to-dark-800 container py-8 grid grid-rows-12 gap-4 sm:p-12 md:px-18 lg:px-96 font-lexend">
+    <div className="flex-1 dark:bg-gradient-to-b -mt-20 pt-20 from-dark-600 to-dark-800 container py-8 grid grid-rows-12 gap-4 sm:p-12 md:px-18 lg:px-96 font-lexend">
       {!showResults ? (
         <>
           <div className="row-span-4 gap-2 grid grid-rows-[auto,1fr]">
