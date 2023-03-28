@@ -70,7 +70,7 @@ export function Quiz({ quiz, user }) {
   }
 
   return (
-    <div className="h-screen dark:bg-gradient-to-b -mt-20 pt-20 from-dark-600 to-dark-800 container py-8 grid grid-rows-12 gap-4 sm:p-12 md:px-18 lg:px-96 font-lexend">
+    <div className="h-[calc(100vh-5rem)] dark:bg-gradient-to-b -mt-20 pt-20 from-dark-600 to-dark-800 container py-8 grid grid-rows-12 gap-4 sm:p-12 md:px-18 lg:px-96 font-lexend">
       {!showResults ? (
         <>
           <div className="row-span-4 gap-2 grid grid-rows-[auto,1fr]">
@@ -106,10 +106,10 @@ export function Quiz({ quiz, user }) {
             <p className="mb-6 dark:text-dark-150 text-dark-400">
               You have just completed <br /> {quiz.title} quiz
             </p>
-            <div className="rounded-full flex items-center justify-center mb-6 p-16 border border-dark-700 dark:border-dark-50 relative dark:text-dark-50 text-dark-700">
+            <div className="rounded-full flex items-center justify-center mb-6 p-16 relative dark:text-dark-50 text-dark-700">
               <Icons.trophy className="absolute h-16 w-16" />
             </div>
-            <h1 className="text-4xl font-bold font-fraunces mb-6">
+            <h1 className="text-4xl font-bold font-space mb-6">
               Your score:
               <p>
                 {correctAnswersCount} / {quiz.questions.length}
@@ -121,16 +121,13 @@ export function Quiz({ quiz, user }) {
           </div>
           <div className="row-span-2 flex flex-col justify-start gap-2">
             <Button
-              className="dark:border-yellow-300 dark:bg-dark-700"
+              className="dark:bg-dark-700"
               variant="outline"
               onClick={() => handleRetake()}
             >
               Retake the quiz
             </Button>
-            <Button
-              className="dark:bg-yellow-300"
-              onClick={() => onCompleteHandle()}
-            >
+            <Button className="" onClick={() => onCompleteHandle()}>
               Complete
             </Button>
           </div>
