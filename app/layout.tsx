@@ -98,7 +98,7 @@ export default function RootLayout({ children }: { children: any }) {
         <head />
         <body
           className={cn(
-            "flex-1 bg-dark-50 font-lexend text-dark-900 antialiased dark:bg-dark-700 dark:text-dark-50",
+            "flex-1 bg-dark-50 overflow-hidden relative font-lexend text-dark-900 antialiased dark:bg-dark-700 dark:text-dark-50",
             playfair.variable,
             dancingscript.variable,
             jost.variable,
