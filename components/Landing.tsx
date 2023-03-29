@@ -31,7 +31,7 @@ const Landing = () => {
         <div className="flex items-center justify-center md:basis-1/3 xl:basis-1/2 h-full w-full">
           <Image
             alt="wizard"
-            src="/images/hero/wizard_ratio.png"
+            src="/images/hero/wizard_ratio 2.png"
             height={866}
             width={606}
             className="w-[17rem] xs:w-80 md:w-96 xl:w-[30rem]"

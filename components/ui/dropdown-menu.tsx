@@ -83,7 +83,7 @@ const DropdownMenuItem = React.forwardRef<
   <DropdownMenuPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-pointer select-none items-center rounded-sm py-1.5 px-2 text-sm font-medium outline-none focus:bg-slate-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-slate-700",
+      "relative text-dark-500 dark:text-dark-150 dark:text-sm dark:font-normal flex cursor-pointer select-none items-center rounded-sm py-1.5 px-2 text-sm font-medium outline-none focus:bg-slate-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-slate-700",
       inset && "pl-8",
       className
     )}
@@ -147,7 +147,7 @@ const DropdownMenuLabel = React.forwardRef<
   <DropdownMenuPrimitive.Label
     ref={ref}
     className={cn(
-      "px-2 py-1.5 text-sm font-semibold text-slate-900 dark:text-dark-50",
+      "px-2 py-1.5 text-sm font-semibold text-dark-600 dark:text-dark-150",
       inset && "pl-8",
       className
     )}
@@ -162,7 +162,7 @@ const DropdownMenuSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
     ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-slate-100 dark:bg-dark-400", className)}
+    className={cn("-mx-1 my-1 h-px bg-gray-200 dark:bg-dark-400", className)}
     {...props}
   />
 ))
@@ -175,7 +175,7 @@ const DropdownMenuShortcut = ({
   return (
     <span
       className={cn(
-        "ml-auto text-xs tracking-widest text-slate-500",
+        "ml-auto text-xs tracking-widest dark:text-dark-150 text-dark-500",
         className
       )}
       {...props}
