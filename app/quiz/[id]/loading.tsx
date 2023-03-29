@@ -9,27 +9,32 @@ import { buttonVariants } from "@/components/ui/button"
 
 export default function DashboardLoading() {
   return (
-    <div className="flex-1 dark:bg-gradient-to-b -mt-20 pt-20 from-dark-600 to-dark-800 container py-8 grid grid-rows-12 gap-4 sm:p-12 md:px-18 lg:px-96 font-lexend">
-      <>
-        <div className="row-span-4 gap-2 grid grid-rows-[auto,1fr]">
-          <div className="text-center">
-            <span className="text-xs justify-center flex">
-              <div className="w-12 h-4 rounded-md animate-pulse dark:bg-slate-500"></div>
-            </span>
+    <div className="flex-1 -mt-20 pt-20 dark:bg-gradient-to-b from-dark-900 via-slate-900 to-dark-900">
+      <div className="container max-w-[700px] h-full pb-6 grid grid-rows-12 xs:grid-rows-11 gap-4 xs:pb-36 font-lexend">
+        <>
+          <div className="row-span-4 gap-2 grid grid-rows-[auto,1fr] xs:row-span-2 xs:row-start-3 justify-center">
+            <div className="text-center flex justify-center">
+              <span className="text-xs xs:text-base">
+                <div className="w-12 h-4 rounded-md animate-pulse bg-slate-500"></div>
+              </span>
+            </div>
+            <div className="px-3 flex items-center justify-center font-bold text-center overflow-auto">
+              <span className="m-auto text-base xs:text-2xl break-words overflow-auto">
+                <div className="w-48 h-12 rounded-md animate-pulse bg-slate-500"></div>
+              </span>
+            </div>
           </div>
-          <div className="px-3 flex items-center justify-center font-bold text-center overflow-auto">
-            <span className="m-auto text-base sm:text-lg break-words overflow-auto">
-              <div className="w-48 h-12 rounded-md animate-pulse dark:bg-slate-500"></div>
-            </span>
+          <div className="row-span-8 grid grid-rows-4 gap-4 xs:row-span-4">
+            <div className="w-full rounded-md h-full animate-pulse bg-slate-500"></div>
+            <div className="w-full rounded-md h-full animate-pulse bg-slate-500"></div>
+            <div className="w-full rounded-md h-full animate-pulse bg-slate-500"></div>
+            <div className="w-full rounded-md h-full animate-pulse bg-slate-500"></div>
           </div>
-        </div>
-        <div className="row-span-8 grid grid-rows-4 gap-4">
-          <div className="w-full rounded-md h-full animate-pulse dark:bg-slate-500"></div>
-          <div className="w-full rounded-md h-full animate-pulse dark:bg-slate-500"></div>
-          <div className="w-full rounded-md h-full animate-pulse dark:bg-slate-500"></div>
-          <div className="w-full rounded-md h-full animate-pulse dark:bg-slate-500"></div>
-        </div>
-      </>
+          <div className="w-full flex justify-center">
+            <div className="w-24 h-6 animate-pulse rounded-md bg-slate-500 mt-8"></div>
+          </div>
+        </>
+      </div>
     </div>
   )
 }

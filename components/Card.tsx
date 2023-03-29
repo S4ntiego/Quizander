@@ -8,7 +8,7 @@ export function Card({ className, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-lg border dark:border-slate-600",
+        "overflow-hidden rounded-lg border dark:border-dark-400",
         className
       )}
       {...props}
@@ -34,7 +34,7 @@ Card.Footer = function CardFooter({ className, ...props }: CardFooterProps) {
   return (
     <div
       className={cn(
-        "border-t dark:border-slate-600 dark:bg-gray-900 bg-slate-50 px-6 py-4",
+        "border-t dark:border-dark-400 dark:bg-dark-800 bg-slate-50 px-6 py-4",
         className
       )}
       {...props}
@@ -57,7 +57,7 @@ Card.Description = function CardDescription({
 }: CardDescriptionProps) {
   return (
     <p
-      className={cn("text-sm dark:text-slate-400 text-gray-600", className)}
+      className={cn("text-sm dark:text-dark-200 text-dark-400", className)}
       {...props}
     />
   )
@@ -72,7 +72,7 @@ Card.Skeleton = function CardSkeleton() {
       </Card.Header>
       <Card.Content className="h-10" />
       <Card.Footer>
-        <Skeleton className="h-8 w-[120px] bg-slate-200 dark:bg-slate-700" />
+        <Skeleton className="h-8 w-[120px] bg-slate-200 dark:bg-dark-800" />
       </Card.Footer>
     </Card>
   )

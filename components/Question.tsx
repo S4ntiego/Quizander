@@ -28,7 +28,7 @@ export default function Questions({
         {fields.map((item, index) => {
           return (
             <li
-              className="border dark:border-slate-600 border-slate-300 p-6 rounded-md"
+              className="border dark:border-dark-400 border-slate-300 p-6 rounded-md"
               key={item.id}
             >
               <div className="grid w-full items-center gap-1.5">

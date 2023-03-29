@@ -20,7 +20,9 @@ export function DashboardQuizItem({ quiz }: QuizItemProps) {
           {quiz.title}
         </Link>
         <div>
-          <p className="text-sm text-slate-600">{formatDate(quiz.createdAt)}</p>
+          <p className="text-sm text-dark-400 dark:text-dark-200">
+            {formatDate(quiz.createdAt)}
+          </p>
         </div>
       </div>
       <QuizOperations quiz={{ id: quiz.id, title: quiz.title }} />

@@ -135,7 +135,7 @@ export default function QuizzesForm({ categories }) {
           <Label
             htmlFor="coverImage"
             className={cn(
-              "flex cursor-pointer relative items-center justify-center w-[320px] h-[320px] border border-slate-300 dark:border-slate-600 border-dashed overflow-hidden rounded-md hover:border-none  hover:ring-slate-300 hover:ring-2 dark:hover:border-none dark:hover:ring-slate-600",
+              "flex cursor-pointer relative items-center justify-center w-[320px] h-[320px] border border-slate-300 dark:border-dark-400 border-dashed overflow-hidden rounded-md hover:border-none  hover:ring-slate-300 hover:ring-2 dark:hover:border-none dark:hover:ring-slate-600",
               preview && "border-solid"
             )}
           >

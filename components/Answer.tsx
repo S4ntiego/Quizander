@@ -42,7 +42,7 @@ export default function Answers({ nestIndex, control, register }: any) {
             <Input
               id={`questions[${nestIndex}].answers[${k}].answer`}
               type="checkbox"
-              className="appearance-none h-10 w-12 shrink-0 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900 flex items-center justify-center checked:bg-slate-800 dark:checked:bg-slate-400"
+              className="appearance-none h-10 w-12 shrink-0 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 dark:border-dark-400 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900 flex items-center justify-center checked:bg-slate-800 dark:checked:bg-slate-400"
               {...register(`questions[${nestIndex}].answers[${k}].isCorrect`)}
             />
 

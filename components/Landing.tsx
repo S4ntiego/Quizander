@@ -3,8 +3,7 @@ import Image from "next/image"
 
 import { cn } from "@/lib/utils"
 import { Icons } from "./Icons"
-import { AspectRatio } from "./ui/aspect-ratio"
-import { Button, buttonVariants } from "./ui/button"
+import { buttonVariants } from "./ui/button"
 
 const Landing = () => {
   return (
@@ -14,7 +13,7 @@ const Landing = () => {
           <p className="font-lexend text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-widest mb-1 text-dark-400 dark:text-dark-150">
             Yer a wizard, Harry
           </p>
-          <h1 className="uppercase font-lexend font-bold text-5xl md:text-7xl mb-6">
+          <h1 className="uppercase font-lexend font-bold text-5xl md:text-7xl mb-4">
             Harry Potter Trivia
           </h1>
           <a

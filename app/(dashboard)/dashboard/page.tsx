@@ -50,7 +50,10 @@ export default async function DashboardPage() {
     <DashboardContainer>
       <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
         <Link
-          className={cn(buttonVariants({ variant: "default" }), "w-32")}
+          className={cn(
+            buttonVariants({ variant: "default" }),
+            "w-32 dark:hover:text-dark-150"
+          )}
           href="/dashboard/editor"
         >
           <Icons.add className="w-4 h-4 mr-2" />
@@ -59,7 +62,7 @@ export default async function DashboardPage() {
       </DashboardHeader>
       <div>
         {quizzes?.length ? (
-          <div className="divide-y dark:divide-slate-600 divide-neutral-200 rounded-md border dark:border-slate-600 border-slate-200">
+          <div className="divide-y dark:divide-dark-400 divide-neutral-200 rounded-md border dark:border-dark-400 border-slate-200">
             {quizzes.map((quiz) => (
               <DashboardQuizItem key={quiz.id} quiz={quiz} />
             ))}
@@ -77,7 +80,7 @@ export default async function DashboardPage() {
               className={cn(buttonVariants({ variant: "default" }))}
               href="/dashboard/editor"
             >
-              <Icons.add className="w-4 h-4 mr-2" />
+              <Icons.add className="w-4 h-4 mr-2 dark:text-dark-700" />
               Add Quiz
             </Link>
           </EmptyPlaceholder>

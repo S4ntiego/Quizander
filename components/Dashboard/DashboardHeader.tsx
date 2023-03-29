@@ -15,7 +15,11 @@ export function DashboardHeader({
         <h1 className="text-2xl font-bold tracking-wide dark:text-slate-50 text-slate-900">
           {heading}
         </h1>
-        {text && <p className="text-neutral-500 dark:text-slate-400">{text}</p>}
+        {text && (
+          <p className="text-dark-400 dark:text-dark-200 text-[15px] xs:text-base">
+            {text}
+          </p>
+        )}
       </div>
       {children}
     </div>

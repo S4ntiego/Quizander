@@ -12,7 +12,7 @@ export default function QuizList({ quizzes }) {
       <h2 className="mb-12 text-4xl font-bold font-lexend">
         Dive into the world of magic.
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
         {quizzes.map((quiz) => (
           <QuizArtwork key={quiz.title} quiz={quiz} />
         ))}
