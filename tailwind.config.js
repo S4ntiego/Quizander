@@ -14,7 +14,7 @@ module.exports = {
   ],
   theme: {
     screens: {
-      xs: "575px",
+      xs: "460px",
       sm: "768px",
       md: "1024px",
       lg: "1180px",
@@ -25,7 +25,7 @@ module.exports = {
       center: true,
       padding: "1.9rem",
       screens: {
-        xs: "575px",
+        xs: "460px",
         sm: "768px",
         md: "1024px",
         lg: "1180px",

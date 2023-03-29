@@ -20,7 +20,7 @@ const Landing = () => {
           <a
             className={cn(
               buttonVariants({ variant: "default" }),
-              "w-36 rounded-full bg-yellow-500 text-dark-700 dark:bg-yellow-500 dark:text-dark-900 cursor-pointer"
+              "w-36 rounded-md bg-yellow-500 text-dark-700 dark:hover:bg-yellow-400 dark:bg-yellow-500 dark:hover:text-dark-700 dark:text-dark-700 cursor-pointer"
             )}
             href="#harry_potter_quizzes"
           >

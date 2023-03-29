@@ -19,16 +19,15 @@ export function QuizAnswer({
       : ""
 
   return (
-    <Button
+    <button
       id="box"
-      variant="subtle"
       disabled={disabled}
       style={{
         WebkitTapHighlightColor: "rgba(255, 255, 255, 0)",
       }}
       className={cn(
-        `transition-all max-w-full block overflow-auto ease-in-out duration-500 h-full break-words sm:text-sm`,
-        answer?.answer.length > 95 && "text-xs",
+        `transition-all max-w-full overflow-auto ease-in-out duration-500 h-full break-words xs:text-base border border-dark-400 bg-transparent hover:bg-slate-100 dark:border-dark-400 dark:text-dark-100 inline-flex items-center justify-center rounded-md text-sm font-medium dark:bg-dark-500 dark:hover:bg-dark-400 dark:hover:text-slate-100 disabled:opacity-50 disabled:pointer-events-none`,
+        answer?.answer.length > 95 && "text-xs xs:text-sm",
         isWrongAnswer,
         isCorrectAnswer
       )}
@@ -37,6 +36,6 @@ export function QuizAnswer({
       }}
     >
       <p className="m-auto">{answer?.answer}</p>
-    </Button>
+    </button>
   )
 }
