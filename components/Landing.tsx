@@ -17,7 +17,6 @@ const Landing = () => {
           <h1 className="uppercase font-lexend font-bold text-5xl md:text-7xl mb-6">
             Harry Potter Trivia
           </h1>
-
           <a
             className={cn(
               buttonVariants({ variant: "default" }),
@@ -34,6 +33,7 @@ const Landing = () => {
             src="/images/hero/wizard_ratio 2.png"
             height={866}
             width={606}
+            priority
             className="w-[17rem] xs:w-80 md:w-96 xl:w-[30rem]"
           />
         </div>
