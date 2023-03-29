@@ -91,7 +91,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
                       style={{
                         WebkitTapHighlightColor: "rgba(255, 255, 255, 0)",
                       }}
-                      className="flex hover:bg-slate-100 dark:hover:text-slate-100 cursor-pointer items-center justify-center h-9 w-9 px-2 ml-3 rounded-full bg-slate-100 dark:bg-slate-800 dark:text-slate-400"
+                      className="flex hover:bg-slate-100 dark:hover:text-slate-100 cursor-pointer items-center justify-center h-9 w-9 px-2 ml-3 rounded-full bg-slate-100 dark:bg-dark-500 dark:text-slate-400"
                     />
                   </DialogTrigger>
                   <DialogContent>

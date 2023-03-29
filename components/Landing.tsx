@@ -39,7 +39,7 @@ const Landing = () => {
         </div>
         <div className="flex justify-center py-10 md:hidden">
           <a href="#harry_potter_quizzes">
-            <Icons.arrowDown className="w-6 h-6 p-1 text-yellow-500 border-yellow-500 rounded-full border" />
+            <Icons.arrowDown className="w-6 h-6 p-1 bg-yellow-500 text-dark-700 dark:border-yellow-500 dark:bg-dark-700 dark:text-yellow-500 rounded-full border" />
           </a>
         </div>
       </div>

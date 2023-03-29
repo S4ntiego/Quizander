@@ -101,15 +101,15 @@ export function Quiz({ quiz, user }) {
         </>
       ) : (
         <>
-          <div className="row-span-10 flex flex-col text-center items-center">
+          <div className="row-span-10 flex flex-col text-center items-center mb-3">
             <h2 className="text-xl font-bold">Congratulations !</h2>
             <p className="mb-3 dark:text-dark-150 text-dark-400">
               You have just completed <br /> {quiz.title} quiz
             </p>
-            <div className="rounded-full flex items-center justify-center mb-3 p-16 relative dark:text-dark-50 text-dark-700">
+            <div className="rounded-full flex items-center justify-center mb-1 p-14 relative dark:text-dark-50 text-dark-700">
               <Icons.trophy className="absolute h-16 w-16" />
             </div>
-            <h1 className="text-4xl font-bold font-space mb-3">
+            <h1 className="text-4xl font-bold font-space mb-7">
               Your score:
               <p>
                 {correctAnswersCount} / {quiz.questions.length}
