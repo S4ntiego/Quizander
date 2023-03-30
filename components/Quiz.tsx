@@ -68,10 +68,10 @@ export function Quiz({ quiz, user }) {
 
   return (
     <div className="flex-1 -mt-20 pt-20 dark:bg-gradient-to-b from-dark-900 via-slate-900 to-dark-900">
-      <div className="container max-w-[700px] h-full pb-6 grid grid-rows-12 xs:grid-rows-11 gap-4 xs:pb-36 font-lexend">
+      <div className="container max-w-[700px] h-full pb-6 grid grid-rows-12 gap-4 xs:pb-36 font-lexend">
         {!showResults ? (
           <>
-            <div className="row-span-4 xs:row-span-2 xs:row-start-3 gap-2 grid grid-rows-[auto,1fr]">
+            <div className="row-span-4 xs:row-start-3 gap-2 grid grid-rows-[auto,1fr]">
               <div className="text-center">
                 <span className="text-xs xs:text-base">
                   {currentQuestionIndex + 1} / {quiz.questions.length}
@@ -83,7 +83,7 @@ export function Quiz({ quiz, user }) {
                 </span>
               </div>
             </div>
-            <div className="row-span-8 xs:row-span-4 grid grid-rows-4 gap-4">
+            <div className="row-span-8 grid grid-rows-4 gap-4 mb-6">
               {quiz.questions[currentQuestionIndex].answers.map(
                 (answer, index) => (
                   <QuizAnswer
@@ -96,17 +96,17 @@ export function Quiz({ quiz, user }) {
                 )
               )}
             </div>
-            <Link
-              href="/"
+            <a
+              href="/#harry_potter_quizzes"
               className="hidden xs:inline-flex items-center justify-center font-lexend text-sm font-medium hover:text-dark-900 dark:hover:text-dark-100 dark:text-dark-200 text-dark-400 mr-2"
             >
               <Icons.chevronLeft className="mr-2 h-4 w-4" />
               See all quizzes
-            </Link>
+            </a>
           </>
         ) : (
           <>
-            <div className="row-span-10 xs:row-span-6 xs:row-start-3 flex flex-col text-center items-center mb-3">
+            <div className="row-span-10 xs:row-span-6 flex flex-col text-center items-center mb-3">
               <h2 className="text-xl xs:text-3xl xs:mb-1 font-bold">
                 Congratulations !
               </h2>
@@ -126,7 +126,7 @@ export function Quiz({ quiz, user }) {
                 {renderScore(correctAnswersCount, quiz.questions.length, quiz)}
               </p>
             </div>
-            <div className="row-span-2 xs:row-span-3 flex flex-col xs:flex-row xs:justify-center justify-start gap-2">
+            <div className="row-span-2 flex flex-col xs:flex-row xs:justify-center justify-start gap-2">
               <Button
                 className="dark:bg-dark-700 xs:w-48 xs:h-12"
                 variant="outline"

@@ -2,36 +2,70 @@
 
 import React from "react"
 
-import { Card } from "../Card"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { Separator } from "../ui/separator"
 
-const Scoreboard = ({ scoreboard }) => {
+const Scoreboard = ({ scoreboard, aggregations }) => {
   return (
     <>
-      {scoreboard.map((category) => (
-        <div key={category.id}>
-          <Card>
-            <Card.Header>
-              <Card.Title>{category.name}</Card.Title>
-            </Card.Header>
-            <Card.Content className="flex flex-col gap-1">
-              {category.quizzes.map((quiz) => (
-                <div
-                  className="border p-4 rounded-md border-slate-600 w-full flex flex-row justify-between"
-                  key={quiz.id}
-                >
-                  <h2>{quiz.title}</h2>
-                  <div className="flex flex-row">
-                    {quiz.quizScores.map((quizScore) => (
-                      <div key={quizScore.id}>{quizScore.score}</div>
-                    ))}
+      <div
+        className="
+       rounded-md border dark:border-dark-400 border-slate-200"
+      >
+        {scoreboard.map((category) => (
+          <Accordion
+            type="multiple"
+            className="divide-y dark:divide-dark-400 divide-neutral-200"
+            key={category.id}
+          >
+            {category.quizzes.map((quiz) => (
+              <AccordionItem className="px-4" key={quiz.id} value={quiz.id}>
+                <AccordionTrigger>
+                  <h1>{quiz.title}</h1>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex justify-between mb-1">
+                    <div>Date:</div>
+                    <div>Score:</div>
                   </div>
-                </div>
-              ))}
-            </Card.Content>
-            <Card.Footer></Card.Footer>
-          </Card>
-        </div>
-      ))}
+                  {quiz.quizScores.map((quizScore) => (
+                    <div key={quizScore.id} className="flex flex-col">
+                      <div className="flex justify-between">
+                        <div>
+                          {new Date(quizScore?.createdAt).toLocaleDateString()}
+                        </div>
+                        <div>{quizScore.score}</div>
+                      </div>
+                    </div>
+                  ))}
+                  <Separator className="my-2" />
+                  <div className="flex flex-col justify-end items-end">
+                    <p>
+                      <span className="mr-2">Average Score:</span>
+                      {
+                        aggregations.find((x) => x.quizId === quiz["id"])._avg
+                          .score
+                      }
+                    </p>
+                    <p>
+                      <span className="mr-2">Total Plays:</span>
+                      {
+                        aggregations.find((x) => x.quizId === quiz["id"])._count
+                          .score
+                      }
+                    </p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        ))}
+      </div>
     </>
   )
 }
