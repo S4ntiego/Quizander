@@ -15,7 +15,7 @@ export function withCurrentUser(handler: NextApiHandler) {
       // Check if the user has access to this user.
       const session = await getServerSession(req, res, authOptions)
 
-      if (query.userId !== session?.user.id) {
+      if (parseInt(query.userId) !== session?.user.id) {
         return res.status(403).end()
       }
 

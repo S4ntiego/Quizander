@@ -1,20 +1,12 @@
 "use client"
 
-import React, { useState } from "react"
-import Link from "next/link"
+import React, { useState, useTransition } from "react"
+import { useRouter } from "next/navigation"
 
+import { toast } from "@/components/ui/toast"
 import { Icons } from "./Icons"
 import { QuizAnswer } from "./QuizAnswer"
 import { Button } from "./ui/button"
-
-async function saveQuizResults(data) {
-  const response = await fetch(`/api/quiz/saveResults`, {
-    body: JSON.stringify(data),
-    method: "POST",
-  })
-
-  const quizzes = await response.json()
-}
 
 export function Quiz({ quiz, user }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -22,6 +14,9 @@ export function Quiz({ quiz, user }) {
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0)
   const [showResults, setShowResults] = useState(false)
   const [disabled, setDisabled] = useState(false)
+  const [isPending, startTransition] = useTransition()
+  const [isFetching, setIsFetching] = useState(false)
+  const router = useRouter()
 
   const selectAnswer = (answer) => {
     setCurrentAnswer(answer)
@@ -50,6 +45,29 @@ export function Quiz({ quiz, user }) {
     }
   }
 
+  async function saveQuizResults(data) {
+    setIsFetching(true)
+    const response = await fetch(`/api/quiz/saveResults`, {
+      body: JSON.stringify(data),
+      method: "POST",
+    })
+
+    if (!response?.ok) {
+      toast({
+        title: "Something went wrong.",
+        message: "Your results could not be saved. Please try again.",
+        type: "error",
+      })
+
+      return
+    }
+
+    startTransition(() => {
+      setIsFetching(false)
+      router.refresh()
+    })
+  }
+
   const handleRetake = () => {
     setCurrentAnswer("")
     setCorrectAnswersCount(0)
@@ -64,6 +82,7 @@ export function Quiz({ quiz, user }) {
       score: correctAnswersCount,
     }
     await saveQuizResults(data)
+    router.push("#harry_potter_quizzes")
   }
 
   return (
@@ -138,7 +157,14 @@ export function Quiz({ quiz, user }) {
                 className="xs:w-48 xs:h-12"
                 onClick={() => onCompleteHandle()}
               >
-                Complete
+                {isFetching ? (
+                  <div>
+                    <Icons.spinner className="h-4 w-4 mr-2 animate-spin" />
+                    <span>Saving your results</span>
+                  </div>
+                ) : (
+                  <span>Complete</span>
+                )}
               </Button>
             </div>
           </>

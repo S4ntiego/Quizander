@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Quiz } from "@prisma/client"
 
-import { cn, formatDate } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { AspectRatio } from "./ui/aspect-ratio"
 
 export default function QuizList({ quizzes }) {
@@ -16,7 +16,7 @@ export default function QuizList({ quizzes }) {
         <h2 className="mb-12 text-5xl font-bold font-space uppercase">
           Dive into the world of magic.
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 gap-16 md:grid-cols-2 xl:grid-cols-3">
           {quizzes.map((quiz) => (
             <QuizArtwork key={quiz.title} quiz={quiz} />
           ))}
@@ -60,7 +60,7 @@ function QuizArtwork({
           />
         </AspectRatio>
         <div className="flex flex-col">
-          <h3 className="text-2xl font-base font-bold font-space text-justify leading-relaxed mb-1 dark:text-slate-50 text-dark-900">
+          <h3 className="text-2xl font-base font-bold font-space text-justify mb-1 dark:text-slate-50 text-dark-900 leading-tight">
             {quiz.title}
           </h3>
           <p className="font-lexend text-base text-justify line-clamp-4 text-dark-400 dark:text-dark-200">

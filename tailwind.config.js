@@ -18,7 +18,8 @@ module.exports = {
       sm: "576px",
       md: "768px",
       lg: "992px",
-      xl: "1200px",
+      xl: "1100px",
+      "2xl": "1200px",
     },
     container: {
       center: true,
@@ -28,7 +29,8 @@ module.exports = {
         sm: "576px",
         md: "768px",
         lg: "992px",
-        xl: "1200px",
+        xl: "1100px",
+        "2xl": "1200px",
       },
     },
     extend: {

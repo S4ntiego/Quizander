@@ -12,6 +12,7 @@ import { Card } from "@/components/Card"
 import { Icons } from "@/components/Icons"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
+import { toast } from "../ui/toast"
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
   user: Pick<User, "id" | "name">
@@ -51,6 +52,18 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
     })
 
     setIsSaving(false)
+
+    if (!response?.ok) {
+      return toast({
+        title: "Something went wrong.",
+        message: "Your username could not be updated. Please try again.",
+        type: "error",
+      })
+    }
+
+    toast({
+      message: "Your username has been updated.",
+    })
 
     router.refresh()
   }

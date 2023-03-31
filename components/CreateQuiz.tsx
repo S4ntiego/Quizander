@@ -5,8 +5,9 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { IQuizResponse } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { QuizCategory } from "@prisma/client"
 import { FormProvider, useForm } from "react-hook-form"
-import { TypeOf, number, object, string, z } from "zod"
+import { TypeOf, object, string, z } from "zod"
 
 import { cn } from "@/lib/utils"
 import CategorySelect from "@/components/CategorySelect"
@@ -51,7 +52,11 @@ const defaultValues = {
   ],
 }
 
-export default function QuizzesForm({ categories }) {
+interface IQuizzesForm {
+  categories: [{ id: number; name: string }]
+}
+
+export default function QuizzesForm({ categories }: IQuizzesForm) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [isFetching, setIsFetching] = useState(false)
