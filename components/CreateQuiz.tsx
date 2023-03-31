@@ -52,11 +52,7 @@ const defaultValues = {
   ],
 }
 
-interface IQuizzesForm {
-  categories: [{ id: number; name: string }]
-}
-
-export default function QuizzesForm({ categories }: IQuizzesForm) {
+export default function QuizzesForm({ categories }) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [isFetching, setIsFetching] = useState(false)
