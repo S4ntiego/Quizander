@@ -20,7 +20,7 @@ const Scoreboard = ({ scoreboard, aggregations }) => {
         {scoreboard.map((category) => (
           <Accordion
             type="multiple"
-            className="divide-y dark:divide-dark-400 divide-neutral-200"
+            className="divide-y dark:divide-dark-400 divide-dark-200"
             key={category.id}
           >
             {category.quizzes.map((quiz) => (

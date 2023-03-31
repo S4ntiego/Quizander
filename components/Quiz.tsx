@@ -88,7 +88,7 @@ export function Quiz({ quiz, user }) {
 
   return (
     <div className="flex-1 -mt-20 pt-20 dark:bg-gradient-to-t from-dark-700 to-dark-600">
-      <div className="container h-full grid grid-rows-12 pb-8 xs:max-w-[54rem]">
+      <div className="container h-full max-h-[100%-20rem] grid grid-rows-12 pb-8 xs:max-w-[54rem] overflow-auto">
         {!showResults ? (
           <>
             <div className="grid grid-rows-[auto,1fr] row-span-4 justify-center text-center items-center xs:row-start-2">
@@ -121,36 +121,36 @@ export function Quiz({ quiz, user }) {
           </>
         ) : (
           <>
-            <div className="row-span-10 xs:row-span-6 flex flex-col text-center items-center mb-3">
-              <h2 className="text-xl xs:text-3xl xs:mb-1 font-bold">
+            <div className="row-span-10 xs:row-span-6 flex flex-col text-center items-center mb-2 justify-center ">
+              <h2 className="text-xl font-bold font-space">
                 Congratulations !
               </h2>
-              <p className="mb-3 xs:mb-12 dark:text-dark-200 text-dark-500 xs:text-xl">
+              <p className="mb-3 dark:text-dark-200 text-dark-500">
                 You have just completed <br /> {quiz.title} quiz
               </p>
-              <div className="rounded-full flex items-center justify-center mb-1 xs:mb-12 p-14 relative dark:text-dark-50 text-dark-700">
-                <Icons.trophy className="absolute h-16 w-16 xs:h-36 xs:w-36" />
+              <div className="rounded-full flex items-center justify-center mb-1 p-14 relative dark:text-dark-50 text-dark-700">
+                <Icons.trophy className="absolute h-16 w-16" />
               </div>
-              <h1 className="text-4xl xs:text-7xl font-bold font-space mb-7 xs:mb-16">
-                Your score:
+              <h1 className="text-4xl font-bold font-space mb-7 uppercase">
+                Your score
                 <p>
                   {correctAnswersCount} / {quiz.questions.length}
                 </p>
               </h1>
-              <p className="flex-1 overflow-auto xs:text-xl text-dark-500 dark:text-dark-200">
+              <p className="overflow-auto text-dark-500 dark:text-dark-200">
                 {renderScore(correctAnswersCount, quiz.questions.length, quiz)}
               </p>
             </div>
-            <div className="row-span-2 flex flex-col xs:flex-row xs:justify-center justify-start gap-2">
+            <div className="row-span-2 flex flex-col justify-start gap-2">
               <Button
-                className="dark:bg-dark-700 xs:w-48 xs:h-12"
+                className="dark:border-dark-400"
                 variant="outline"
                 onClick={() => handleRetake()}
               >
                 Retake the quiz
               </Button>
               <Button
-                className="xs:w-48 xs:h-12"
+                className="text-dark-700 dark:bg-dark-150 border dark:border-dark-200"
                 onClick={() => onCompleteHandle()}
               >
                 {isFetching ? (

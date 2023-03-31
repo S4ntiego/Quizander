@@ -9,7 +9,7 @@ export default function DashboardLoading() {
         heading="User Scoreboard"
         text="View your historical results."
       ></DashboardHeader>
-      <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">
+      <div className="divide-y divide-dark-200 rounded-md border border-dark-200">
         <div className="p-4">
           <Skeleton className="h-7 w-2/5" />
         </div>

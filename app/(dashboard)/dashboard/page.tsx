@@ -62,7 +62,7 @@ export default async function DashboardPage() {
       </DashboardHeader>
       <div>
         {quizzes?.length ? (
-          <div className="divide-y dark:divide-dark-400 divide-neutral-200 rounded-md border dark:border-dark-400 border-slate-200">
+          <div className="divide-y dark:divide-dark-400 divide-dark-200 rounded-md border dark:border-dark-400 border-dark-200">
             {quizzes.map((quiz) => (
               <DashboardQuizItem key={quiz.id} quiz={quiz} />
             ))}

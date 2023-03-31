@@ -13,7 +13,7 @@ const Landing = () => {
           <p className="text-sm uppercase tracking-widest text-dark-400 mb-2 dark:text-dark-200">
             Yer a wizard
           </p>
-          <h1 className="uppercase font-space font-bold text-7xl mb-2 max-w-[510px] md:text-8xl">
+          <h1 className="uppercase font-space font-bold text-7xl mb-2 max-w-[32rem] md:text-8xl">
             Harry Potter Trivia
           </h1>
           <p className="text-sm uppercase max-w-[13rem] tracking-widest text-dark-400 mb-8 dark:text-dark-200">
