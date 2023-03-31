@@ -3,6 +3,7 @@
 import React, { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
 
+import { cn } from "@/lib/utils"
 import { toast } from "@/components/ui/toast"
 import { Icons } from "./Icons"
 import { QuizAnswer } from "./QuizAnswer"
@@ -86,23 +87,25 @@ export function Quiz({ quiz, user }) {
   }
 
   return (
-    <div className="flex-1 -mt-20 pt-20 dark:bg-gradient-to-b from-dark-900 via-slate-900 to-dark-900">
-      <div className="container max-w-[700px] h-full pb-6 grid grid-rows-12 gap-4 xs:pb-36 font-lexend">
+    <div className="flex-1 -mt-20 pt-20 dark:bg-gradient-to-t from-dark-700 to-dark-600">
+      <div className="container h-full grid grid-rows-12 pb-8">
         {!showResults ? (
           <>
-            <div className="row-span-4 xs:row-start-3 gap-2 grid grid-rows-[auto,1fr]">
-              <div className="text-center">
-                <span className="text-xs xs:text-base">
-                  {currentQuestionIndex + 1} / {quiz.questions.length}
-                </span>
-              </div>
-              <div className="px-3 flex items-center font-bold text-center overflow-auto">
-                <span className="m-auto text-base xs:text-2xl break-words overflow-auto">
-                  {quiz.questions[currentQuestionIndex].question}
-                </span>
-              </div>
+            <div className="grid grid-rows-[auto,1fr] row-span-4 justify-center text-center items-center">
+              <span className="text-xs">
+                {currentQuestionIndex + 1} / {quiz.questions.length}
+              </span>
+              <h1
+                className={cn(
+                  "font-space break-words overflow-auto text-xl",
+                  quiz.questions[currentQuestionIndex].question.length > 95 &&
+                    "text-lg"
+                )}
+              >
+                {quiz.questions[currentQuestionIndex].question}
+              </h1>
             </div>
-            <div className="row-span-8 grid grid-rows-4 gap-4 mb-6">
+            <div className="grid grid-rows-4 row-span-8 gap-4">
               {quiz.questions[currentQuestionIndex].answers.map(
                 (answer, index) => (
                   <QuizAnswer
@@ -117,10 +120,10 @@ export function Quiz({ quiz, user }) {
             </div>
             <a
               href="/#harry_potter_quizzes"
-              className="hidden xs:inline-flex items-center justify-center font-lexend text-sm font-medium hover:text-dark-900 dark:hover:text-dark-100 dark:text-dark-200 text-dark-400 mr-2"
+              className="hidden xs:inline-flex items-center justify-center font-medium hover:text-dark-900 dark:hover:text-dark-100 dark:text-dark-200 text-dark-400 mr-2"
             >
               <Icons.chevronLeft className="mr-2 h-4 w-4" />
-              See all quizzes
+              Return to all quizzes
             </a>
           </>
         ) : (
