@@ -18,7 +18,7 @@ const Landing = () => {
             Harry Potter Trivia
           </h1>
           <p className="text-sm uppercase max-w-[13rem] tracking-widest text-dark-400 mb-8 dark:text-dark-200">
-            Wit beyond measure is man's greatest treasure
+            Wit beyond measure is man&apos;s greatest treasure
           </p>
           <a
             className={cn(
