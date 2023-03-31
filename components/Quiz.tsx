@@ -88,16 +88,16 @@ export function Quiz({ quiz, user }) {
 
   return (
     <div className="flex-1 -mt-20 pt-20 dark:bg-gradient-to-t from-dark-700 to-dark-600">
-      <div className="container h-full grid grid-rows-12 pb-8">
+      <div className="container h-full grid grid-rows-12 pb-8 xs:max-w-[54rem]">
         {!showResults ? (
           <>
-            <div className="grid grid-rows-[auto,1fr] row-span-4 justify-center text-center items-center">
-              <span className="text-xs">
+            <div className="grid grid-rows-[auto,1fr] row-span-4 justify-center text-center items-center xs:row-start-2">
+              <span className="text-xs lg:text-base text-dark-400 dark:text-dark-200">
                 {currentQuestionIndex + 1} / {quiz.questions.length}
               </span>
               <h1
                 className={cn(
-                  "font-space break-words overflow-auto text-xl",
+                  "font-space break-words overflow-auto h-full m-auto text-xl flex items-center xs:pt-2 xs:pb-14 xs:text-2xl sm:text-3xl lg:text-4xl",
                   quiz.questions[currentQuestionIndex].question.length > 95 &&
                     "text-lg"
                 )}
@@ -105,7 +105,7 @@ export function Quiz({ quiz, user }) {
                 {quiz.questions[currentQuestionIndex].question}
               </h1>
             </div>
-            <div className="grid grid-rows-4 row-span-8 gap-4">
+            <div className="grid grid-rows-4 row-span-8 gap-4 xs:mb-6 xs:row-span-6">
               {quiz.questions[currentQuestionIndex].answers.map(
                 (answer, index) => (
                   <QuizAnswer
@@ -118,13 +118,6 @@ export function Quiz({ quiz, user }) {
                 )
               )}
             </div>
-            <a
-              href="/#harry_potter_quizzes"
-              className="hidden xs:inline-flex items-center justify-center font-medium hover:text-dark-900 dark:hover:text-dark-100 dark:text-dark-200 text-dark-400 mr-2"
-            >
-              <Icons.chevronLeft className="mr-2 h-4 w-4" />
-              Return to all quizzes
-            </a>
           </>
         ) : (
           <>
