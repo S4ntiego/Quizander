@@ -3,6 +3,7 @@ import { cache } from "react"
 import prisma from "@/lib/prisma"
 import Landing from "@/components/Landing"
 import QuizList from "@/components/QuizList"
+import { Separator } from "@/components/ui/separator"
 
 const getQuizzes = cache(async () => {
   const quizzes = await prisma.quiz.findMany({
