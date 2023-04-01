@@ -14,6 +14,7 @@ module.exports = {
   ],
   theme: {
     screens: {
+      xxs: { raw: "(max-height: 670px)" },
       xs: "480px",
       sm: "576px",
       md: "768px",
@@ -25,6 +26,7 @@ module.exports = {
       center: true,
       padding: "1.9rem",
       screens: {
+        xxs: { raw: "(max-height: 670px)" },
         xs: "480px",
         sm: "576px",
         md: "768px",
