@@ -7,6 +7,7 @@ import { useScrollPosition } from "@/lib/hooks/useScrollPosition"
 import { cn } from "@/lib/utils"
 import { MainNav } from "@/components/MainNav"
 import { MobileNav } from "@/components/MobileNav"
+import { ClientHeader } from "./ClientHeader"
 import { Icons } from "./Icons"
 import { ThemeToggle } from "./ThemeToggle"
 import UserDropdown from "./UserDropdown"
@@ -29,14 +30,14 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
   return (
     <div
       className={cn(
-        "sticky top-0 h-20 w-full flex items-center justify-center z-40 dark:bg-dark-400 bg-dark-150"
+        "sticky top-0 h-20 w-full flex items-center justify-center z-40 bg-transparent container"
       )}
     >
-      <div className={cn("flex justify-between container")}>
-        <MainNav mainConfig={mainConfig} />
-        <MobileNav mobileConfig={mobileConfig} />
-        <UserDropdown />
-      </div>
+      <Link href="/" className="mr-6 items-center space-x-2 hidden sm:flex">
+        <Icons.logo className="h-6 w-6" />
+        <span className=" font-bold ">{siteConfig.name}</span>
+      </Link>
+      <ClientHeader mainConfig={mainConfig} mobileConfig={mobileConfig} />
     </div>
   )
 }
