@@ -104,9 +104,9 @@ export function Quiz({ quiz, user }) {
             </span>
             <h1
               className={cn(
-                "font-space break-words overflow-auto h-full m-auto text-xl flex items-center xs:pt-2 xs:pb-14 xs:text-2xl sm:text-3xl lg:text-4xl",
-                quiz.questions[currentQuestionIndex].question.length > 95 &&
-                  "text-lg"
+                "font-space break-words overflow-auto h-full m-auto text-xl flex items-center xs:pt-2 xs:pb-2 xs:text-2xl sm:text-3xl lg:text-4xl",
+                quiz.questions[currentQuestionIndex].question.length > 70 &&
+                  "text-lg xs:text-xl sm:text-2xl lg:text-3xl"
               )}
             >
               {quiz.questions[currentQuestionIndex].question}
@@ -128,7 +128,7 @@ export function Quiz({ quiz, user }) {
         </div>
       ) : (
         <div className="h-full grid grid-rows-[1fr,auto] container">
-          <div className="text-center overflow-y-scroll grid grid-rows-[auto,1fr] mb-2">
+          <div className="text-center overflow-auto grid grid-rows-[auto,1fr] mb-2">
             <div className="flex flex-col xxs:mb-0 mb-2">
               <h2 className="text-2xl font-bold font-space">
                 Congratulations !
