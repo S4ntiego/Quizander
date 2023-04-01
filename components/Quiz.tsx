@@ -48,6 +48,7 @@ export function Quiz({ quiz, user }) {
   }
 
   async function saveQuizResults(data) {
+    console.log("jd")
     setIsFetching(true)
     const response = await fetch(`/api/quiz/saveResults`, {
       body: JSON.stringify(data),
@@ -79,10 +80,16 @@ export function Quiz({ quiz, user }) {
 
   const onCompleteHandle = async () => {
     const data = {
-      quizId: quiz.id,
-      userId: user.id,
+      quizId: quiz?.id,
+      userId: user?.id,
       score: correctAnswersCount,
     }
+
+    if (!user) {
+      router.push("/#harry_potter_quizzes")
+      return
+    }
+
     await saveQuizResults(data)
     router.push("/#harry_potter_quizzes")
   }
@@ -163,12 +170,12 @@ export function Quiz({ quiz, user }) {
                 onClick={() => onCompleteHandle()}
               >
                 {isFetching ? (
-                  <div>
+                  <div className="flex justify-center items-center">
                     <Icons.spinner className="h-4 w-4 mr-2 animate-spin" />
                     <span>Saving your results</span>
                   </div>
                 ) : (
-                  <a href="/#harry_potter_quizzes">Complete</a>
+                  <span>Complete</span>
                 )}
               </Button>
             </div>
