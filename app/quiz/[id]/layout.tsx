@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react"
 
 import { dashboardConfig } from "@/config/dashboard"
@@ -14,6 +12,7 @@ interface QuizzesProps {
 const layout = ({ children }: QuizzesProps) => {
   return (
     <div className="h-full flex flex-col fixed inset-0">
+      <div>siema</div>
       {/* <SiteHeader
         mainConfig={dashboardConfig.mainNav}
         mobileConfig={dashboardConfig.mobileNav}
