@@ -1,5 +1,3 @@
-import { RemoveScroll } from "react-remove-scroll"
-
 import { dashboardConfig } from "@/config/dashboard"
 import { DashboardNav } from "@/components/DashboardNav"
 import { SiteFooter } from "@/components/SiteFooter"
