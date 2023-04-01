@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useTransition } from "react"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 
 import { cn } from "@/lib/utils"
@@ -121,17 +122,23 @@ export function Quiz({ quiz, user }) {
           </>
         ) : (
           <>
-            <div className="row-span-10 flex flex-col text-center items-center mb-2 justify-center container">
-              <h2 className="text-xl font-bold font-space">
+            <div className="row-span-10 flex flex-col text-center items-center mb-2 justify-center overflow-auto">
+              <h2 className="text-2xl font-bold font-space">
                 Congratulations !
               </h2>
               <p className="mb-3 dark:text-dark-200 text-dark-500">
                 You have just completed <br /> {quiz.title} quiz
               </p>
-              <div className="rounded-full flex items-center justify-center mb-1 p-14 relative dark:text-dark-50 text-dark-700">
-                <Icons.trophy className="absolute h-16 w-16" />
+              <div className="flex justify-center">
+                <Image
+                  className="h-56 w-56 mb-3"
+                  src="/images/hero/magician_hat 2.png"
+                  height={200}
+                  width={200}
+                  alt="hogwarts_express"
+                />
               </div>
-              <h1 className="text-4xl font-bold font-space mb-7 uppercase">
+              <h1 className="text-5xl font-bold font-space mb-7 uppercase">
                 Your score
                 <p>
                   {correctAnswersCount} / {quiz.questions.length}
@@ -143,20 +150,22 @@ export function Quiz({ quiz, user }) {
             </div>
             <div className="row-span-2 flex flex-col justify-start gap-2">
               <Button
-                className="container dark:border-dark-400"
+                className="container dark:border-dark-400 h-12 rounded-3xl"
                 variant="outline"
                 onClick={() => handleRetake()}
               >
                 Retake the quiz
               </Button>
-              <Button className="container" onClick={() => onCompleteHandle()}>
+              <Button
+                className="container rounded-3xl h-12"
+                onClick={() => onCompleteHandle()}
+              >
                 {isFetching ? (
                   <div>
                     <Icons.spinner className="h-4 w-4 mr-2 animate-spin" />
-                    <span>Saving your results</span>
                   </div>
                 ) : (
-                  <span>Complete</span>
+                  <a href="#harry_potter_quizzes">Complete</a>
                 )}
               </Button>
             </div>
@@ -165,7 +174,4 @@ export function Quiz({ quiz, user }) {
       </div>
     </div>
   )
-}
-
-{
 }

@@ -47,10 +47,9 @@ const Scoreboard = ({ scoreboard, aggregations }) => {
                   <div className="flex flex-col justify-end items-end">
                     <p>
                       <span className="mr-2">Average Score:</span>
-                      {
-                        aggregations.find((x) => x.quizId === quiz["id"])._avg
-                          .score
-                      }
+                      {aggregations
+                        .find((x) => x.quizId === quiz["id"])
+                        ._avg.score.toFixed(2)}
                     </p>
                     <p>
                       <span className="mr-2">Total Plays:</span>

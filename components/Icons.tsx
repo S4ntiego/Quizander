@@ -30,6 +30,7 @@ import {
   Trophy,
   Twitter,
   User,
+  Wand,
   X,
 } from "lucide-react"
 
@@ -67,4 +68,5 @@ export const Icons = {
   laptop: Laptop,
   twitter: Twitter,
   gitHub: Github,
+  wand: Wand,
 }
