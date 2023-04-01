@@ -121,7 +121,7 @@ export function Quiz({ quiz, user }) {
           </>
         ) : (
           <>
-            <div className="row-span-10 xs:row-span-6 flex flex-col text-center items-center mb-2 justify-center ">
+            <div className="row-span-10 flex flex-col text-center items-center mb-2 justify-center container">
               <h2 className="text-xl font-bold font-space">
                 Congratulations !
               </h2>
@@ -143,16 +143,13 @@ export function Quiz({ quiz, user }) {
             </div>
             <div className="row-span-2 flex flex-col justify-start gap-2">
               <Button
-                className="dark:border-dark-400"
+                className="container dark:border-dark-400"
                 variant="outline"
                 onClick={() => handleRetake()}
               >
                 Retake the quiz
               </Button>
-              <Button
-                className="text-dark-700 dark:bg-dark-150 border dark:border-dark-200"
-                onClick={() => onCompleteHandle()}
-              >
+              <Button className="container" onClick={() => onCompleteHandle()}>
                 {isFetching ? (
                   <div>
                     <Icons.spinner className="h-4 w-4 mr-2 animate-spin" />

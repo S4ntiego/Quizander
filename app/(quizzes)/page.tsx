@@ -1,9 +1,8 @@
-import { cache } from "react"
+import { Suspense, cache } from "react"
 
 import prisma from "@/lib/prisma"
 import Landing from "@/components/Landing"
 import QuizList from "@/components/QuizList"
-import { Separator } from "@/components/ui/separator"
 
 const getQuizzes = cache(async () => {
   const quizzes = await prisma.quiz.findMany({
@@ -41,7 +40,9 @@ export default async function IndexPage() {
   return (
     <div className="h-full w-full relative">
       <Landing />
-      <QuizList quizzes={quizzes} />
+      <Suspense fallback={<div>Loading Quizzes</div>}>
+        <QuizList quizzes={quizzes} />
+      </Suspense>
     </div>
   )
 }
