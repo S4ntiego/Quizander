@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
 
+import { withAuthentication } from "@/lib/api-middlewares/with-authentication"
 import prisma from "@/lib/prisma"
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -22,4 +23,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default handler
+export default withAuthentication(handler)

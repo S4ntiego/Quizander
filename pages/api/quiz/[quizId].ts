@@ -4,6 +4,7 @@ import multer from "multer"
 import { getServerSession } from "next-auth"
 import { z } from "zod"
 
+import { withCurrentUser } from "@/lib/api-middlewares/with-current-user"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { withQuiz } from "@/lib/api-middlewares/with-quiz"
 import deleteS3 from "@/lib/awsDelete"
@@ -150,4 +151,4 @@ export const config = {
   },
 }
 
-export default handler
+export default withMethods(["DELETE", "PATCH"], withCurrentUser(handler))

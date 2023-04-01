@@ -14,7 +14,7 @@ export function withQuiz(handler: NextApiHandler) {
     try {
       const query = await schema.parse(req.query)
 
-      // Check if the user has access to this post.
+      // Check if the user has access to this quiz.
       const session = await getServerSession(req, res, authOptions)
       if (session) {
         const count = await prisma.quiz.count({

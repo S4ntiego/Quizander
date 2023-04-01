@@ -47,7 +47,7 @@ export default function QuizEditor({ quiz, categories }) {
       if (!response?.ok) {
         toast({
           title: "Something went wrong.",
-          message: "Your post was not deleted. Please try again.",
+          message: "Quiz could not be edited. Please try again.",
           type: "error",
         })
       }

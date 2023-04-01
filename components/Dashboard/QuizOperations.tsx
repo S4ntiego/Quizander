@@ -38,7 +38,7 @@ export function QuizOperations({ quiz }: QuizOperationsProps) {
   const [isFetching, setIsFetching] = useState(false)
   const [showDeleteAlert, setShowDeleteAlert] = React.useState<boolean>(false)
 
-  async function deletePost(quizId: number) {
+  async function deleteQuiz(quizId: number) {
     setIsFetching(true)
     const response = await fetch(`/api/quiz/${quizId}`, {
       method: "DELETE",
@@ -47,7 +47,7 @@ export function QuizOperations({ quiz }: QuizOperationsProps) {
     if (!response?.ok) {
       toast({
         title: "Something went wrong.",
-        message: "Your post was not deleted. Please try again.",
+        message: "Quiz could not be deleted. Please try again.",
         type: "error",
       })
     }
@@ -100,7 +100,7 @@ export function QuizOperations({ quiz }: QuizOperationsProps) {
               )}
               onClick={async (event) => {
                 event.preventDefault()
-                await deletePost(quiz.id)
+                await deleteQuiz(quiz.id)
               }}
             >
               {isFetching ? (

@@ -3,6 +3,8 @@ import { NextApiRequest, NextApiResponse } from "next"
 import multer from "multer"
 import { getSession } from "next-auth/react"
 
+import { withAuthentication } from "@/lib/api-middlewares/with-authentication"
+import { withMethods } from "@/lib/api-middlewares/with-methods"
 import uploadS3 from "@/lib/awsUpload"
 import prisma from "@/lib/prisma"
 import runMiddleware from "@/lib/runMiddleware"
@@ -88,4 +90,4 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
   }
 }
 
-export default handler
+export default withMethods(["POST"], withAuthentication(handler))
