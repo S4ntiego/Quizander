@@ -4,6 +4,7 @@ import multer from "multer"
 import { getServerSession } from "next-auth"
 import { z } from "zod"
 
+import { withAuthentication } from "@/lib/api-middlewares/with-authentication"
 import { withCurrentUser } from "@/lib/api-middlewares/with-current-user"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { withQuiz } from "@/lib/api-middlewares/with-quiz"
@@ -151,4 +152,4 @@ export const config = {
   },
 }
 
-export default withMethods(["DELETE", "PATCH"], withCurrentUser(handler))
+export default withMethods(["DELETE", "PATCH"], withQuiz(handler))

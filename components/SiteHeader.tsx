@@ -97,7 +97,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader className="flex space-y-4">
-                      <DialogTitle>Login</DialogTitle>
+                      <DialogTitle>Login / Register</DialogTitle>
                       <DialogDescription>
                         Join the Quizander community. Have fun solving quizzes
                         from the the Harry Potter universe and save your
