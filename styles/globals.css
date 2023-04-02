@@ -7,3 +7,13 @@ input[type="checkbox"]:checked {
     url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==")
     18px 14px no-repeat;
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#mentos {
+  animation: spin 3s linear infinite;
+}

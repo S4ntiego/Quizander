@@ -15,14 +15,10 @@ const Scoreboard = ({ scoreboard, aggregations }) => {
     <>
       <div
         className="
-       rounded-md border dark:border-dark-400 border-slate-200"
+       rounded-md border border-dark-200 dark:border-dark-400"
       >
         {scoreboard.map((category) => (
-          <Accordion
-            type="multiple"
-            className="divide-y dark:divide-dark-400 divide-dark-200"
-            key={category.id}
-          >
+          <Accordion type="multiple" className="" key={category.id}>
             {category.quizzes.map((quiz) => (
               <AccordionItem className="px-4" key={quiz.id} value={quiz.id}>
                 <AccordionTrigger>

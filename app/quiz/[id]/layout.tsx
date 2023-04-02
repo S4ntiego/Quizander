@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 
 import { dashboardConfig } from "@/config/dashboard"
@@ -12,12 +14,11 @@ interface QuizzesProps {
 const layout = ({ children }: QuizzesProps) => {
   return (
     <div className="h-full flex flex-col fixed inset-0">
-      <div>siema</div>
-      {/* <SiteHeader
+      <SiteHeader
         mainConfig={dashboardConfig.mainNav}
         mobileConfig={dashboardConfig.mobileNav}
-      /> */}
-      <div className="flex flex-col h-[calc(100%)]">{children}</div>
+      />
+      <div className="flex flex-col h-[calc(100%-5rem)]">{children}</div>
     </div>
   )
 }

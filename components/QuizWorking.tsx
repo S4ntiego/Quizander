@@ -79,80 +79,97 @@ export function Quiz({ quiz, user }) {
 
   const onCompleteHandle = async () => {
     const data = {
-      quizId: quiz.id,
-      userId: user.id,
+      quizId: quiz?.id,
+      userId: user?.id,
       score: correctAnswersCount,
     }
+
+    if (!user) {
+      router.push("/#harry_potter_quizzes")
+      return
+    }
+
     await saveQuizResults(data)
-    router.push("#harry_potter_quizzes")
+    router.push("/#harry_potter_quizzes")
   }
 
   return (
-    <div className="flex-1 -mt-20 pt-20 dark:bg-gradient-to-t from-dark-700 to-dark-600">
-      <div className="container h-full max-h-[100%-20rem] grid grid-rows-12 pb-8 xs:max-w-[54rem] overflow-auto">
-        {!showResults ? (
-          <>
-            <div className="grid grid-rows-[auto,1fr] row-span-4 justify-center text-center items-center xs:row-start-2">
-              <span className="text-xs lg:text-base text-dark-400 dark:text-dark-200">
-                {currentQuestionIndex + 1} / {quiz.questions.length}
-              </span>
-              <h1
-                className={cn(
-                  "font-space break-words overflow-auto h-full m-auto text-xl flex items-center xs:pt-2 xs:pb-14 xs:text-2xl sm:text-3xl lg:text-4xl",
-                  quiz.questions[currentQuestionIndex].question.length > 95 &&
-                    "text-lg"
-                )}
-              >
-                {quiz.questions[currentQuestionIndex].question}
-              </h1>
-            </div>
-            <div className="grid grid-rows-4 row-span-8 gap-4 xs:mb-6 xs:row-span-6">
-              {quiz.questions[currentQuestionIndex].answers.map(
-                (answer, index) => (
-                  <QuizAnswer
-                    key={index}
-                    onSelectAnswer={selectAnswer}
-                    answer={answer}
-                    disabled={disabled}
-                    currentAnswer={currentAnswer}
-                  />
-                )
+    <div className="h-full max-h-full overflow-clip">
+      {!showResults ? (
+        <div className="container h-full max-h-[100%-20rem] grid grid-rows-12 pb-8 xs:max-w-[54rem] overflow-auto">
+          <div className="grid grid-rows-[auto,1fr] row-span-4 justify-center text-center items-center xs:row-start-2">
+            <span className="text-xs lg:text-base text-dark-400 dark:text-dark-200">
+              {currentQuestionIndex + 1} / {quiz.questions.length}
+            </span>
+            <h1
+              className={cn(
+                "font-space break-words overflow-auto h-full m-auto text-xl flex items-center xs:pt-2 xs:pb-2 xs:text-2xl sm:text-3xl lg:text-4xl",
+                quiz.questions[currentQuestionIndex].question.length > 70 &&
+                  "text-lg xs:text-xl sm:text-2xl lg:text-3xl"
               )}
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="row-span-10 flex flex-col text-center items-center mb-2 justify-center container">
-              <h2 className="text-xl font-bold font-space">
+            >
+              {quiz.questions[currentQuestionIndex].question}
+            </h1>
+          </div>
+          <div className="grid grid-rows-4 row-span-8 gap-4 xs:mb-6 xs:row-span-6">
+            {quiz.questions[currentQuestionIndex].answers.map(
+              (answer, index) => (
+                <QuizAnswer
+                  key={index}
+                  onSelectAnswer={selectAnswer}
+                  answer={answer}
+                  disabled={disabled}
+                  currentAnswer={currentAnswer}
+                />
+              )
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="h-full grid grid-rows-[1fr,auto] container">
+          <div className="text-center overflow-auto grid grid-rows-[auto,1fr] mb-2">
+            <div className="flex flex-col xxs:mb-0 mb-2">
+              <h2 className="text-2xl font-bold font-space">
                 Congratulations !
               </h2>
-              <p className="mb-3 dark:text-dark-200 text-dark-500">
+              <p className="dark:text-dark-200 text-dark-500 xxs:text-sm">
                 You have just completed <br /> {quiz.title} quiz
               </p>
-              <div className="rounded-full flex items-center justify-center mb-1 p-14 relative dark:text-dark-50 text-dark-700">
-                <Icons.trophy className="absolute h-16 w-16" />
-              </div>
-              <h1 className="text-4xl font-bold font-space mb-7 uppercase">
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <Image
+                alt="wizard_hat"
+                width={400}
+                height={400}
+                src="/images/hero/magician_hat 2.png"
+                className="w-36 h-36 xxs:mb-1 mb-1"
+              />
+              <h1 className="xxs:text-4xl text-5xl font-bold font-space xxs:mb-4 mb-8 uppercase">
                 Your score
                 <p>
                   {correctAnswersCount} / {quiz.questions.length}
                 </p>
               </h1>
-              <p className="overflow-auto text-dark-500 dark:text-dark-200">
+              <p className="overflow-auto text-dark-500 dark:text-dark-200 px-5 xxs:text-sm">
                 {renderScore(correctAnswersCount, quiz.questions.length, quiz)}
               </p>
             </div>
+          </div>
+          <div className="mb-6">
             <div className="row-span-2 flex flex-col justify-start gap-2">
               <Button
-                className="container dark:border-dark-400"
+                className="dark:border-dark-400 h-12 rounded-3xl"
                 variant="outline"
                 onClick={() => handleRetake()}
               >
                 Retake the quiz
               </Button>
-              <Button className="container" onClick={() => onCompleteHandle()}>
+              <Button
+                className="rounded-3xl h-12"
+                onClick={() => onCompleteHandle()}
+              >
                 {isFetching ? (
-                  <div>
+                  <div className="flex justify-center items-center">
                     <Icons.spinner className="h-4 w-4 mr-2 animate-spin" />
                     <span>Saving your results</span>
                   </div>
@@ -161,9 +178,9 @@ export function Quiz({ quiz, user }) {
                 )}
               </Button>
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

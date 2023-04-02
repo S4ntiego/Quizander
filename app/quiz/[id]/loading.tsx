@@ -6,7 +6,7 @@ export default function QuizLoading() {
           <div className="w-12 h-4 rounded-md animate-pulse bg-slate-500"></div>
         </span>
         <span className="m-auto text-base xs:text-2xl break-words overflow-auto">
-          <div className="w-96 h-16 rounded-md animate-pulse bg-slate-500"></div>
+          <div className="w-24 xs:w-96 h-16 rounded-md animate-pulse bg-slate-500"></div>
         </span>
       </div>
       <div className="grid grid-rows-4 row-span-8 gap-4 xs:mb-6 xs:row-span-6">
