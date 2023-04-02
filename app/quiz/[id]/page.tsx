@@ -5,6 +5,8 @@ import { getCurrentUser } from "@/lib/session"
 import { Quiz } from "@/components/Quiz"
 
 async function getQuiz(quizId) {
+  await new Promise((resolve) => setTimeout(resolve, 3000))
+
   const quiz = await prisma.quiz.findUnique({
     where: { id: parseInt(quizId) },
     include: {
