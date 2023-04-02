@@ -14,7 +14,7 @@ export default function QuizList({ quizzes }) {
     >
       <div className="container">
         <h2 className="mb-12 text-5xl font-bold font-space uppercase">
-          Dive into the world of magic. t
+          Dive into the world of magic.
         </h2>
         <div className="grid grid-cols-1 gap-16 md:grid-cols-2 xl:grid-cols-3">
           {quizzes.map((quiz) => (
@@ -46,7 +46,7 @@ function QuizArtwork({
 }: QuizArtworkProps) {
   return (
     <div className={cn("relative group rounded-md", className)} {...props}>
-      <Link href={`/quizander/${quiz.id}`}>
+      <Link href={`/quiz/${quiz.id}`}>
         <AspectRatio
           ratio={aspectRatio}
           className="mb-5 overflow-hidden rounded-3xl border border-dark-200 dark:border-dark-400"
