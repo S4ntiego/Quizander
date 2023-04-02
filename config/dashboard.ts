@@ -12,7 +12,7 @@ export const dashboardConfig: DashboardConfig = {
   mainNav: [
     {
       title: "Quizzes",
-      href: "/",
+      href: "/pepega",
     },
   ],
   mainDashboardNav: [],
