@@ -4,27 +4,20 @@ import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 import { Quiz } from "@/components/Quiz"
 
-function getQuiz(quizId) {
-  return new Promise((resolve, reject) => {
-    prisma.quiz
-      .findUnique({
-        where: { id: parseInt(quizId) },
-        include: {
-          questions: {
-            select: {
-              question: true,
-              answers: { select: { answer: true, isCorrect: true } },
-            },
-          },
+async function getQuiz(quizId) {
+  const quiz = await prisma.quiz.findUnique({
+    where: { id: parseInt(quizId) },
+    include: {
+      questions: {
+        select: {
+          question: true,
+          answers: { select: { answer: true, isCorrect: true } },
         },
-      })
-      .then((quiz) => {
-        resolve(JSON.parse(JSON.stringify(quiz)))
-      })
-      .catch((error) => {
-        reject(error)
-      })
+      },
+    },
   })
+
+  return JSON.parse(JSON.stringify(quiz))
 }
 
 interface QuizPageProps {

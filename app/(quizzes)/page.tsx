@@ -40,9 +40,7 @@ export default async function IndexPage() {
   return (
     <div className="h-full w-full relative">
       <Landing />
-      <Suspense fallback={<div>Loading Quizzes</div>}>
-        <QuizList quizzes={quizzes} />
-      </Suspense>
+      <QuizList quizzes={quizzes} />
     </div>
   )
 }
