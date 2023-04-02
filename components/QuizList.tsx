@@ -46,7 +46,7 @@ function QuizArtwork({
 }: QuizArtworkProps) {
   return (
     <div className={cn("relative group rounded-md", className)} {...props}>
-      <Link href={`/${quiz.id}`}>
+      <Link href={`/quiz/${quiz.id}`}>
         <AspectRatio
           ratio={aspectRatio}
           className="mb-5 overflow-hidden rounded-3xl border border-dark-200 dark:border-dark-400"
