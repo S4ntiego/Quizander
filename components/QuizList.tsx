@@ -14,7 +14,7 @@ export default function QuizList({ quizzes }) {
     >
       <div className="container">
         <h2 className="mb-12 text-5xl font-bold font-space uppercase">
-          Dive into the world of magic.
+          Dive into the world of magic. t
         </h2>
         <div className="grid grid-cols-1 gap-16 md:grid-cols-2 xl:grid-cols-3">
           {quizzes.map((quiz) => (
