@@ -7,7 +7,9 @@ export default async function handler(req, res) {
   try {
     // This should be the actual path not a rewritten path
     // e.g. for "/blog/[slug]" this should be "/blog/post-1"
-    await res.revalidate("/quiz/9")
+    await res.revalidate("/quiz/10")
+    await res.revalidate("/quiz/11")
+    await res.revalidate("/")
     return
   } catch (err) {
     // If there was an error, Next.js will continue
