@@ -76,7 +76,7 @@ export default function QuizzesForm({ categories }) {
     startTransition(() => {
       setIsFetching(false)
       fetch(`/api/revalidate?secret=${process.env.MY_SECRET_TOKEN}`, {
-        method: "GET",
+        method: "POST",
       })
       router.refresh()
     })
