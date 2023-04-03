@@ -34,6 +34,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
       await deleteS3(process.env.AWS_S3_BUCKET_NAME as string, quiz.coverImage)
 
+      await res.revalidate("/")
       return res.status(204).end()
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -130,6 +131,7 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
             },
           })
 
+          await res.revalidate("/")
           return res.json({
             quiz: quiz,
             error: "",
