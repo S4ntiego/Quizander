@@ -5,7 +5,6 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { IQuizResponse } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { QuizCategory } from "@prisma/client"
 import { FormProvider, useForm } from "react-hook-form"
 import { TypeOf, object, string, z } from "zod"
 
@@ -58,7 +57,6 @@ export default function QuizzesForm({ categories }) {
   const [isFetching, setIsFetching] = useState(false)
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState<string | undefined>()
-  const [valuez, setValuez] = React.useState("france")
 
   async function createQuiz(formData: FormData) {
     setIsFetching(true)
@@ -77,7 +75,9 @@ export default function QuizzesForm({ categories }) {
 
     startTransition(() => {
       setIsFetching(false)
-      fetch(`/api/revalidate?secret=${process.env.MY_SECRET_TOKEN}`)
+      fetch(`/api/revalidate?secret=${process.env.MY_SECRET_TOKEN}`, {
+        method: "GET",
+      })
       router.refresh()
     })
   }
