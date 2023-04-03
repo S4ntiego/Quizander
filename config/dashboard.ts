@@ -11,8 +11,8 @@ interface DashboardConfig {
 export const dashboardConfig: DashboardConfig = {
   mainNav: [
     {
-      title: "Quizzes",
-      href: "/pepega",
+      // title: "Quizzes",
+      // href: "/quizzes",
     },
   ],
   mainDashboardNav: [],

@@ -10,7 +10,9 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         mainConfig={dashboardConfig.mainNav}
         mobileConfig={dashboardConfig.mobileNav}
       />
-      <div className="h-[calc(100%-5rem)]">{children}</div>
+      <div className="h-[calc(100%-5rem)] landscape:h-[calc(100%-3rem)]">
+        {children}
+      </div>
     </div>
   )
 }

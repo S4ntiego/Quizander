@@ -96,14 +96,14 @@ export function Quiz({ quiz, user }) {
   return (
     <div className="h-full max-h-full overflow-clip flex justify-center items-center">
       {!showResults ? (
-        <div className="container h-full max-h-[100%-20rem] grid grid-rows-12 pb-8 xs:max-w-[54rem] overflow-auto">
-          <div className="grid grid-rows-[auto,1fr] row-span-4 justify-center text-center items-center xs:row-start-2">
+        <div className="container h-full max-h-[100%-20rem] grid grid-rows-12 pb-8 xs:max-w-[54rem] overflow-auto landscape:grid-cols-2 landscape:grid-rows-5 landscape:pb-1">
+          <div className="grid grid-rows-[auto,1fr] row-span-4 justify-center text-center items-center xs:row-start-2 landscape:col-span-2 landscape:row-span-2">
             <span className="text-xs lg:text-base text-dark-400 dark:text-dark-200">
               {currentQuestionIndex + 1} / {quiz.questions.length}
             </span>
             <h1
               className={cn(
-                "font-space break-words overflow-auto h-full m-auto text-xl flex items-center xs:pt-2 xs:pb-2 xs:text-2xl sm:text-3xl lg:text-4xl",
+                "font-space break-words overflow-auto h-full m-auto text-xl flex items-center xs:pt-2 xs:pb-2 xs:text-2xl sm:text-3xl lg:text-4xl landscape:text-base",
                 quiz.questions[currentQuestionIndex].question.length > 70 &&
                   "text-lg xs:text-xl sm:text-2xl lg:text-3xl"
               )}
@@ -111,7 +111,7 @@ export function Quiz({ quiz, user }) {
               {quiz.questions[currentQuestionIndex].question}
             </h1>
           </div>
-          <div className="grid grid-rows-4 row-span-8 gap-4 xs:mb-6 xs:row-span-6">
+          <div className="grid grid-rows-4 row-span-8 gap-4 xs:mb-6 xs:row-span-6 landscape:grid-cols-2 landscape:col-span-2 landscape:row-span-3 landscape:grid-rows-2">
             {quiz.questions[currentQuestionIndex].answers.map(
               (answer, index) => (
                 <QuizAnswer
