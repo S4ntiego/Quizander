@@ -23,7 +23,7 @@ import { DropdownMenuShortcut } from "./ui/dropdown-menu"
 
 const UserDropdown = () => {
   const { data: session } = useSession()
-  const { name, email, image } = session?.user || {}
+  const { email, image } = session?.user || {}
 
   if (!email) return null
 
