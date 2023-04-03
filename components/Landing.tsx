@@ -1,8 +1,7 @@
 import React from "react"
 import Image from "next/image"
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "./ui/button"
+import Anchor from "./Anchor"
 
 const Landing = () => {
   return (
@@ -19,15 +18,10 @@ const Landing = () => {
           <p className="text-sm uppercase max-w-[13rem] tracking-widest text-dark-400 mb-8 dark:text-dark-200">
             Wit beyond measure is man&apos;s greatest treasure
           </p>
-          <a
-            className={cn(
-              buttonVariants({ variant: "default" }),
-              "w-36 rounded-3xl cursor-pointer mb-12"
-            )}
-            href="#harry_potter_quizzes"
-          >
-            Explore Quizzes
-          </a>
+          <Anchor
+            href={"#harry_potter_quizzes"}
+            className="mb-12 cursor-pointer w-36"
+          />
         </div>
         {/* image */}
         <div className="flex items-center justify-center relative">

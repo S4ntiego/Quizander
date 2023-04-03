@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader"
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="h-full">
+    <div className="h-full fixed inset-0">
       <SiteHeader
         mainConfig={dashboardConfig.mainNav}
         mobileConfig={dashboardConfig.mobileNav}
