@@ -16,15 +16,34 @@ import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { toast } from "./ui/toast"
 
+const MAX_FILE_SIZE = 500000
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+]
+
 const updateQuizSchema = object({
-  coverImage: z.any(),
+  coverImage: z
+    .any()
+    .refine((file) => file?.size <= MAX_FILE_SIZE, "Max image size is 5mb")
+    .refine(
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
   title: string().min(1, "Title is required"),
   description: string().min(1, "Description is required"),
-  category: string().min(1, "Please select a category from the dropdown list."),
+  category: z
+    .string()
+    .min(1, "Please select a category from the dropdown list"),
   questions: z.any(),
-  lowScore: string(),
-  mediumScore: string(),
-  highScore: string(),
+  lowScore: string().min(1, "Low quiz score result description is required"),
+  mediumScore: string().min(
+    1,
+    "Medium quiz score result description is required"
+  ),
+  highScore: string().min(1, "High quiz score result description is required"),
 }).partial()
 
 type UpdateQuizForm = TypeOf<typeof updateQuizSchema>
@@ -66,7 +85,13 @@ export default function QuizEditor({ quiz, categories }) {
     resolver: zodResolver(updateQuizSchema),
   })
 
-  const { register, control, getValues, setValue } = methods
+  const {
+    register,
+    control,
+    getValues,
+    setValue,
+    formState: { errors },
+  } = methods
 
   const onSubmit = (values: any) => {
     const formData = new FormData()
@@ -194,10 +219,20 @@ export default function QuizEditor({ quiz, categories }) {
             type="text"
             {...methods.register(`title`)}
           />
+          {errors.title && (
+            <p className="mb-3 text-red-600 dark:text-red-400">
+              {errors.title?.message}
+            </p>
+          )}
         </div>
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="description">Description</Label>
           <Input type="text" {...methods.register(`description`)} />
+          {errors.description && (
+            <p className="mb-3 text-red-600 dark:text-red-400">
+              {errors.description?.message}
+            </p>
+          )}
         </div>
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="category">Quiz Category</Label>
@@ -206,6 +241,11 @@ export default function QuizEditor({ quiz, categories }) {
             name="category"
             id="category"
           />
+          {errors.category && (
+            <p className="mb-3 text-red-600 dark:text-red-400">
+              {errors.category?.message}
+            </p>
+          )}
         </div>
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="lowScore">Low Score Description</Label>
@@ -215,6 +255,11 @@ export default function QuizEditor({ quiz, categories }) {
             type="text"
             {...methods.register(`lowScore`)}
           />
+          {errors.lowScore && (
+            <p className="mb-3 text-red-600 dark:text-red-400">
+              {errors.lowScore?.message}
+            </p>
+          )}
         </div>
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="mediumScore">Medium Score Description</Label>
@@ -224,6 +269,11 @@ export default function QuizEditor({ quiz, categories }) {
             type="text"
             {...methods.register(`mediumScore`)}
           />
+          {errors.mediumScore && (
+            <p className="mb-3 text-red-600 dark:text-red-400">
+              {errors.mediumScore?.message}
+            </p>
+          )}
         </div>
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="highScore">High Score Description</Label>
@@ -233,6 +283,11 @@ export default function QuizEditor({ quiz, categories }) {
             type="text"
             {...methods.register(`highScore`)}
           />
+          {errors.highScore && (
+            <p className="mb-3 text-red-600 dark:text-red-400">
+              {errors.highScore?.message}
+            </p>
+          )}
         </div>
 
         <Question {...{ control, register, getValues, setValue }} />
