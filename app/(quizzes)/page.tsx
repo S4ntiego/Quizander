@@ -1,4 +1,4 @@
-import { Suspense, cache } from "react"
+import { Suspense, cache, useMemo } from "react"
 
 import prisma from "@/lib/prisma"
 import Landing from "@/components/Landing"

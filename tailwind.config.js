@@ -21,6 +21,12 @@ module.exports = {
       lg: "992px",
       xl: "1100px",
       "2xl": "1200px",
+      tall: {
+        raw: `only screen and (max-height: 960px) and (max-width: 480px)`,
+      },
+      wide: {
+        raw: `only screen and (max-height: 480px) and (max-width: 960px)`,
+      },
     },
     container: {
       center: true,
@@ -33,6 +39,12 @@ module.exports = {
         lg: "992px",
         xl: "1100px",
         "2xl": "1200px",
+        tall: {
+          raw: `only screen and (max-height: 960px) and (max-width: 480px)`,
+        },
+        wide: {
+          raw: `only screen and (max-height: 480px) and (max-width: 960px)`,
+        },
       },
     },
     extend: {
