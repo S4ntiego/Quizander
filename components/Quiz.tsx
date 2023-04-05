@@ -21,7 +21,7 @@ interface QuizWithQuestions extends Qz {
 
 interface QuizProps {
   quiz: QuizWithQuestions
-  user: User
+  user: any
 }
 
 export function Quiz({ quiz, user }: QuizProps) {
