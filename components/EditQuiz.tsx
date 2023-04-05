@@ -16,7 +16,16 @@ import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { toast } from "./ui/toast"
 
-const MAX_FILE_SIZE = 500000
+const AnswerObject = z.object({
+  answer: z.string().min(1, "Answer is required."),
+  isCorrect: z.boolean(),
+})
+
+const QuestionObject = z.object({
+  question: z.string().min(1, "Question is required."),
+  answers: z.array(AnswerObject).nonempty("At least one answer is required."),
+})
+
 const ACCEPTED_IMAGE_TYPES = [
   "image/jpeg",
   "image/jpg",
@@ -25,19 +34,22 @@ const ACCEPTED_IMAGE_TYPES = [
 ]
 
 const updateQuizSchema = object({
-  coverImage: z
-    .any()
-    .refine((file) => file?.size <= MAX_FILE_SIZE, "Max image size is 5mb")
-    .refine(
-      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-      "Only .jpg, .jpeg, .png and .webp formats are supported."
-    ),
+  coverImage: z.optional(
+    z
+      .any()
+      .refine((files) => files?.length == 1, "Image is required.")
+      .refine((files) => files?.[0]?.size <= 5000000, `Max file size is 5MB.`)
+      .refine(
+        (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+        ".jpg, .jpeg, .png and .webp files are accepted."
+      )
+  ),
   title: string().min(1, "Title is required"),
   description: string().min(1, "Description is required"),
   category: z
     .string()
     .min(1, "Please select a category from the dropdown list"),
-  questions: z.any(),
+  questions: z.array(QuestionObject),
   lowScore: string().min(1, "Low quiz score result description is required"),
   mediumScore: string().min(
     1,
@@ -56,28 +68,30 @@ export default function QuizEditor({ quiz, categories }) {
   const [preview, setPreview] = useState<string | undefined>()
 
   async function updateQuiz(quizId: string, formData: FormData) {
-    try {
-      setIsFetching(true)
-      const response = await fetch(`/api/quiz/${quizId}`, {
-        method: "PATCH",
-        body: formData,
-      })
+    setIsFetching(true)
+    const response = await fetch(`/api/quiz/${quizId}`, {
+      method: "PATCH",
+      body: formData,
+    })
 
-      if (!response?.ok) {
-        toast({
-          title: "Something went wrong.",
-          message: "Quiz could not be edited. Please try again.",
-          type: "error",
-        })
-      }
-
-      startTransition(() => {
-        setIsFetching(false)
-        router.refresh()
+    if (!response?.ok) {
+      toast({
+        title: "Something went wrong.",
+        message: "Quiz could not be edited. Please try again.",
+        type: "error",
       })
-    } catch (err) {
-      console.log(err)
     }
+
+    toast({
+      title: "Quiz edited successfully",
+      message: "Your quiz has been edited successfully.",
+      type: "success",
+    })
+
+    startTransition(() => {
+      setIsFetching(false)
+      router.refresh()
+    })
   }
 
   //object returned will have the same shape as UpdateQuizForm
@@ -210,6 +224,11 @@ export default function QuizEditor({ quiz, categories }) {
               className="hidden cursor-pointer top-1/2 left-1/2 border-none h-full w-full"
             />
           </Label>
+          {errors.coverImage && (
+            <p className="mb-3 text-red-600 dark:text-red-400">
+              {errors.coverImage?.message?.toString()}
+            </p>
+          )}
         </div>
 
         <div className="grid w-full items-center gap-1.5">
@@ -219,11 +238,6 @@ export default function QuizEditor({ quiz, categories }) {
             type="text"
             {...methods.register(`title`)}
           />
-          {errors.title && (
-            <p className="mb-3 text-red-600 dark:text-red-400">
-              {errors.title?.message}
-            </p>
-          )}
         </div>
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="description">Description</Label>

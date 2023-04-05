@@ -81,7 +81,10 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
         },
       })
 
-      await res.revalidate("/")
+      if (process.env.NODE_ENV === "production") {
+        await res.revalidate("/")
+      }
+
       return res.json({ quiz: quiz, src: uploadResult.Location, error: "" })
     }
 

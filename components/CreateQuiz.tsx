@@ -21,26 +21,49 @@ interface ICreateQuizProp {
   quiz: IQuizResponse
 }
 
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+]
+
+const AnswerObject = z.object({
+  answer: z.string().min(1, "Answer is required."),
+  isCorrect: z.boolean(),
+})
+
+const QuestionObject = z.object({
+  question: z.string().min(1, "Question is required."),
+  answers: z.array(AnswerObject).nonempty("At least one answer is required."),
+})
+
 const createQuizSchema = object({
-  coverImage: z.any(),
+  coverImage: z
+    .any()
+    .refine((files) => files?.length == 1, "Image is required.")
+    .refine((files) => files?.[0]?.size <= 5000000, `Max file size is 5MB.`)
+    .refine(
+      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+      ".jpg, .jpeg, .png and .webp files are accepted."
+    ),
   title: string().min(1, "Title is required"),
   description: string().min(1, "Description is required"),
   category: z
     .string()
     .min(1, "Please select a category from the dropdown list"),
-  questions: z.any(),
+  questions: z.array(QuestionObject),
   lowScore: string().min(1, "Low quiz score result description is required"),
   mediumScore: string().min(
     1,
     "Medium quiz score result description is required"
   ),
   highScore: string().min(1, "High quiz score result description is required"),
-}).partial()
+})
 
 type ICreateQuiz = TypeOf<typeof createQuizSchema>
 
 const defaultValues = {
-  coverImage: "",
   title: "test",
   description: "test",
   questions: [
@@ -77,6 +100,12 @@ export default function QuizzesForm({ categories }) {
         type: "error",
       })
     }
+
+    toast({
+      title: "Quiz uploaded successfully",
+      message: "Your quiz has been created successfully.",
+      type: "success",
+    })
 
     startTransition(() => {
       setIsFetching(false)
@@ -200,6 +229,11 @@ export default function QuizzesForm({ categories }) {
               className="hidden cursor-pointer top-1/2 left-1/2 border-none h-full w-full"
             />
           </Label>
+          {errors.coverImage && (
+            <p className="mb-3 text-red-600 dark:text-red-400">
+              {errors.coverImage?.message?.toString()}
+            </p>
+          )}
         </div>
 
         <div className="grid w-full items-center gap-1.5">
