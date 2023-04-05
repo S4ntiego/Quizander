@@ -5,7 +5,7 @@ import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 import { Quiz } from "@/components/Quiz"
 
-const getQuiz = cache(async (quizId) => {
+const getQuiz = cache(async (quizId: string) => {
   const quiz = await prisma.quiz.findUnique({
     where: { id: parseInt(quizId) },
     include: {

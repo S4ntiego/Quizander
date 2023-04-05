@@ -164,7 +164,14 @@ export function Quiz({ quiz, user }: QuizProps) {
                 {correctAnswersCount} / {quiz?.questions.length}
               </span>
             </h1>
-            <p className="overflow-auto text-dark-500 dark:text-dark-200 px-5 mb-4 xxs:text-sm lg:text-lg wide:mb-2 wide:max-w-lg">
+            <p
+              className={cn(
+                "overflow-auto text-dark-500 dark:text-dark-200 px-5 mb-4 xxs:text-sm lg:text-lg wide:mb-2 wide:max-w-lg",
+                renderScore(correctAnswersCount, quiz?.questions.length, quiz)
+                  ?.length > 200 &&
+                  "xxs:text-xs text-sm xs:text-base lg:text-lg"
+              )}
+            >
               {renderScore(correctAnswersCount, quiz?.questions.length, quiz)}
             </p>
           </div>
