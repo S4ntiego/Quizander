@@ -3,19 +3,19 @@
 import React, { useState, useTransition } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { Answer, Question as Qs, Quiz as Qz, User } from "@prisma/client"
 
 import { cn } from "@/lib/utils"
 import { toast } from "@/components/ui/toast"
 import { Icons } from "./Icons"
 import { QuizAnswer } from "./QuizAnswer"
 import { Button } from "./ui/button"
-import { Answer, Question as Qs, Question, Quiz, User } from "@prisma/client"
 
-interface QuestionWithAnswers extends Question {
+interface QuestionWithAnswers extends Qs {
   answers: Answer[]
 }
 
-interface QuizWithQuestions extends Quiz {
+interface QuizWithQuestions extends Qz {
   questions: QuestionWithAnswers[]
 }
 
