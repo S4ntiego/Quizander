@@ -1,12 +1,23 @@
-import React, { cache } from "react"
+import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Quiz } from "@prisma/client"
+import { Quiz, QuizCategory } from "@prisma/client"
 
 import { cn } from "@/lib/utils"
 import { AspectRatio } from "./ui/aspect-ratio"
 
-export default function QuizList({ quizzes }) {
+interface QuizWithCategory extends Quiz {
+  category: {
+    id?: number
+    name?: string
+  }
+}
+
+interface QuizListProps {
+  quizzes: QuizWithCategory[]
+}
+
+export default function QuizList({ quizzes }: QuizListProps) {
   return (
     <section
       id="harry_potter_quizzes"
@@ -24,13 +35,6 @@ export default function QuizList({ quizzes }) {
       </div>
     </section>
   )
-}
-
-interface QuizWithCategory extends Quiz {
-  category: {
-    id?: number
-    name?: string
-  }
 }
 
 interface QuizArtworkProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 import { Quiz } from "@/components/Quiz"
 
-const getQuiz = cache(async (quizId) => {
+const getQuiz = cache(async (quizId: string) => {
   return new Promise((resolve, reject) => {
     prisma.quiz
       .findUnique({
@@ -28,7 +28,7 @@ const getQuiz = cache(async (quizId) => {
 })
 
 interface QuizPageProps {
-  params: { id: number }
+  params: { id: string }
 }
 
 export default async function QuizPage({ params }: QuizPageProps) {

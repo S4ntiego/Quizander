@@ -9,8 +9,22 @@ import { toast } from "@/components/ui/toast"
 import { Icons } from "./Icons"
 import { QuizAnswer } from "./QuizAnswer"
 import { Button } from "./ui/button"
+import { Answer, Question as Qs, Question, Quiz, User } from "@prisma/client"
 
-export function Quiz({ quiz, user }) {
+interface QuestionWithAnswers extends Question {
+  answers: Answer[]
+}
+
+interface QuizWithQuestions extends Quiz {
+  questions: QuestionWithAnswers[]
+}
+
+interface QuizProps {
+  quiz: QuizWithQuestions
+  user: User
+}
+
+export function Quiz({ quiz, user }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [currentAnswer, setCurrentAnswer] = useState("")
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0)

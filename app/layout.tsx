@@ -14,22 +14,11 @@ import {
   Playfair_Display,
   Space_Grotesk,
 } from "next/font/google"
-import { QueryClient } from "@tanstack/react-query"
 import { ThemeProvider } from "next-themes"
 
 import { cn } from "@/lib/utils"
 import AuthContext from "@/components/Dashboard/AuthContext"
 import { Toaster } from "@/components/ui/toast"
-import { StateContextProvider } from "../context/index"
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 1,
-      staleTime: 10000,
-    },
-  },
-})
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -83,7 +72,11 @@ const space = Space_Grotesk({
   subsets: ["latin"],
 })
 
-export default function RootLayout({ children }: { children: any }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <>
       <html
@@ -108,9 +101,7 @@ export default function RootLayout({ children }: { children: any }) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="dark">
-            <AuthContext>
-              <StateContextProvider>{children}</StateContextProvider>
-            </AuthContext>
+            <AuthContext>{children}</AuthContext>
           </ThemeProvider>
           <Toaster position="bottom-right" />
         </body>

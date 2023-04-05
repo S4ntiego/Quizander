@@ -11,17 +11,23 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-type IFormInputProps = {
+interface CategoryProps {
+  id: number
   name: string
-  id: string
-  categories: [{ id: number; name: string }]
 }
 
-const FormInput: FC<IFormInputProps> = ({
+type FormInputProps = {
+  name: string
+  id: string
+  categories?: CategoryProps[]
+}
+
+// <FormInputProps> - the type of props that the component expects to receive
+const FormInput: FC<FormInputProps> = ({
   name,
   id,
   categories,
-}: IFormInputProps) => {
+}: FormInputProps) => {
   const {
     control,
     formState: { errors },
@@ -37,7 +43,7 @@ const FormInput: FC<IFormInputProps> = ({
             <SelectValue placeholder="Category" className="w-[180px]" id={id} />
           </SelectTrigger>
           <SelectContent className="ml-4">
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <SelectItem key={category.id} value={`${category.id}`}>
                 {category.name}
               </SelectItem>

@@ -3,11 +3,13 @@ import { DashboardNav } from "@/components/DashboardNav"
 import { SiteFooter } from "@/components/SiteFooter"
 import { SiteHeader } from "@/components/SiteHeader"
 
-interface LayoutProps {
+interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
-export default async function DashboardLayout({ children }: LayoutProps) {
+export default async function DashboardLayout({
+  children,
+}: DashboardLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col ">
       <SiteHeader

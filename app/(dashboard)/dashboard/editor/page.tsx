@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation"
-import { Quiz } from "@prisma/client"
 
 import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"

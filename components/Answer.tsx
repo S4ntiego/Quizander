@@ -4,10 +4,8 @@ import { useFieldArray } from "react-hook-form"
 
 import { Icons } from "./Icons"
 import { Button } from "./ui/button"
-import { Checkbox } from "./ui/checkbox"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-import { Separator } from "./ui/separator"
 
 //nestIndex to receive from questions useFieldArray to know current question index
 export default function Answers({ nestIndex, control, register }: any) {

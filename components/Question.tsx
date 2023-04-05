@@ -8,7 +8,6 @@ import { Icons } from "@/components/Icons"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-import { Separator } from "./ui/separator"
 
 //setValue, getValues
 export default function Questions({

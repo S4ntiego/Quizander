@@ -79,7 +79,16 @@ const defaultValues = {
   ],
 }
 
-export default function QuizzesForm({ categories }) {
+interface CategoryProps {
+  id: number
+  name: string
+}
+
+interface QuizzesFormProps {
+  categories: CategoryProps[]
+}
+
+export default function QuizzesForm({ categories }: QuizzesFormProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [isFetching, setIsFetching] = useState(false)

@@ -4,6 +4,7 @@ import React, { useEffect, useState, useTransition } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Question as Qs, Quiz } from "@prisma/client"
 import { FormProvider, useForm } from "react-hook-form"
 import { TypeOf, object, string, z } from "zod"
 
@@ -37,18 +38,19 @@ const updateQuizSchema = object({
   coverImage: z.optional(
     z
       .any()
-      .refine((files) => files?.length == 1, "Image is required.")
       .refine((files) => files?.[0]?.size <= 5000000, `Max file size is 5MB.`)
       .refine(
         (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
         ".jpg, .jpeg, .png and .webp files are accepted."
       )
+      .or(z.string())
   ),
   title: string().min(1, "Title is required"),
   description: string().min(1, "Description is required"),
   category: z
-    .string()
-    .min(1, "Please select a category from the dropdown list"),
+    .number()
+    .min(1, "Please select a category from the dropdown list")
+    .or(z.string().min(1, "Please select a category from the dropdown list")),
   questions: z.array(QuestionObject),
   lowScore: string().min(1, "Low quiz score result description is required"),
   mediumScore: string().min(
@@ -60,14 +62,28 @@ const updateQuizSchema = object({
 
 type UpdateQuizForm = TypeOf<typeof updateQuizSchema>
 
-export default function QuizEditor({ quiz, categories }) {
+interface Category {
+  id: number
+  name: string
+}
+
+interface QuizWithQuestions extends Quiz {
+  questions: Qs[]
+}
+
+interface QuizEditorProps {
+  quiz: QuizWithQuestions
+  categories: Category[]
+}
+
+export default function QuizEditor({ quiz, categories }: QuizEditorProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [isFetching, setIsFetching] = useState(false)
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState<string | undefined>()
 
-  async function updateQuiz(quizId: string, formData: FormData) {
+  async function updateQuiz(quizId: number, formData: FormData) {
     setIsFetching(true)
     const response = await fetch(`/api/quiz/${quizId}`, {
       method: "PATCH",
@@ -123,7 +139,10 @@ export default function QuizEditor({ quiz, categories }) {
     updateQuiz(quiz.id, formData)
   }
 
+  console.log(quiz.categoryId)
+
   useEffect(() => {
+    console.log(quiz.coverImage)
     if (quiz) {
       methods.reset({
         title: quiz.title,
