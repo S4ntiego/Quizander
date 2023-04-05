@@ -76,7 +76,7 @@ interface QuizEditorProps {
   categories: Category[]
 }
 
-export default function QuizEditor({ quiz, categories }: QuizEditorProps) {
+export default function QuizEditor({ quiz, categories }) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [isFetching, setIsFetching] = useState(false)
