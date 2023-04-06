@@ -14,7 +14,7 @@ import { Label } from "./ui/label"
 
 interface AnswersProps {
   nestIndex: number
-  control: Control
+  control: Control<FieldValues>
   register: UseFormRegister<FieldValues>
 }
 
