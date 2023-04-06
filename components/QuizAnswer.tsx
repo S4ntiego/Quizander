@@ -1,11 +1,20 @@
+import { Answer } from "@prisma/client"
+
 import { cn } from "@/lib/utils"
+
+interface QuizAnswerProps {
+  answer: Answer
+  onSelectAnswer: (answer: Answer) => void
+  currentAnswer: Pick<Answer, "answer" | "isCorrect"> | string
+  disabled: boolean
+}
 
 export function QuizAnswer({
   answer,
   onSelectAnswer,
   currentAnswer,
   disabled,
-}: any) {
+}: QuizAnswerProps) {
   const isCorrectAnswer =
     currentAnswer && answer?.isCorrect === true
       ? "dark:bg-green-800 hover:bg-green-700 dark:hover:bg-green-800 bg-green-700 text-slate-50 disabled:opacity-100 border-green-600"

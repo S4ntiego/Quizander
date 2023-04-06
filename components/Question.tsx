@@ -1,7 +1,12 @@
-"use client"
-
 import React from "react"
-import { useFieldArray } from "react-hook-form"
+import {
+  Control,
+  FieldValues,
+  UseFormGetValues,
+  UseFormRegister,
+  UseFormSetValue,
+  useFieldArray,
+} from "react-hook-form"
 
 import Answers from "@/components/Answer"
 import { Icons } from "@/components/Icons"
@@ -9,13 +14,20 @@ import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 
+interface QuestionsProps {
+  control: Control
+  register: UseFormRegister<FieldValues>
+  setValue: UseFormSetValue<FieldValues>
+  getValues: UseFormGetValues<FieldValues>
+}
+
 //setValue, getValues
 export default function Questions({
   control,
   register,
   setValue,
   getValues,
-}: any) {
+}: QuestionsProps) {
   const { fields, remove } = useFieldArray({
     control,
     name: "questions",

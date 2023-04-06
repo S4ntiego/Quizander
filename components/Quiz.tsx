@@ -21,20 +21,22 @@ interface QuizWithQuestions extends Qz {
 
 interface QuizProps {
   quiz: QuizWithQuestions
-  user: any
+  user: Pick<User, "id"> | undefined
 }
 
 export function Quiz({ quiz, user }: QuizProps) {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  const [currentAnswer, setCurrentAnswer] = useState("")
-  const [correctAnswersCount, setCorrectAnswersCount] = useState(0)
-  const [showResults, setShowResults] = useState(false)
-  const [disabled, setDisabled] = useState(false)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
+  const [currentAnswer, setCurrentAnswer] = useState<
+    Pick<Answer, "answer" | "isCorrect"> | string
+  >("")
+  const [correctAnswersCount, setCorrectAnswersCount] = useState<number>(0)
+  const [showResults, setShowResults] = useState<boolean>(false)
+  const [disabled, setDisabled] = useState<boolean>(false)
   const [isPending, startTransition] = useTransition()
-  const [isFetching, setIsFetching] = useState(false)
+  const [isFetching, setIsFetching] = useState<boolean>(false)
   const router = useRouter()
 
-  const selectAnswer = (answer) => {
+  const selectAnswer = (answer: Answer) => {
     setCurrentAnswer(answer)
     answer.isCorrect === true && setCorrectAnswersCount(correctAnswersCount + 1)
     setDisabled(true)

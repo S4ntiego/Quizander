@@ -1,5 +1,4 @@
 import { cache } from "react"
-import { Quiz as Qz } from "@prisma/client"
 
 import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"

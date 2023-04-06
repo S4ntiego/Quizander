@@ -1,14 +1,25 @@
 "use client"
 
-import { useFieldArray } from "react-hook-form"
+import {
+  Control,
+  FieldValues,
+  UseFormRegister,
+  useFieldArray,
+} from "react-hook-form"
 
 import { Icons } from "./Icons"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 
+interface AnswersProps {
+  nestIndex: number
+  control: Control
+  register: UseFormRegister<FieldValues>
+}
+
 //nestIndex to receive from questions useFieldArray to know current question index
-export default function Answers({ nestIndex, control, register }: any) {
+const Answers = ({ nestIndex, control, register }: AnswersProps) => {
   const { fields, remove, append } = useFieldArray({
     control,
     name: `questions[${nestIndex}].answers`,
@@ -76,3 +87,5 @@ export default function Answers({ nestIndex, control, register }: any) {
     </div>
   )
 }
+
+export default Answers
