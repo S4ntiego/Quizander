@@ -36,32 +36,6 @@ interface QuizListProps {
   quizzes: QuizWithCategory[]
 }
 
-const QuizList = async () => {
-  const quizzes = await getQuizzes()
-
-  if (!quizzes) {
-    return <div>xD</div>
-  }
-
-  return (
-    <section
-      id="harry_potter_quizzes"
-      className="bg-gradient-to-b from-dark-150 to-dark-50 dark:from-dark-700 dark:to-dark-600 py-24"
-    >
-      <div className="container">
-        <h2 className="mb-12 text-5xl font-bold font-space uppercase">
-          Dive into the world of magic.
-        </h2>
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-2 xl:grid-cols-3">
-          {quizzes.map((quiz) => (
-            <QuizArtwork key={quiz.title} quiz={quiz} />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 interface QuizArtworkProps extends React.HTMLAttributes<HTMLDivElement> {
   quiz: QuizWithCategory
   aspectRatio?: number
@@ -102,4 +76,28 @@ function QuizArtwork({
   )
 }
 
-export default QuizList
+export const QuizList = async function QuizList() {
+  const quizzes = await getQuizzes()
+
+  if (!quizzes) {
+    return <div>xD</div>
+  }
+
+  return (
+    <section
+      id="harry_potter_quizzes"
+      className="bg-gradient-to-b from-dark-150 to-dark-50 dark:from-dark-700 dark:to-dark-600 py-24"
+    >
+      <div className="container">
+        <h2 className="mb-12 text-5xl font-bold font-space uppercase">
+          Dive into the world of magic.
+        </h2>
+        <div className="grid grid-cols-1 gap-16 md:grid-cols-2 xl:grid-cols-3">
+          {quizzes.map((quiz) => (
+            <QuizArtwork key={quiz.title} quiz={quiz} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+} as unknown as () => JSX.Element

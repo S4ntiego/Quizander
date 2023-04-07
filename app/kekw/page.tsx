@@ -2,7 +2,7 @@ import { Suspense } from "react"
 
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
-import QuizList from "@/components/QuizList"
+import { QuizList } from "@/components/QuizList"
 
 export default async function ProfilePage() {
   return (
@@ -13,7 +13,6 @@ export default async function ProfilePage() {
       />
       <div className="grid gap-10">
         <Suspense fallback={<div>loading</div>}>
-          {/* @ts-expect-error Server Component */}
           <QuizList />
         </Suspense>
       </div>
