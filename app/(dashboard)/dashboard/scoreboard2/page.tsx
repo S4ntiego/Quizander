@@ -2,22 +2,10 @@ import { redirect } from "next/navigation"
 import { User } from "@prisma/client"
 
 import prisma from "@/lib/prisma"
-import { getSession } from "@/lib/session"
+import { getCurrentUser } from "@/lib/session"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 import Scoreboard from "@/components/Dashboard/Scoreboard"
-
-async function getUser() {
-  const session = await fetch("http://localhost:3000/api/users/getUser", {
-    method: "GET",
-  })
-
-  if (!session.ok) {
-    throw new Error("Failed to fetch data")
-  }
-
-  return session
-}
 
 async function getScoreboard(user: User["id"]) {
   const scoreboard = await prisma.quizCategory.findMany({
@@ -62,9 +50,7 @@ async function getAggregations(user: User["id"]) {
 }
 
 export default async function ScoreboardPage() {
-  const session = await getSession()
-
-  const user = session?.user
+  const user = await getCurrentUser()
 
   if (!user) {
     redirect("/")

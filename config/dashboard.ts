@@ -23,8 +23,18 @@ export const dashboardConfig: DashboardConfig = {
       icon: "post",
     },
     {
-      title: "Scoreboard",
+      title: "ScoreboardGetServerSession",
       href: "/dashboard/scoreboard",
+      icon: "trophy",
+    },
+    {
+      title: "ScoreboardGetSession",
+      href: "/dashboard/scoreboard2",
+      icon: "trophy",
+    },
+    {
+      title: "ScoreboardUseSession",
+      href: "/dashboard/scoreboard3",
       icon: "trophy",
     },
     {
