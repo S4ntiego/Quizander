@@ -39,6 +39,10 @@ interface QuizListProps {
 const QuizList = async () => {
   const quizzes = await getQuizzes()
 
+  if (!quizzes) {
+    return <div>xD</div>
+  }
+
   return (
     <section
       id="harry_potter_quizzes"
