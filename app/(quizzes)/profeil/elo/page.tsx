@@ -1,5 +1,4 @@
 import React, { Suspense } from "react"
-import Link from "next/link"
 import { redirect } from "next/navigation"
 
 import { getCurrentUser } from "@/lib/session"
@@ -16,7 +15,6 @@ export default async function ProfilePage() {
 
   return (
     <DashboardContainer>
-      <Link href="/profeil/elo">Elo</Link>
       <DashboardHeader
         heading="User Profile"
         text="View and manage your user account settings."
