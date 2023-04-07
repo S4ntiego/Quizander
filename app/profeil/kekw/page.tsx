@@ -9,9 +9,12 @@ import { UserNameForm2 } from "@/components/Dashboard/UserNameForm2"
 import QuizList from "@/components/QuizList"
 
 async function getQuizzes() {
-  const res = await fetch("http://localhost:3000/api/quiz/get-quizzes", {
-    method: "GET",
-  })
+  const res = await fetch(
+    "https://quizander-dqzb.vercel.app/api/quiz/get-quizzes",
+    {
+      method: "GET",
+    }
+  )
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 

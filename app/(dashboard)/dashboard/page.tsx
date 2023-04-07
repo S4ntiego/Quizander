@@ -14,18 +14,6 @@ import { EmptyPlaceholder } from "@/components/Dashboard/EmptyPlaceholder"
 import { Icons } from "@/components/Icons"
 import { buttonVariants } from "@/components/ui/button"
 
-async function getUser() {
-  const session = await fetch("http://localhost:3000/api/users/getUser", {
-    method: "GET",
-  })
-
-  if (!session.ok) {
-    throw new Error("Failed to fetch data")
-  }
-
-  return session
-}
-
 const getQuizzes = cache(async () => {
   const quizzes = await prisma.quiz.findMany({
     include: {
@@ -52,7 +40,7 @@ const getQuizzes = cache(async () => {
 })
 
 export default async function DashboardPage() {
-  const user = await getUser()
+  const user = await getCurrentUser()
 
   if (!user) {
     redirect("/")
