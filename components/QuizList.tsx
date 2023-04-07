@@ -6,6 +6,25 @@ import { Quiz, QuizCategory } from "@prisma/client"
 import { cn } from "@/lib/utils"
 import { AspectRatio } from "./ui/aspect-ratio"
 
+async function getQuizzes() {
+  const res = await fetch(
+    "https://quizander-dqzb.vercel.app/api/quiz/get-quizzes",
+    {
+      method: "GET",
+    }
+  )
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data")
+  }
+
+  return res.json()
+}
+
 interface QuizWithCategory extends Quiz {
   category: {
     id?: number
@@ -17,7 +36,9 @@ interface QuizListProps {
   quizzes: QuizWithCategory[]
 }
 
-export default function QuizList({ quizzes }: QuizListProps) {
+export default async function QuizList() {
+  const quizzes = await getQuizzes()
+
   return (
     <section
       id="harry_potter_quizzes"

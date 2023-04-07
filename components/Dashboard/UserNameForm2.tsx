@@ -22,7 +22,9 @@ export async function UserNameForm2() {
         </Card.Description>
       </Card.Header>
       <Card.Content>
-        <ChangeNameForm user={{ id: user.id, name: user.name as string }} />
+        <React.Suspense fallback={<div>Loading user insert</div>}>
+          <ChangeNameForm user={{ id: user.id, name: user.name as string }} />
+        </React.Suspense>
       </Card.Content>
     </Card>
   )
