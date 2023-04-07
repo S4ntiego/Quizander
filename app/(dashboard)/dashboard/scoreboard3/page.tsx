@@ -49,17 +49,24 @@ async function getAggregations(user: User["id"]) {
   return JSON.parse(JSON.stringify(aggregations))
 }
 
+async function getUser() {
+  const session = await fetch(
+    "https://quizander-dqzb.vercel.app/api/users/get-user"
+  )
+
+  return session.json()
+}
+
 export default async function ScoreboardPage() {
-  const { data: session } = await useSession()
+  const session = await getUser()
+  console.log(session)
 
-  const user = session?.user
+  // if (!user) {
+  //   redirect("/")
+  // }
 
-  if (!user) {
-    redirect("/")
-  }
-
-  const scoreboard = await getScoreboard(user.id)
-  const aggregations = await getAggregations(user.id)
+  // const scoreboard = await getScoreboard(user.id)
+  // const aggregations = await getAggregations(user.id)
 
   return (
     <DashboardContainer>
@@ -68,7 +75,7 @@ export default async function ScoreboardPage() {
         text="View your historical results."
       />
       <div className="grid gap-10">
-        <Scoreboard scoreboard={scoreboard} aggregations={aggregations} />
+        {/* <Scoreboard scoreboard={scoreboard} aggregations={aggregations} /> */}
       </div>
     </DashboardContainer>
   )

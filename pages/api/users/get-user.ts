@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "pages/api/auth/[...nextauth]"
 
-export async function handler(req, res) {
+export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions)
 
   if (!session) {
@@ -9,5 +9,5 @@ export async function handler(req, res) {
     return
   }
 
-  return session?.user
+  return res.status(200).json(session)
 }
