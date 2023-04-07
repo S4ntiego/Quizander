@@ -5,7 +5,7 @@ import { getCurrentUser } from "@/lib/session"
 import { Card } from "@/components/Card"
 import ChangeNameForm from "./ChangeNameButton"
 
-export async function UserNameForm2() {
+export const UserNameForm2 = async function UserNameForm2() {
   const user = await getCurrentUser()
 
   if (!user) {
@@ -28,4 +28,4 @@ export async function UserNameForm2() {
       </Card.Content>
     </Card>
   )
-}
+} as unknown as () => JSX.Element
