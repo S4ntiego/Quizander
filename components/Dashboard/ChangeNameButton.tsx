@@ -68,27 +68,25 @@ const ChangeNameForm = ({ user, className, ...props }: UserNameFormProps) => {
   }
 
   return (
-    <React.Suspense fallback={<div>Loading user form</div>}>
-      <form
-        className={cn("overflow-hidden")}
-        onSubmit={handleSubmit(onSubmit)}
-        {...props}
-      >
-        <div className="grid gap-1">
-          <label className="sr-only" htmlFor="name">
-            Name
-          </label>
-          <Input id="name" className="" {...register("name")} />
-          {errors?.name && (
-            <p className="px-2 text-xs text-red-600">{errors.name.message}</p>
-          )}
-        </div>
-        <Button variant="default" className="w-28 h-8" disabled={isSaving}>
-          {isSaving && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-          <span>Save</span>
-        </Button>
-      </form>
-    </React.Suspense>
+    <form
+      className={cn("overflow-hidden")}
+      onSubmit={handleSubmit(onSubmit)}
+      {...props}
+    >
+      <div className="grid gap-1">
+        <label className="sr-only" htmlFor="name">
+          Name
+        </label>
+        <Input id="name" className="" {...register("name")} />
+        {errors?.name && (
+          <p className="px-2 text-xs text-red-600">{errors.name.message}</p>
+        )}
+      </div>
+      <Button variant="default" className="w-28 h-8" disabled={isSaving}>
+        {isSaving && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+        <span>Save</span>
+      </Button>
+    </form>
   )
 }
 

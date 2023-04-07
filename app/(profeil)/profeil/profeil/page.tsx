@@ -20,10 +20,8 @@ export default async function ProfilePage() {
         text="View and manage your user account settings."
       />
       <div className="grid gap-10">
-        <Suspense fallback={<div>LOADING TEST</div>}>
-          {/* @ts-expect-error Server Component */}
-          <UserNameForm2 />
-        </Suspense>
+        {/* @ts-expect-error Server Component */}
+        <UserNameForm2 />
       </div>
     </DashboardContainer>
   )
