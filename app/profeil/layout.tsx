@@ -21,7 +21,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
       />
       <div className="h-[calc(100%-5rem)] wide:h-[calc(100%-3rem)] flex container">
         <div className="h-full flex flex-col w-64 bg-red-500">
-          <Link href="/profeil">Profeil</Link>
+          <Link href="/profeil/profeil">Profeil</Link>
           <Link href="/profeil/kekw">Kekw</Link>
         </div>
         <div className="h-full w-full ml-2">{children}</div>
