@@ -1,11 +1,5 @@
-import { cache } from "react"
-import { redirect } from "next/navigation"
-
-import prisma from "@/lib/prisma"
-import { getCurrentUser } from "@/lib/session"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
-import { UserNameForm2 } from "@/components/Dashboard/UserNameForm2"
 import QuizList from "@/components/QuizList"
 
 async function getQuizzes() {
