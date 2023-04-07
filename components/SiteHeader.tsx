@@ -43,6 +43,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
       <div className={cn("flex justify-between container")}>
         <MainNav mainConfig={mainConfig} />
         <MobileNav mobileConfig={mobileConfig} />
+
         <div className="flex items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
           <div className="w-full md:w-auto md:flex-none"></div>
           <nav className="flex items-center">

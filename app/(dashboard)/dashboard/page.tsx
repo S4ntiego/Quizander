@@ -60,6 +60,7 @@ export default async function DashboardPage() {
           <span>Add Quiz</span>
         </Link>
       </DashboardHeader>
+
       <div>
         {quizzes?.length ? (
           <div className="divide-y dark:divide-dark-400 divide-dark-200 rounded-md border dark:border-dark-400 border-dark-200">
