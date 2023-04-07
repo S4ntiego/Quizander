@@ -36,7 +36,7 @@ interface QuizListProps {
   quizzes: QuizWithCategory[]
 }
 
-export default async function QuizList() {
+const QuizList = async () => {
   const quizzes = await getQuizzes()
 
   return (
@@ -97,3 +97,5 @@ function QuizArtwork({
     </div>
   )
 }
+
+export default QuizList
