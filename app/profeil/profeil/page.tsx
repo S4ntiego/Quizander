@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { redirect } from "next/navigation"
 
 import { getCurrentUser } from "@/lib/session"
@@ -19,7 +20,9 @@ export default async function ProfilePage() {
         text="View and manage your user account settings."
       />
       <div className="grid gap-10">
-        <UserNameForm user={{ id: user.id, name: user.name as string }} />
+        <Suspense fallback={<div>LOADING TEST</div>}>
+          <UserNameForm user={{ id: user.id, name: user.name as string }} />
+        </Suspense>
       </div>
     </DashboardContainer>
   )
