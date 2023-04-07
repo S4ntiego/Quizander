@@ -6,7 +6,9 @@ import { Quiz, QuizCategory } from "@prisma/client"
 import { cn } from "@/lib/utils"
 import { AspectRatio } from "./ui/aspect-ratio"
 
-function getQuizzes() {
+async function getQuizzes() {
+  await new Promise((resolve) => setTimeout(resolve, 3000))
+
   return new Promise<QuizWithCategory[]>((resolve, reject) => {
     fetch("https://quizander-dqzb.vercel.app/api/quiz/get-quizzes", {
       method: "GET",

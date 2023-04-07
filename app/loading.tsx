@@ -1,18 +1,8 @@
 import { Card } from "@/components/Card"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
+import { Icons } from "@/components/Icons"
 
 export default function DashboardSettingsLoading() {
-  return (
-    <DashboardContainer>
-      <DashboardHeader
-        heading="User Profile"
-        text="View and manage your user account settings."
-      />
-      <div className="grid gap-10">
-        <Card.Skeleton />
-        <Card.Skeleton />
-      </div>
-    </DashboardContainer>
-  )
+  return <Icons.spinner className="h-48 w-48" />
 }
