@@ -6,23 +6,27 @@ import { Quiz, QuizCategory } from "@prisma/client"
 import { cn } from "@/lib/utils"
 import { AspectRatio } from "./ui/aspect-ratio"
 
-async function getQuizzes() {
-  const res = await fetch(
-    "https://quizander-dqzb.vercel.app/api/quiz/get-quizzes",
-    {
+function getQuizzes() {
+  return new Promise<QuizWithCategory[]>((resolve, reject) => {
+    fetch("https://quizander-dqzb.vercel.app/api/quiz/get-quizzes", {
       method: "GET",
-    }
-  )
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+    })
+      .then((res) => {
+        // Recommendation: handle errors
+        if (!res.ok) {
+          // This will activate the closest `error.js` Error Boundary
+          throw new Error("Failed to fetch data")
+        }
 
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data")
-  }
-
-  return res.json()
+        return res.json()
+      })
+      .then((data) => {
+        resolve(data)
+      })
+      .catch((error) => {
+        reject(error)
+      })
+  })
 }
 
 interface QuizWithCategory extends Quiz {
