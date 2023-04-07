@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 
-const page = () => {
+const SessionPage = () => {
   const { data: session } = useSession()
 
   if (!session) {
@@ -24,4 +24,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SessionPage
