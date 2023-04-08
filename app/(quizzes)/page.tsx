@@ -8,6 +8,7 @@ export default async function IndexPage() {
   return (
     <div className="h-full w-full relative">
       <Landing />
+      <QuizList />
     </div>
   )
 }
