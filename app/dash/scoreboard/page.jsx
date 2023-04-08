@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import Repo from "@/app/componets/Repo"
+import Repo from "@/app/components/Repo"
 
 const RepoPage = ({ params: { name } }) => {
   return (
