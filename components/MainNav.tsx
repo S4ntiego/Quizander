@@ -29,6 +29,7 @@ export function MainNav({ mainConfig }: MainNavProps) {
         </span>
       </Link>
       <Link href="/dash">Dash</Link>
+      <Link href="/dashserver">DashServer</Link>
       <Link href="/code/repos">Code</Link>
       <NavigationMenu>
         <NavigationMenuList>
