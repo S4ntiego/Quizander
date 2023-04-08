@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import Repo from "@/components/Repo"
 import RepoDirs from "@/components/RepoDirs"
-import UserForm from "@/components/UserForm"
+import UserNameForm2 from "@/components/dashboard/UserNameForm2"
 
 const RepoPage = ({ params: { name } }) => {
   return (
@@ -12,7 +12,7 @@ const RepoPage = ({ params: { name } }) => {
         Back To Repositories
       </Link>
       <Suspense fallback={<div>Loading search...</div>}>
-        <UserForm />
+        <UserNameForm2 />
       </Suspense>
       <Suspense fallback={<div>Loading repo...</div>}>
         <Repo name={name} />
