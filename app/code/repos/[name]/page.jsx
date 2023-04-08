@@ -1,8 +1,9 @@
 import { Suspense } from "react"
 import Link from "next/link"
-import Repo from "@/componets/Repo"
-import RepoDirs from "@/componets/RepoDirs"
-import UserForm from "@/componets/UserForm"
+
+import Repo from "@/components/Repo"
+import RepoDirs from "@/components/RepoDirs"
+import UserForm from "@/components/UserForm"
 
 const RepoPage = ({ params: { name } }) => {
   return (
