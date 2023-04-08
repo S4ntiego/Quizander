@@ -1,11 +1,18 @@
 import * as React from "react"
 import { redirect } from "next/navigation"
 
-import { getCurrentUser, getSession } from "@/lib/session"
+import { getCurrentUser } from "@/lib/session"
 import { Card } from "@/components/Card"
 import ChangeNameForm from "./ChangeNameButton"
+import ChangeNameFormProps from "./ChangeNameButtonProps"
 
 export const UserNameForm2 = async function UserNameForm2() {
+  const user = await getCurrentUser()
+
+  if (!user) {
+    redirect("/")
+  }
+
   return (
     <Card>
       <Card.Header>
@@ -16,7 +23,7 @@ export const UserNameForm2 = async function UserNameForm2() {
         </Card.Description>
       </Card.Header>
       <Card.Content>
-        <ChangeNameForm />
+        <ChangeNameFormProps user={user} />
       </Card.Content>
     </Card>
   )
