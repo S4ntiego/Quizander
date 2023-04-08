@@ -29,7 +29,7 @@ export function MainNav({ mainConfig }: MainNavProps) {
         </span>
       </Link>
       <Link href="/profeil">Profeil</Link>
-      <Link href="/kekw">Kekw</Link>
+      <Link href="/code">Code</Link>
       <NavigationMenu>
         <NavigationMenuList>
           {mainConfig.map((item, i) => (
