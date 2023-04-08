@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { startTransition } from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { User } from "@prisma/client"
@@ -63,11 +63,13 @@ const ChangeNameForm = () => {
       })
     }
 
+    startTransition(() => {
+      router.refresh()
+    })
+
     toast({
       message: "Your username has been updated.",
     })
-
-    router.refresh()
   }
 
   return (

@@ -1,12 +1,11 @@
 import { Suspense } from "react"
-
-import { UserNameForm2 } from "@/components/Dashboard/UserNameForm2"
+import Repo from "@/app/componets/Repo"
 
 const RepoPage = ({ params: { name } }) => {
   return (
     <div className="card">
-      <Suspense fallback={<div>Loading directories...</div>}>
-        <UserNameForm2 />
+      <Suspense fallback={<div>Loading search...</div>}>
+        <Repo />
       </Suspense>
     </div>
   )
