@@ -6,13 +6,6 @@ import { Card } from "@/components/Card"
 import ChangeNameForm from "./ChangeNameButton"
 
 export const UserNameForm2 = async function UserNameForm2() {
-  const session = await getSession()
-  const user = session?.user
-
-  if (!user) {
-    redirect("/")
-  }
-
   return (
     <Card>
       <Card.Header>
@@ -23,7 +16,7 @@ export const UserNameForm2 = async function UserNameForm2() {
         </Card.Description>
       </Card.Header>
       <Card.Content>
-        <ChangeNameForm user={{ id: user.id, name: user.name as string }} />
+        <ChangeNameForm />
       </Card.Content>
     </Card>
   )

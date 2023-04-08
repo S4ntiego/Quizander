@@ -4,6 +4,7 @@ import React from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { User } from "@prisma/client"
+import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -23,9 +24,11 @@ export const userNameSchema = z.object({
 
 type FormData = z.infer<typeof userNameSchema>
 
-const ChangeNameForm = ({ user, className, ...props }: UserNameFormProps) => {
+const ChangeNameForm = () => {
   const router = useRouter()
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
+  const { data: session } = useSession()
+  const user = session?.user
   const {
     handleSubmit,
     register,
@@ -33,14 +36,14 @@ const ChangeNameForm = ({ user, className, ...props }: UserNameFormProps) => {
   } = useForm<FormData>({
     resolver: zodResolver(userNameSchema),
     defaultValues: {
-      name: user.name as string,
+      name: user?.name as string,
     },
   })
 
   async function onSubmit(data: FormData) {
     setIsSaving(true)
 
-    const response = await fetch(`/api/users/${user.id}`, {
+    const response = await fetch(`/api/users/${user?.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -68,11 +71,7 @@ const ChangeNameForm = ({ user, className, ...props }: UserNameFormProps) => {
   }
 
   return (
-    <form
-      className={cn("overflow-hidden")}
-      onSubmit={handleSubmit(onSubmit)}
-      {...props}
-    >
+    <form className={cn("overflow-hidden")} onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-1">
         <label className="sr-only" htmlFor="name">
           Name
