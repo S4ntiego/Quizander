@@ -14,9 +14,9 @@ const ReposPage = async () => {
   return (
     <div className="repos-container">
       <h2>Dashboard</h2>
-      <Link href="/dash/editor">Editor</Link>
-      <Link href="/dash/profile">Profile</Link>
-      <Link href="/dash/scoreboard">Scoreboard</Link>
+      <Link href="/dashserver/editor">Editor</Link>
+      <Link href="/dashserver/profile">Profile</Link>
+      <Link href="/dashserver/scoreboard">Scoreboard</Link>
     </div>
   )
 }
