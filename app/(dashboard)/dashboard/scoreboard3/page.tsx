@@ -3,6 +3,7 @@
 import React from "react"
 import { useSession } from "next-auth/react"
 
+import ChangeNameForm from "@/components/Dashboard/ChangeNameButton"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 
@@ -19,7 +20,7 @@ const SessionPage = () => {
         heading="User Scoreboard"
         text="View your historical results."
       />
-      <div className="grid gap-10">User is logged in</div>
+      <ChangeNameForm />
     </DashboardContainer>
   )
 }
