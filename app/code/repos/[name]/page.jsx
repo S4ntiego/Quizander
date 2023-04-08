@@ -1,8 +1,8 @@
-import { Suspense } from "react";
-import Link from "next/link";
-import Repo from "@/app/componets/Repo";
-import RepoDirs from "@/app/componets/RepoDirs";
-import UserForm from "@/app/componets/UserForm";
+import { Suspense } from "react"
+import Link from "next/link"
+import Repo from "@/componets/Repo"
+import RepoDirs from "@/componets/RepoDirs"
+import UserForm from "@/componets/UserForm"
 
 const RepoPage = ({ params: { name } }) => {
   return (
@@ -20,6 +20,6 @@ const RepoPage = ({ params: { name } }) => {
         <RepoDirs name={name} />
       </Suspense>
     </div>
-  );
-};
-export default RepoPage;
+  )
+}
+export default RepoPage
