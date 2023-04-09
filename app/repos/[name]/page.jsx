@@ -8,7 +8,7 @@ import UserForm from "@/components/UserForm"
 const RepoPage = ({ params: { name } }) => {
   return (
     <div className="card">
-      <Link href="/code/repos" className="btn btn-back">
+      <Link href="/repos" className="btn btn-back">
         Back To Repositories
       </Link>
       <Suspense fallback={<div>Loading search...</div>}>
