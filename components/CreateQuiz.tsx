@@ -90,11 +90,6 @@ interface QuizzesFormProps {
 }
 
 export default function QuizzesForm({ categories }: QuizzesFormProps) {
-  const session = useSession()
-
-  if (!session) {
-    redirect("/")
-  }
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [isFetching, setIsFetching] = useState(false)
