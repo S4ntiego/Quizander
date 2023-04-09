@@ -24,19 +24,10 @@ export const userNameSchema = z.object({
 
 type FormData = z.infer<typeof userNameSchema>
 
-const ChangeNameForm = () => {
+const ChangeNameForm = ({ user }) => {
   const router = useRouter()
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
-  const session = useSession()
 
-  if (session.status === "loading") {
-    return <div>loading...</div>
-  }
-
-  if (session.status === "unauthenticated") {
-    redirect("/")
-  }
-  const user = session?.data?.user
   const {
     handleSubmit,
     register,

@@ -96,27 +96,6 @@ const UserDropdown = () => {
                   <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dashboard/scoreboard2">
-                <DropdownMenuItem>
-                  <Trophy className="mr-2 h-4 w-4" />
-                  <span>Scoreboard</span>
-                  <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/dashboard/scoreboard3">
-                <DropdownMenuItem>
-                  <Trophy className="mr-2 h-4 w-4" />
-                  <span>Scoreboard</span>
-                  <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/dashboard/scoreboard4">
-                <DropdownMenuItem>
-                  <Trophy className="mr-2 h-4 w-4" />
-                  <span>Scoreboard4</span>
-                  <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </Link>
               <Link href="/dashboard">
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />

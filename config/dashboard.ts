@@ -28,16 +28,6 @@ export const dashboardConfig: DashboardConfig = {
       icon: "trophy",
     },
     {
-      title: "ScoreboardGetSession",
-      href: "/dashboard/scoreboard2",
-      icon: "trophy",
-    },
-    {
-      title: "ScoreboardUseSession",
-      href: "/dashboard/scoreboard3",
-      icon: "trophy",
-    },
-    {
       title: "Profile",
       href: "/dashboard/profile",
       icon: "user",
