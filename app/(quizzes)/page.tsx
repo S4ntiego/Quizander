@@ -2,7 +2,7 @@ import Landing from "@/components/Landing"
 import QuizList from "@/components/QuizList"
 
 async function getQuizzes() {
-  const res = await fetch("/api/quiz/get-quizzes", {
+  const res = await fetch("/quiz/get-quizzes", {
     method: "GET",
   })
   // The return value is *not* serialized
