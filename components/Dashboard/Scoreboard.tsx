@@ -1,8 +1,5 @@
 import React from "react"
-import { redirect } from "next/navigation"
 
-import prisma from "@/lib/prisma"
-import { getCurrentUser } from "@/lib/session"
 import {
   Accordion,
   AccordionContent,
@@ -11,7 +8,7 @@ import {
 } from "@/components/ui/accordion"
 import { Separator } from "../ui/separator"
 
-export function Scoreboard({ user, scoreboard, aggregations }) {
+export function Scoreboard({ scoreboard, aggregations }) {
   return (
     <>
       <div

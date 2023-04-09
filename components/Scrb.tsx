@@ -68,11 +68,9 @@ export const Scrb = async function UserNameForm2() {
         </Card.Description>
       </Card.Header>
       <Card.Content>
-        <Scoreboard
-          user={user}
-          scoreboard={scoreboard}
-          aggregations={aggregations}
-        />
+        <React.Suspense fallback={<div>Loading search...</div>}>
+          <Scoreboard scoreboard={scoreboard} aggregations={aggregations} />
+        </React.Suspense>
       </Card.Content>
     </Card>
   )
