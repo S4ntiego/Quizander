@@ -30,7 +30,7 @@ export function MainNav({ mainConfig }: MainNavProps) {
       </Link>
       <Link href="/dash">Dash</Link>
       <Link href="/dashserver">DashServer</Link>
-      <Link href="/code/repos">Code</Link>
+      <Link href="/repos">Repos</Link>
       <NavigationMenu>
         <NavigationMenuList>
           {mainConfig.map((item, i) => (
