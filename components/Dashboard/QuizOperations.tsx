@@ -52,6 +52,12 @@ export function QuizOperations({ quiz }: QuizOperationsProps) {
       })
     }
 
+    toast({
+      title: "Quiz has been successfully deleted.",
+      message: "Quiz has been successfully deleted.",
+      type: "success",
+    })
+
     startTransition(() => {
       setIsFetching(false)
       setShowDeleteAlert(false)
