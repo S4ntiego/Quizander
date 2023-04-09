@@ -1,11 +1,23 @@
-import { Suspense } from "react"
+import { redirect } from "next/navigation"
 
-import CreateQuizContainer from "@/components/CreateQuizContainer"
+import prisma from "@/lib/prisma"
+import { getCurrentUser } from "@/lib/session"
+import CreateQuiz from "@/components/CreateQuiz"
+
+async function getCategories() {
+  const categories = await prisma.quizCategory.findMany()
+
+  return categories
+}
 
 export default async function CreatorPage() {
-  return (
-    <Suspense fallback={<div>Loading Scoreboard...</div>}>
-      <CreateQuizContainer />
-    </Suspense>
-  )
+  const user = await getCurrentUser()
+
+  if (!user) {
+    redirect("/")
+  }
+
+  const categories = await getCategories()
+
+  return <CreateQuiz categories={categories} />
 }
