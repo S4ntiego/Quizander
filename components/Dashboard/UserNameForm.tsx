@@ -14,9 +14,9 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { toast } from "../ui/toast"
 
-interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-  user: Pick<User, "id" | "name">
-}
+// interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
+//   user: Pick<User, "id" | "name">
+// }
 
 export const userNameSchema = z.object({
   name: z.string().min(3).max(32),
@@ -24,7 +24,7 @@ export const userNameSchema = z.object({
 
 type FormData = z.infer<typeof userNameSchema>
 
-export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
+export function UserNameForm(user) {
   const router = useRouter()
   const {
     handleSubmit,
@@ -69,11 +69,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
   }
 
   return (
-    <form
-      className={cn("overflow-hidden")}
-      onSubmit={handleSubmit(onSubmit)}
-      {...props}
-    >
+    <form className={cn("overflow-hidden")} onSubmit={handleSubmit(onSubmit)}>
       <Card>
         <Card.Header>
           <Card.Title>Your Name</Card.Title>
