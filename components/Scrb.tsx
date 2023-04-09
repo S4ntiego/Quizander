@@ -49,6 +49,7 @@ async function getAggregations(user) {
 }
 
 export const Scrb = async function UserNameForm2() {
+  await new Promise((resolve) => setTimeout(resolve, 3000))
   const user = await getCurrentUser()
 
   if (!user) {
@@ -68,9 +69,7 @@ export const Scrb = async function UserNameForm2() {
         </Card.Description>
       </Card.Header>
       <Card.Content>
-        <React.Suspense fallback={<div>Loading search...</div>}>
-          <Scoreboard scoreboard={scoreboard} aggregations={aggregations} />
-        </React.Suspense>
+        <Scoreboard scoreboard={scoreboard} aggregations={aggregations} />
       </Card.Content>
     </Card>
   )
