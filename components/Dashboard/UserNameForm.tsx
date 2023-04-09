@@ -23,7 +23,7 @@ export const userNameSchema = z.object({
 
 type FormData = z.infer<typeof userNameSchema>
 
-export function UserNameForm(user) {
+export function UserNameForm({ user }) {
   const router = useRouter()
   const {
     handleSubmit,
