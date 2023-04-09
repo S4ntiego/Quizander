@@ -1,4 +1,20 @@
 import Link from "next/link"
+import { redirect } from "next/navigation"
+
+import { getCurrentUser } from "@/lib/session"
+
+async function fetchRepoContents(name) {
+  const response = await fetch(
+    `https://api.github.com/repos/bradtraversy/${name}/contents`,
+    {
+      next: {
+        revalidate: 60,
+      },
+    }
+  )
+  const contents = await response.json()
+  return contents
+}
 
 const RepoDirs = async ({ name }) => {
   const user = await getCurrentUser()
