@@ -1,21 +1,38 @@
+import { cache } from "react"
+
+import prisma from "@/lib/prisma"
 import Landing from "@/components/Landing"
 import QuizList from "@/components/QuizList"
 
-async function getQuizzes() {
-  const res = await fetch("/api/quiz/get-quizzes")
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+const getQuizzes = cache(async () => {
+  const quizzes = await prisma.quiz.findMany({
+    include: {
+      category: {
+        select: {
+          name: true,
+        },
+      },
+      questions: {
+        select: {
+          question: true,
+          answers: { select: { answer: true, isCorrect: true } },
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  })
 
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data")
+  if (quizzes) {
+    for (const quiz of quizzes) {
+      quiz.coverImage =
+        "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+    }
   }
 
-  const quizzes = await res.json()
-
   return quizzes
-}
+})
 
 export default async function IndexPage() {
   const quizzes = await getQuizzes()
