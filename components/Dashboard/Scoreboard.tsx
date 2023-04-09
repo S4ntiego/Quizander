@@ -11,58 +11,7 @@ import {
 } from "@/components/ui/accordion"
 import { Separator } from "../ui/separator"
 
-async function getScoreboard(user) {
-  const scoreboard = await prisma.quizCategory.findMany({
-    include: {
-      quizzes: {
-        where: {
-          quizScores: {
-            some: { userId: user },
-          },
-        },
-
-        include: {
-          quizScores: {
-            where: {
-              userId: user,
-            },
-            orderBy: { createdAt: "desc" },
-          },
-        },
-      },
-    },
-  })
-
-  return JSON.parse(JSON.stringify(scoreboard))
-}
-
-async function getAggregations(user) {
-  const aggregations = await prisma.quizScore.groupBy({
-    by: ["userId", "quizId"],
-    where: {
-      userId: user,
-    },
-    _count: {
-      score: true,
-    },
-    _avg: {
-      score: true,
-    },
-  })
-
-  return JSON.parse(JSON.stringify(aggregations))
-}
-
-export const Scoreboard = async function Scoreboard() {
-  const user = await getCurrentUser()
-
-  if (!user) {
-    redirect("/")
-  }
-
-  const scoreboard = await getScoreboard(user?.id)
-  const aggregations = await getAggregations(user?.id)
-
+export function Scoreboard({ user, scoreboard, aggregations }) {
   return (
     <>
       <div
@@ -115,4 +64,4 @@ export const Scoreboard = async function Scoreboard() {
       </div>
     </>
   )
-} as unknown as () => JSX.Element
+}
