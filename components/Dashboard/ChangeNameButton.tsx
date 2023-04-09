@@ -1,7 +1,7 @@
 "use client"
 
 import React, { startTransition } from "react"
-import { useRouter } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { User } from "@prisma/client"
 import { useSession } from "next-auth/react"
@@ -27,8 +27,16 @@ type FormData = z.infer<typeof userNameSchema>
 const ChangeNameForm = () => {
   const router = useRouter()
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
-  const { data: session } = useSession()
-  const user = session?.user
+  const session = useSession()
+
+  if (session.status === "loading") {
+    return <div>loading...</div>
+  }
+
+  if (session.status === "unauthenticated") {
+    redirect("/")
+  }
+  const user = session?.data?.user
   const {
     handleSubmit,
     register,

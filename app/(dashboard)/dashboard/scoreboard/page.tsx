@@ -1,14 +1,19 @@
-import { Suspense } from "react"
+import React from "react"
 
-import { UserNameForm2 } from "@/components/Dashboard/UserNameForm2"
+import ChangeNameForm from "@/components/Dashboard/ChangeNameButton"
+import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
+import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 
-const RepoPage = ({ params: { name } }) => {
+const SessionPage = () => {
   return (
-    <div className="card">
-      <Suspense fallback={<div>Loading directories...</div>}>
-        <UserNameForm2 />
-      </Suspense>
-    </div>
+    <DashboardContainer>
+      <DashboardHeader
+        heading="User Scoreboard"
+        text="View your historical results."
+      />
+      <ChangeNameForm />
+    </DashboardContainer>
   )
 }
-export default RepoPage
+
+export default SessionPage
