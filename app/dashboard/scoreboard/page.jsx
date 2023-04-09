@@ -1,6 +1,6 @@
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
-import ScoreboardContainer from "@/components/Dashboard/ScoreboardContainer"
+import Scoreboard from "@/components/Dashboard/Scoreboard"
 
 export default async function ScoreboardPage() {
   return (
@@ -10,7 +10,7 @@ export default async function ScoreboardPage() {
         text="View your historical results."
       />
       <div className="grid gap-10">
-        <ScoreboardContainer />
+        <Scoreboard />
       </div>
     </DashboardContainer>
   )

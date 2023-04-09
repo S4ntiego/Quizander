@@ -1,5 +1,8 @@
 import React from "react"
+import { redirect } from "next/navigation"
 
+import prisma from "@/lib/prisma"
+import { getSession } from "@/lib/session"
 import {
   Accordion,
   AccordionContent,
@@ -7,8 +10,62 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Separator } from "../ui/separator"
+import { User } from ".prisma/client"
 
-const Scoreboard = ({ scoreboard, aggregations }) => {
+async function getScoreboard(user: User["id"]) {
+  const scoreboard = await prisma.quizCategory.findMany({
+    include: {
+      quizzes: {
+        where: {
+          quizScores: {
+            some: { userId: user },
+          },
+        },
+
+        include: {
+          quizScores: {
+            where: {
+              userId: user,
+            },
+            orderBy: { createdAt: "desc" },
+          },
+        },
+      },
+    },
+  })
+
+  return JSON.parse(JSON.stringify(scoreboard))
+}
+
+async function getAggregations(user: User["id"]) {
+  const aggregations = await prisma.quizScore.groupBy({
+    by: ["userId", "quizId"],
+    where: {
+      userId: user,
+    },
+    _count: {
+      score: true,
+    },
+    _avg: {
+      score: true,
+    },
+  })
+
+  return JSON.parse(JSON.stringify(aggregations))
+}
+
+const ScoreboardContainer = async () => {
+  const session = await getSession()
+
+  const user = session?.user
+
+  if (!user) {
+    redirect("/")
+  }
+
+  const scoreboard = await getScoreboard(user.id)
+  const aggregations = await getAggregations(user.id)
+
   return (
     <>
       <div
@@ -63,4 +120,4 @@ const Scoreboard = ({ scoreboard, aggregations }) => {
   )
 }
 
-export default Scoreboard
+export default ScoreboardContainer
