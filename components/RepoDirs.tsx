@@ -17,11 +17,27 @@ async function fetchRepoContents(name) {
 }
 
 const RepoDirs = async ({ name }) => {
-  const user = await getCurrentUser()
+  const checkUserPromise = new Promise((resolve, reject) => {
+    getCurrentUser()
+      .then((user) => {
+        if (!user) {
+          reject(new Error("User not found"))
+        } else {
+          resolve(user)
+        }
+      })
+      .catch((error) => {
+        reject(error)
+      })
+  })
 
-  if (!user) {
-    redirect("/")
-  }
+  checkUserPromise
+    .then((user) => {
+      return user
+    })
+    .catch((error) => {
+      redirect("/")
+    })
 
   const contents = await fetchRepoContents(name)
   const dirs = contents.filter((content) => content.type === "dir")
