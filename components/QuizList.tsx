@@ -1,33 +1,10 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Quiz, QuizCategory } from "@prisma/client"
+import { Quiz } from "@prisma/client"
 
 import { cn } from "@/lib/utils"
 import { AspectRatio } from "./ui/aspect-ratio"
-
-async function getQuizzes() {
-  await new Promise((resolve) => setTimeout(resolve, 3000))
-
-  const res = await fetch(
-    "https://quizander-dqzb.vercel.app/api/quiz/get-quizzes",
-    {
-      method: "GET",
-    }
-  )
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data")
-  }
-
-  const quizzes = await res.json()
-
-  return quizzes
-}
 
 interface QuizWithCategory extends Quiz {
   category: {
@@ -40,9 +17,7 @@ interface QuizListProps {
   quizzes: QuizWithCategory[]
 }
 
-export const QuizList = async function QuizList() {
-  const quizzes = await getQuizzes()
-
+const QuizList = ({ quizzes }: QuizListProps) => {
   return (
     <section
       id="harry_potter_quizzes"
@@ -60,7 +35,7 @@ export const QuizList = async function QuizList() {
       </div>
     </section>
   )
-} as unknown as () => JSX.Element
+}
 
 interface QuizArtworkProps extends React.HTMLAttributes<HTMLDivElement> {
   quiz: QuizWithCategory
@@ -101,3 +76,5 @@ function QuizArtwork({
     </div>
   )
 }
+
+export default QuizList
