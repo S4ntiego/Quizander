@@ -28,8 +28,6 @@ export function MainNav({ mainConfig }: MainNavProps) {
           {siteConfig.name}
         </span>
       </Link>
-      <Link href="/dash">Dash</Link>
-      <Link href="/repos">Repos</Link>
       <NavigationMenu>
         <NavigationMenuList>
           {mainConfig.map((item, i) => (
