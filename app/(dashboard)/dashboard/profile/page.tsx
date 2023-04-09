@@ -1,6 +1,5 @@
 "use client"
 
-import { Suspense } from "react"
 import { redirect } from "next/navigation"
 import { useSession } from "next-auth/react"
 
@@ -27,9 +26,7 @@ export default async function ProfilePage() {
         text="View and manage your user account settings."
       />
       <div className="grid gap-10">
-        <Suspense fallback={<div>Loading user form</div>}>
-          <UserNameForm user={user} />
-        </Suspense>
+        <UserNameForm user={user} />
       </div>
     </DashboardContainer>
   )
