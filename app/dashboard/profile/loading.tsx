@@ -1,10 +1,8 @@
-import { Suspense } from "react"
-
+import { Card } from "@/components/Card"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
-import { QuizList } from "@/components/QuizList"
 
-export default async function ProfilePage() {
+export default function DashboardSettingsLoading() {
   return (
     <DashboardContainer>
       <DashboardHeader
@@ -12,9 +10,8 @@ export default async function ProfilePage() {
         text="View and manage your user account settings."
       />
       <div className="grid gap-10">
-        <Suspense fallback={<div>loading</div>}>
-          <QuizList />
-        </Suspense>
+        <Card.Skeleton />
+        <Card.Skeleton />
       </div>
     </DashboardContainer>
   )

@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/accordion"
 import { Separator } from "../ui/separator"
 
-export function Scoreboard({ scoreboard, aggregations }) {
+const Scoreboard = ({ scoreboard, aggregations }) => {
   return (
     <>
       <div
@@ -62,3 +62,5 @@ export function Scoreboard({ scoreboard, aggregations }) {
     </>
   )
 }
+
+export default Scoreboard

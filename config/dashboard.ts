@@ -32,11 +32,6 @@ export const dashboardConfig: DashboardConfig = {
       href: "/dashboard/profile",
       icon: "user",
     },
-    {
-      title: "Scrb",
-      href: "/dashboard/scrb",
-      icon: "user",
-    },
   ],
   mobileNav: [
     {
