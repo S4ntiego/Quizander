@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState, useTransition } from "react"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 import { IQuizResponse } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useSession } from "next-auth/react"
 import { FormProvider, useForm } from "react-hook-form"
 import { TypeOf, object, string, z } from "zod"
 
@@ -89,6 +90,11 @@ interface QuizzesFormProps {
 }
 
 export default function QuizzesForm({ categories }: QuizzesFormProps) {
+  const session = useSession()
+
+  if (!session) {
+    redirect("/")
+  }
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [isFetching, setIsFetching] = useState(false)
