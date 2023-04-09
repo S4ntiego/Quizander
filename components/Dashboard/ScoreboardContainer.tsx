@@ -2,7 +2,7 @@ import React from "react"
 import { redirect } from "next/navigation"
 
 import prisma from "@/lib/prisma"
-import { getCurrentUser } from "@/lib/session"
+import { getCurrentUser, getSession } from "@/lib/session"
 import {
   Accordion,
   AccordionContent,
@@ -55,7 +55,9 @@ async function getAggregations(user: User["id"]) {
 }
 
 const ScoreboardContainer = async () => {
-  const user = await getCurrentUser()
+  const session = await getSession()
+
+  const user = session?.user
 
   if (!user) {
     redirect("/")
