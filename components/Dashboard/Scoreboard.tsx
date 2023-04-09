@@ -1,7 +1,8 @@
-"use client"
-
 import React from "react"
+import { redirect } from "next/navigation"
 
+import prisma from "@/lib/prisma"
+import { getCurrentUser } from "@/lib/session"
 import {
   Accordion,
   AccordionContent,
@@ -10,7 +11,58 @@ import {
 } from "@/components/ui/accordion"
 import { Separator } from "../ui/separator"
 
-const Scoreboard = ({ scoreboard, aggregations }) => {
+async function getScoreboard(user) {
+  const scoreboard = await prisma.quizCategory.findMany({
+    include: {
+      quizzes: {
+        where: {
+          quizScores: {
+            some: { userId: user },
+          },
+        },
+
+        include: {
+          quizScores: {
+            where: {
+              userId: user,
+            },
+            orderBy: { createdAt: "desc" },
+          },
+        },
+      },
+    },
+  })
+
+  return JSON.parse(JSON.stringify(scoreboard))
+}
+
+async function getAggregations(user) {
+  const aggregations = await prisma.quizScore.groupBy({
+    by: ["userId", "quizId"],
+    where: {
+      userId: user,
+    },
+    _count: {
+      score: true,
+    },
+    _avg: {
+      score: true,
+    },
+  })
+
+  return JSON.parse(JSON.stringify(aggregations))
+}
+
+export const Scoreboard = async function Scoreboard() {
+  const user = await getCurrentUser()
+
+  if (!user) {
+    redirect("/")
+  }
+
+  const scoreboard = await getScoreboard(user?.id)
+  const aggregations = await getAggregations(user?.id)
+
   return (
     <>
       <div
@@ -63,6 +115,4 @@ const Scoreboard = ({ scoreboard, aggregations }) => {
       </div>
     </>
   )
-}
-
-export default Scoreboard
+} as unknown as () => JSX.Element

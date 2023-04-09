@@ -1,13 +1,15 @@
 "use client"
 
+import React from "react"
 import { redirect } from "next/navigation"
 import { useSession } from "next-auth/react"
 
+import ChangeNameForm from "@/components/Dashboard/ChangeNameButton"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 import { UserNameForm } from "@/components/Dashboard/UserNameForm"
 
-export default async function ProfilePage() {
+const SessionPage = () => {
   const session = useSession()
   if (session.status === "loading") {
     return <div>loading...</div>
@@ -22,12 +24,12 @@ export default async function ProfilePage() {
   return (
     <DashboardContainer>
       <DashboardHeader
-        heading="User Profile"
-        text="View and manage your user account settings."
+        heading="User Scoreboard"
+        text="View your historical results."
       />
-      <div className="grid gap-10">
-        <UserNameForm user={user} />
-      </div>
+      <UserNameForm user={user} />
     </DashboardContainer>
   )
 }
+
+export default SessionPage
