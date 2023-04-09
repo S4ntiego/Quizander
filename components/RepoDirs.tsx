@@ -39,6 +39,9 @@ const RepoDirs = async ({ name }) => {
       redirect("/")
     })
 
+  const user = checkUserPromise
+  console.log(user)
+
   const contents = await fetchRepoContents(name)
   const dirs = contents.filter((content) => content.type === "dir")
 
