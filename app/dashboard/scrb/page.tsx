@@ -10,9 +10,7 @@ const RepoPage = ({ params: { name } }) => {
       <Link href="/code/repos" className="btn btn-back">
         Back To Repositories
       </Link>
-      <Suspense fallback={<div>Loading search...</div>}>
-        <Scrb />
-      </Suspense>
+      <Scrb />
     </div>
   )
 }
