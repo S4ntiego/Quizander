@@ -1,16 +1,14 @@
+import React from "react"
+
 import { DashboardNav } from "@/components/DashboardNav"
-import Header from "@/components/Header"
+import UserDropdown from "@/components/UserDropdown"
 
-interface DashboardLayoutProps {
-  children?: React.ReactNode
-}
-
-export default async function DashboardLayout({
-  children,
-}: DashboardLayoutProps) {
+const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="mx-auto flex flex-col space-y-6">
-      <Header />
+      <div className="h-20">
+        <UserDropdown />
+      </div>
       <div className="container grid gap-12 md:grid-cols-[200px_1fr]">
         <aside className="hidden w-[200px] flex-col md:flex">
           <DashboardNav />
@@ -22,3 +20,5 @@ export default async function DashboardLayout({
     </div>
   )
 }
+
+export default layout
