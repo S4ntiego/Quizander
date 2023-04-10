@@ -18,9 +18,9 @@ export const dashboardConfig: DashboardConfig = {
   mainDashboardNav: [],
   dashboardNav: [
     {
-      title: "Quizzes",
-      href: "/dashboard/quizzes",
-      icon: "post",
+      title: "Profile",
+      href: "/dashboard/profile",
+      icon: "user",
     },
     {
       title: "Scoreboard",
@@ -28,14 +28,9 @@ export const dashboardConfig: DashboardConfig = {
       icon: "trophy",
     },
     {
-      title: "Profile",
-      href: "/dashboard/profile",
-      icon: "user",
-    },
-    {
-      title: "Editor",
-      href: "/dashboard/editor",
-      icon: "user",
+      title: "Quizzes",
+      href: "/dashboard/quizzes",
+      icon: "post",
     },
   ],
   mobileNav: [

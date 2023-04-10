@@ -93,21 +93,14 @@ const UserDropdown = () => {
                 <DropdownMenuItem>
                   <Trophy className="mr-2 h-4 w-4" />
                   <span>Scoreboard</span>
-                  <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
+                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
               <Link href="/dashboard/quizzes">
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
-                  <span>Dashboard</span>
-                  <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/dashboard/editor">
-                <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Dashboard</span>
-                  <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
+                  <span>Quizzes</span>
+                  <DropdownMenuShortcut>⌘Q</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
             </DropdownMenuGroup>
