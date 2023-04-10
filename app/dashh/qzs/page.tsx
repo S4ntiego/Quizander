@@ -1,11 +1,19 @@
-import { cache } from "react"
+import React, { Suspense, cache } from "react"
+import Link from "next/link"
+import { redirect } from "next/navigation"
 
 import prisma from "@/lib/prisma"
-import { Quiz } from "@/components/Quiz"
+import { getCurrentUser } from "@/lib/session"
+import { cn } from "@/lib/utils"
+import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
+import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
+import { DashboardQuizItem } from "@/components/Dashboard/DashboardQuizItem"
+import { EmptyPlaceholder } from "@/components/Dashboard/EmptyPlaceholder"
+import { Icons } from "@/components/Icons"
+import { buttonVariants } from "@/components/ui/button"
 
-const getQuiz = cache(async (quizId: string) => {
-  const quiz = await prisma.quiz.findUnique({
-    where: { id: parseInt(quizId) },
+const getQuizzes = cache(async () => {
+  const quizzes = await prisma.quiz.findMany({
     include: {
       questions: {
         select: {
@@ -14,17 +22,69 @@ const getQuiz = cache(async (quizId: string) => {
         },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   })
 
-  return JSON.parse(JSON.stringify(quiz))
+  if (quizzes) {
+    for (const quiz of quizzes) {
+      quiz.coverImage =
+        "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+    }
+  }
+
+  return quizzes
 })
 
-interface QuizPageProps {
-  params: { id: string }
-}
+export default async function QzsPage() {
+  const user = await getCurrentUser()
 
-export default async function QuizPage({ params }: QuizPageProps) {
-  const quiz = await getQuiz(params.id)
+  if (!user) {
+    redirect("/")
+  }
 
-  return <Quiz quiz={quiz} />
+  const quizzes = await getQuizzes()
+
+  return (
+    <div>
+      <DashboardContainer>
+        <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
+          <Link
+            className={cn(buttonVariants({ variant: "default" }))}
+            href="/dashboard/editor"
+          >
+            <Icons.add className="w-4 h-4 mr-2 dark:text-dark-700" />
+            Add Quiz
+          </Link>
+        </DashboardHeader>
+        <div>
+          {quizzes?.length ? (
+            <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">
+              {quizzes.map((quiz) => (
+                <DashboardQuizItem key={quiz.id} quiz={quiz} />
+              ))}
+            </div>
+          ) : (
+            <EmptyPlaceholder>
+              <EmptyPlaceholder.Icon name="post" />
+              <EmptyPlaceholder.Title>
+                No quizzes created
+              </EmptyPlaceholder.Title>
+              <EmptyPlaceholder.Description>
+                You don&apos;t have any quizzes yet. Start creating content.
+              </EmptyPlaceholder.Description>
+              <Link
+                className={cn(buttonVariants({ variant: "default" }))}
+                href="/dashboard/editor"
+              >
+                <Icons.add className="w-4 h-4 mr-2 dark:text-dark-700" />
+                Add Quiz
+              </Link>
+            </EmptyPlaceholder>
+          )}
+        </div>
+      </DashboardContainer>
+    </div>
+  )
 }
