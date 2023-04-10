@@ -18,6 +18,11 @@ export const dashboardConfig: DashboardConfig = {
   mainDashboardNav: [],
   dashboardNav: [
     {
+      title: "ClientProfile",
+      href: "/dashh",
+      icon: "post",
+    },
+    {
       title: "Profile",
       href: "/dashh/profile",
       icon: "user",
