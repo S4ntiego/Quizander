@@ -108,7 +108,10 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
                         className="flex justify-start rounded-3xl"
                         onClick={(e) => {
                           e.preventDefault()
-                          signIn("google")
+                          signIn("google", {
+                            redirect: false,
+                            callbackUrl: "/dash",
+                          })
                         }}
                       >
                         <svg
@@ -128,7 +131,10 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
                         className="flex justify-start rounded-3xl"
                         onClick={(e) => {
                           e.preventDefault()
-                          signIn("facebook")
+                          signIn("facebook", {
+                            redirect: false,
+                            callbackUrl: "/dash",
+                          })
                         }}
                       >
                         <svg
