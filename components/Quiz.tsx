@@ -158,7 +158,7 @@ export function Quiz({ quiz, user }: QuizProps) {
               width={400}
               height={400}
               src="/images/hero/magician_hat 2.png"
-              className="w-36 h-36 xxs:mb-1 mb-1 xs:w-52 xs:h-52 lg:w-72 lg:h-72 wide:hidden"
+              className="w-36 h-36 xxs:mb-1 mb-1 xs:w-52 xs:h-52 lg:w-44 lg:h-44 wide:hidden"
             />
             <h1 className="xxs:text-4xl text-5xl font-bold font-space xxs:mb-4 mb-8 uppercase xs:text-6xl lg:text-7xl wide:text-5xl wide:mb-2">
               Your score <br className="wide:hidden" />
