@@ -52,7 +52,7 @@ export default async function DashboardPage() {
 
   return (
     <DashboardContainer>
-      <DashboardHeader heading="Posts" text="Create and manage posts.">
+      <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
         <Link
           className={cn(buttonVariants({ variant: "default" }))}
           href="/dashboard/editor"
@@ -71,9 +71,9 @@ export default async function DashboardPage() {
         ) : (
           <EmptyPlaceholder>
             <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No posts created</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Title>No quizzes created</EmptyPlaceholder.Title>
             <EmptyPlaceholder.Description>
-              You don&apos;t have any posts yet. Start creating content.
+              You don&apos;t have any quizzes yet. Start creating content.
             </EmptyPlaceholder.Description>
             <Link
               className={cn(buttonVariants({ variant: "default" }))}
