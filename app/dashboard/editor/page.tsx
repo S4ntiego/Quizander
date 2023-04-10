@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
 
 import prisma from "@/lib/prisma"
-import { getSession } from "@/lib/session"
+import { getCurrentUser } from "@/lib/session"
 import CreateQuiz from "@/components/CreateQuiz"
 
 async function getCategories() {
@@ -11,9 +11,7 @@ async function getCategories() {
 }
 
 export default async function CreatorPage() {
-  const session = await getSession()
-
-  const user = session?.user
+  const user = await getCurrentUser()
 
   if (!user) {
     redirect("/")

@@ -3,7 +3,7 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 
 import prisma from "@/lib/prisma"
-import { getSession } from "@/lib/session"
+import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
@@ -38,8 +38,7 @@ const getQuizzes = cache(async () => {
 })
 
 export default async function DashboardPage() {
-  const session = await getSession()
-  const user = session?.user
+  const user = getCurrentUser()
 
   if (!user) {
     redirect("/")
