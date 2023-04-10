@@ -1,18 +1,8 @@
-import { Suspense } from "react"
-import { redirect } from "next/navigation"
-
-import { getCurrentUser } from "@/lib/session"
+import { Card } from "@/components/Card"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
-import { UserNameForm } from "@/components/Dashboard/UserNameForm"
 
-export default async function ProfilePage() {
-  const user = await getCurrentUser()
-
-  if (!user) {
-    redirect("/")
-  }
-
+export default function DashboardSettingsLoading() {
   return (
     <DashboardContainer>
       <DashboardHeader
@@ -20,7 +10,8 @@ export default async function ProfilePage() {
         text="Manage your user profile."
       />
       <div className="grid gap-10">
-        <UserNameForm user={user} />
+        <Card.Skeleton />
+        <Card.Skeleton />
       </div>
     </DashboardContainer>
   )
