@@ -1,7 +1,4 @@
-import { notFound } from "next/navigation"
-
 import { dashboardConfig } from "@/config/dashboard"
-import { getCurrentUser } from "@/lib/session"
 import { DashboardNav } from "@/components/DashboardNav"
 import { SiteHeader } from "@/components/SiteHeader"
 
@@ -12,12 +9,6 @@ interface DashboardLayoutProps {
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-  const user = await getCurrentUser()
-
-  if (!user) {
-    return notFound()
-  }
-
   return (
     <div className="mx-auto flex flex-col space-y-6">
       <SiteHeader

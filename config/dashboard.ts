@@ -29,7 +29,7 @@ export const dashboardConfig: DashboardConfig = {
     },
     {
       title: "Quizzes",
-      href: "/dash/",
+      href: "/dash/qzs",
       icon: "post",
     },
   ],
