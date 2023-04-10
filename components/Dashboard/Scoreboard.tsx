@@ -1,6 +1,8 @@
 import React from "react"
+import { redirect } from "next/navigation"
 
 import prisma from "@/lib/prisma"
+import { getSession } from "@/lib/session"
 import {
   Accordion,
   AccordionContent,
@@ -35,8 +37,26 @@ async function getScoreboard(user: User["id"]) {
   return JSON.parse(JSON.stringify(scoreboard))
 }
 
+async function getAggregations(user: User["id"]) {
+  const aggregations = await prisma.quizScore.groupBy({
+    by: ["userId", "quizId"],
+    where: {
+      userId: user,
+    },
+    _count: {
+      score: true,
+    },
+    _avg: {
+      score: true,
+    },
+  })
+
+  return JSON.parse(JSON.stringify(aggregations))
+}
+
 const ScoreboardContainer = async ({ user }) => {
   const scoreboard = await getScoreboard(user.id)
+  const aggregations = await getAggregations(user.id)
 
   return (
     <>
@@ -67,6 +87,21 @@ const ScoreboardContainer = async ({ user }) => {
                     </div>
                   ))}
                   <Separator className="my-2" />
+                  <div className="flex flex-col justify-end items-end">
+                    <p>
+                      <span className="mr-2">Average Score:</span>
+                      {aggregations
+                        .find((x) => x.quizId === quiz["id"])
+                        ._avg.score.toFixed(2)}
+                    </p>
+                    <p>
+                      <span className="mr-2">Total Plays:</span>
+                      {
+                        aggregations.find((x) => x.quizId === quiz["id"])._count
+                          .score
+                      }
+                    </p>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             ))}
