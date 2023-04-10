@@ -6,11 +6,11 @@ import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 import { UserNameForm } from "@/components/Dashboard/UserNameForm"
 
 export const metadata = {
-  title: "Settings",
-  description: "Manage account and website settings.",
+  title: "User Profile",
+  description: "Manage your user profile.",
 }
 
-export default async function SettingsPage() {
+export default async function ProfilePage() {
   const user = await getCurrentUser()
 
   if (!user) {
@@ -20,8 +20,8 @@ export default async function SettingsPage() {
   return (
     <DashboardContainer>
       <DashboardHeader
-        heading="Settings"
-        text="Manage account and website settings."
+        heading="User Profile"
+        text="Manage your user profile."
       />
       <div className="grid gap-10">
         {user?.name ? (

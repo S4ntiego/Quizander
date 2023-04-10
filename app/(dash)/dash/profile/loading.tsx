@@ -6,8 +6,8 @@ export default function DashboardSettingsLoading() {
   return (
     <DashboardContainer>
       <DashboardHeader
-        heading="Settings"
-        text="Manage account and website settings."
+        heading="User Profile"
+        text="Manage your user profile."
       />
       <div className="grid gap-10">
         <Card.Skeleton />
