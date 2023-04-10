@@ -82,13 +82,6 @@ const UserDropdown = () => {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <Link href="/dashboard">
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>User Profile</span>
-                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </Link>
               <Link href="/dashboard/profile">
                 <DropdownMenuItem>
                   <User className="mr-2 h-4 w-4" />
