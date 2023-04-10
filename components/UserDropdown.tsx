@@ -82,38 +82,24 @@ const UserDropdown = () => {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <Link href="/dashboard/profile">
+              <Link href="/dash/profile">
                 <DropdownMenuItem>
                   <User className="mr-2 h-4 w-4" />
                   <span>Profile</span>
                   <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dashboard/scoreboard">
+              <Link href="/dash/scoreboard">
                 <DropdownMenuItem>
                   <Trophy className="mr-2 h-4 w-4" />
                   <span>Scoreboard</span>
                   <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dashboard/">
-                <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Quizzes</span>
-                  <DropdownMenuShortcut>⌘Q</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </Link>
               <Link href="/dash/">
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
-                  <span>Dash</span>
-                  <DropdownMenuShortcut>⌘Q</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/dash/settings">
-                <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>DashSettings</span>
+                  <span>Quizzes</span>
                   <DropdownMenuShortcut>⌘Q</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>

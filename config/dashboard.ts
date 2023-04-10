@@ -19,17 +19,17 @@ export const dashboardConfig: DashboardConfig = {
   dashboardNav: [
     {
       title: "Profile",
-      href: "/dashboard/profile",
+      href: "/dash/profile",
       icon: "user",
     },
     {
       title: "Scoreboard",
-      href: "/dashboard/scoreboard",
+      href: "/dash/scoreboard",
       icon: "trophy",
     },
     {
       title: "Quizzes",
-      href: "/dashboard/",
+      href: "/dash/",
       icon: "post",
     },
   ],
