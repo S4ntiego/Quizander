@@ -1,8 +1,7 @@
-import React from "react"
-import { redirect } from "next/navigation"
+"use client"
 
-import prisma from "@/lib/prisma"
-import { getSession } from "@/lib/session"
+import React, { useEffect, useState } from "react"
+
 import {
   Accordion,
   AccordionContent,
@@ -10,61 +9,19 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Separator } from "../ui/separator"
-import { User } from ".prisma/client"
 
-async function getScoreboard(user: User["id"]) {
-  const scoreboard = await prisma.quizCategory.findMany({
-    include: {
-      quizzes: {
-        where: {
-          quizScores: {
-            some: { userId: user },
-          },
-        },
+const ScoreboardContainer = ({ user }) => {
+  const [scoreboard, setScoreboard] = useState<any>()
+  useEffect(() => {
+    async function getData() {
+      const actualData = await fetch(`/api/scoreboard/${user.id}`).then(
+        (response) => response.json()
+      )
 
-        include: {
-          quizScores: {
-            where: {
-              userId: user,
-            },
-            orderBy: { createdAt: "desc" },
-          },
-        },
-      },
-    },
-  })
-
-  return JSON.parse(JSON.stringify(scoreboard))
-}
-
-async function getAggregations(user: User["id"]) {
-  const aggregations = await prisma.quizScore.groupBy({
-    by: ["userId", "quizId"],
-    where: {
-      userId: user,
-    },
-    _count: {
-      score: true,
-    },
-    _avg: {
-      score: true,
-    },
-  })
-
-  return JSON.parse(JSON.stringify(aggregations))
-}
-
-const ScoreboardContainer = async () => {
-  const session = await getSession()
-
-  const user = session?.user
-
-  if (!user) {
-    redirect("/")
-  }
-
-  const scoreboard = await getScoreboard(user.id)
-  const aggregations = await getAggregations(user.id)
+      setScoreboard(actualData)
+    }
+    getData()
+  }, [])
 
   return (
     <>
@@ -72,7 +29,7 @@ const ScoreboardContainer = async () => {
         className="
        rounded-md border border-dark-200 dark:border-dark-400"
       >
-        {scoreboard.map((category) => (
+        {scoreboard?.map((category) => (
           <Accordion type="multiple" className="" key={category.id}>
             {category.quizzes.map((quiz) => (
               <AccordionItem className="px-4" key={quiz.id} value={quiz.id}>
@@ -95,21 +52,6 @@ const ScoreboardContainer = async () => {
                     </div>
                   ))}
                   <Separator className="my-2" />
-                  <div className="flex flex-col justify-end items-end">
-                    <p>
-                      <span className="mr-2">Average Score:</span>
-                      {aggregations
-                        .find((x) => x.quizId === quiz["id"])
-                        ._avg.score.toFixed(2)}
-                    </p>
-                    <p>
-                      <span className="mr-2">Total Plays:</span>
-                      {
-                        aggregations.find((x) => x.quizId === quiz["id"])._count
-                          .score
-                      }
-                    </p>
-                  </div>
                 </AccordionContent>
               </AccordionItem>
             ))}
