@@ -1,23 +1,16 @@
-"use client"
-
 import { redirect } from "next/navigation"
-import { useSession } from "next-auth/react"
 
+import { getCurrentUser } from "@/lib/session"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 import Scoreboard from "@/components/Dashboard/Scoreboard"
 
-export default function ScoreboardPage() {
-  const session = useSession()
-  if (session.status === "loading") {
-    return <div>loading...</div>
-  }
+export default async function ScoreboardPage() {
+  const user = getCurrentUser()
 
-  if (session.status === "unauthenticated") {
+  if (!user) {
     redirect("/")
   }
-
-  const user = session?.data?.user
 
   return (
     <DashboardContainer>

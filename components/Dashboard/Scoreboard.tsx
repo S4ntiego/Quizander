@@ -1,7 +1,6 @@
-"use client"
+import React from "react"
 
-import React, { useEffect, useState } from "react"
-
+import prisma from "@/lib/prisma"
 import {
   Accordion,
   AccordionContent,
@@ -9,19 +8,35 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Separator } from "../ui/separator"
+import { User } from ".prisma/client"
 
-const ScoreboardContainer = ({ user }) => {
-  const [scoreboard, setScoreboard] = useState<any>()
-  useEffect(() => {
-    async function getData() {
-      const actualData = await fetch(`/api/scoreboard/${user.id}`).then(
-        (response) => response.json()
-      )
+async function getScoreboard(user: User["id"]) {
+  const scoreboard = await prisma.quizCategory.findMany({
+    include: {
+      quizzes: {
+        where: {
+          quizScores: {
+            some: { userId: user },
+          },
+        },
 
-      setScoreboard(actualData)
-    }
-    getData()
-  }, [])
+        include: {
+          quizScores: {
+            where: {
+              userId: user,
+            },
+            orderBy: { createdAt: "desc" },
+          },
+        },
+      },
+    },
+  })
+
+  return JSON.parse(JSON.stringify(scoreboard))
+}
+
+const ScoreboardContainer = async ({ user }) => {
+  const scoreboard = await getScoreboard(user.id)
 
   return (
     <>
@@ -29,7 +44,7 @@ const ScoreboardContainer = ({ user }) => {
         className="
        rounded-md border border-dark-200 dark:border-dark-400"
       >
-        {scoreboard?.map((category) => (
+        {scoreboard.map((category) => (
           <Accordion type="multiple" className="" key={category.id}>
             {category.quizzes.map((quiz) => (
               <AccordionItem className="px-4" key={quiz.id} value={quiz.id}>
