@@ -2,7 +2,7 @@ import Link from "next/link"
 
 const Header = () => {
   return (
-    <header className="header">
+    <header className="header h-24">
       <div className="container">
         <div className="links">
           <Link href="/">Main</Link>
