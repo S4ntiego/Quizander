@@ -110,7 +110,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
                           e.preventDefault()
                           signIn("google", {
                             redirect: false,
-                            callbackUrl: "/dash",
+                            callbackUrl: "/dashboard",
                           })
                         }}
                       >
@@ -133,7 +133,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
                           e.preventDefault()
                           signIn("facebook", {
                             redirect: false,
-                            callbackUrl: "/dash",
+                            callbackUrl: "/dashboard",
                           })
                         }}
                       >
