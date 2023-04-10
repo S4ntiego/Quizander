@@ -1,7 +1,6 @@
 import React from "react"
 
 import { dashboardConfig } from "@/config/dashboard"
-import Header from "@/components/Header"
 import { SiteFooter } from "@/components/SiteFooter"
 import { SiteHeader } from "@/components/SiteHeader"
 
