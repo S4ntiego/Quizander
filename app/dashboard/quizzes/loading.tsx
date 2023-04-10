@@ -1,6 +1,6 @@
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
-import { QuizItem } from "@/components/QuizItem"
+import { Skeleton } from "@/components/Skeleton"
 
 export default function DashboardLoading() {
   return (
@@ -9,10 +9,13 @@ export default function DashboardLoading() {
         heading="Quizzes"
         text="Create and manage quizzes."
       ></DashboardHeader>
-      <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">
-        <QuizItem.Skeleton />
-        <QuizItem.Skeleton />
-        <QuizItem.Skeleton />
+      <div className="divide-y divide-dark-200 rounded-md border border-dark-200">
+        <div className="p-4">
+          <Skeleton className="h-7 w-2/5" />
+        </div>
+        <div className="p-4">
+          <Skeleton className="h-7 w-2/5" />
+        </div>
       </div>
     </DashboardContainer>
   )

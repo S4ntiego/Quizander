@@ -1,9 +1,9 @@
-import { cache } from "react"
+import React, { cache } from "react"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 
 import prisma from "@/lib/prisma"
-import { getCurrentUser } from "@/lib/session"
+import { getSession } from "@/lib/session"
 import { cn } from "@/lib/utils"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
@@ -11,10 +11,6 @@ import { DashboardQuizItem } from "@/components/Dashboard/DashboardQuizItem"
 import { EmptyPlaceholder } from "@/components/Dashboard/EmptyPlaceholder"
 import { Icons } from "@/components/Icons"
 import { buttonVariants } from "@/components/ui/button"
-
-export const metadata = {
-  title: "Dashboard",
-}
 
 const getQuizzes = cache(async () => {
   const quizzes = await prisma.quiz.findMany({
@@ -42,7 +38,8 @@ const getQuizzes = cache(async () => {
 })
 
 export default async function DashboardPage() {
-  const user = await getCurrentUser()
+  const session = await getSession()
+  const user = session?.user
 
   if (!user) {
     redirect("/")
@@ -54,16 +51,20 @@ export default async function DashboardPage() {
     <DashboardContainer>
       <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
         <Link
-          className={cn(buttonVariants({ variant: "default" }))}
+          className={cn(
+            buttonVariants({ variant: "default" }),
+            "w-32 dark:hover:text-dark-150"
+          )}
           href="/dashboard/editor"
         >
-          <Icons.add className="w-4 h-4 mr-2 dark:text-dark-700" />
-          Add Quiz
+          <Icons.add className="w-4 h-4 mr-2" />
+          <span>Add Quiz</span>
         </Link>
       </DashboardHeader>
+
       <div>
         {quizzes?.length ? (
-          <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">
+          <div className="divide-y dark:divide-dark-400 divide-dark-200 rounded-md border dark:border-dark-400 border-dark-200">
             {quizzes.map((quiz) => (
               <DashboardQuizItem key={quiz.id} quiz={quiz} />
             ))}
@@ -71,9 +72,11 @@ export default async function DashboardPage() {
         ) : (
           <EmptyPlaceholder>
             <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No quizzes created</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Title>
+              There are no quizzes yet
+            </EmptyPlaceholder.Title>
             <EmptyPlaceholder.Description>
-              You don&apos;t have any quizzes yet. Start creating content.
+              Click below to start creating content.
             </EmptyPlaceholder.Description>
             <Link
               className={cn(buttonVariants({ variant: "default" }))}
