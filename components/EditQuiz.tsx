@@ -90,6 +90,8 @@ export default function QuizEditor({ quiz, categories }: QuizEditorProps) {
       body: formData,
     })
 
+    console.log(response)
+
     if (!response?.ok) {
       toast({
         title: "Something went wrong.",
