@@ -1,13 +1,11 @@
 "use client"
 
-import { useSession } from "next-auth/react"
-
 import { MainNavItem, MobileNavItem } from "@/types/nav"
 import { useScrollPosition } from "@/lib/hooks/useScrollPosition"
 import { cn } from "@/lib/utils"
 import { MainNav } from "./MainNav"
 import { MobileNav } from "./MobileNav"
-import { UserDropdown } from "./UserDropdown"
+import UserDropdown from "./UserDropdown"
 
 interface SiteHeaderProps {
   mainConfig: MainNavItem[]
@@ -16,8 +14,6 @@ interface SiteHeaderProps {
 
 export function ClientHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
   const scrollPosition = useScrollPosition()
-  const session = useSession()
-  const user = session?.data?.user
 
   return (
     <div
@@ -30,13 +26,7 @@ export function ClientHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
       <div className={cn("flex justify-between w-full")}>
         <MainNav mainConfig={mainConfig} />
         <MobileNav mobileConfig={mobileConfig} />
-        <UserDropdown
-          user={{
-            name: user?.name,
-            image: user?.image,
-            email: user?.email,
-          }}
-        />
+        <UserDropdown />
       </div>
     </div>
   )

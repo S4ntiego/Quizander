@@ -11,7 +11,7 @@ import { MainNav } from "@/components/MainNav"
 import { MobileNav } from "@/components/MobileNav"
 import { Icons } from "./Icons"
 import { ThemeToggle } from "./ThemeToggle"
-import { UserDropdown } from "./UserDropdown"
+import UserDropdown from "./UserDropdown"
 import { Button, buttonVariants } from "./ui/button"
 import {
   Dialog,
@@ -29,7 +29,7 @@ interface SiteHeaderProps {
 
 export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
   const { data: session, status } = useSession()
-  const user = session?.user
+  const { image, name } = session?.user || {}
   const scrollPosition = useScrollPosition()
 
   return (
@@ -155,13 +155,7 @@ export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
                 </Dialog>
               </div>
             ) : (
-              <UserDropdown
-                user={{
-                  name: user?.name,
-                  image: user?.image,
-                  email: user?.email,
-                }}
-              />
+              <UserDropdown />
             )}
           </nav>
         </div>
