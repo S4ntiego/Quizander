@@ -102,6 +102,8 @@ export default function QuizzesForm({ categories }: QuizzesFormProps) {
       body: formData,
     })
 
+    console.log(response)
+
     if (!response?.ok) {
       toast({
         title: "Something went wrong.",

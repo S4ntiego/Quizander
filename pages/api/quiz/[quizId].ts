@@ -71,8 +71,6 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
           req.file.mimetype
         )) as { Location: string }
 
-        console.log(req.body.category)
-
         await prisma.quiz.update({
           where: {
             id: quiz.id,

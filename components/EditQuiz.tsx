@@ -90,8 +90,6 @@ export default function QuizEditor({ quiz, categories }: QuizEditorProps) {
       body: formData,
     })
 
-    console.log(response)
-
     if (!response?.ok) {
       toast({
         title: "Something went wrong.",
@@ -140,8 +138,6 @@ export default function QuizEditor({ quiz, categories }: QuizEditorProps) {
 
     updateQuiz(quiz.id, formData)
   }
-
-  console.log(quiz.categoryId)
 
   useEffect(() => {
     console.log(quiz.coverImage)

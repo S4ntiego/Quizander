@@ -85,10 +85,11 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
         await res.revalidate("/")
       }
 
-      return res.json({ quiz: quiz, src: uploadResult.Location, error: "" })
+      return res.json({
+        quiz: quiz,
+        error: "",
+      })
     }
-
-    return res.status(404).json({ error: "404 not found" })
   } catch (error: any) {
     return res.status(500).json({ error: error.name, message: error.message })
   }
