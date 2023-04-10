@@ -1,7 +1,6 @@
 import { cache } from "react"
 
 import prisma from "@/lib/prisma"
-import { getCurrentUser } from "@/lib/session"
 import { Quiz } from "@/components/Quiz"
 
 const getQuiz = cache(async (quizId: string) => {
@@ -26,7 +25,6 @@ interface QuizPageProps {
 
 export default async function QuizPage({ params }: QuizPageProps) {
   const quiz = await getQuiz(params.id)
-  const user = await getCurrentUser()
 
-  return <Quiz quiz={quiz} user={user} />
+  return <Quiz quiz={quiz} />
 }

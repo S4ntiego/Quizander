@@ -4,6 +4,7 @@ import React, { useState, useTransition } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { Answer, Question as Qs, Quiz as Qz, User } from "@prisma/client"
+import { useSession } from "next-auth/react"
 
 import { cn } from "@/lib/utils"
 import { toast } from "@/components/ui/toast"
@@ -21,10 +22,11 @@ interface QuizWithQuestions extends Qz {
 
 interface QuizProps {
   quiz: QuizWithQuestions
-  user: Pick<User, "id"> | undefined
 }
 
-export function Quiz({ quiz, user }: QuizProps) {
+export function Quiz({ quiz }: QuizProps) {
+  const session = useSession()
+  const user = session?.data?.user
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
   const [currentAnswer, setCurrentAnswer] = useState<
     Pick<Answer, "answer" | "isCorrect"> | string
