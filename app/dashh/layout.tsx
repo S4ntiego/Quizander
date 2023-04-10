@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Suspense } from "react"
 
 import { dashboardConfig } from "@/config/dashboard"
 import { DashboardNav } from "@/components/DashboardNav"
@@ -16,7 +16,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
           <DashboardNav />
         </aside>
         <main className="flex w-full flex-1 flex-col overflow-hidden">
-          {children}
+          <Suspense fallback={<div>loading</div>}>{children}</Suspense>
         </main>
       </div>
     </div>
