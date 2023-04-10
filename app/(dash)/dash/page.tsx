@@ -1,0 +1,90 @@
+import { cache } from "react"
+import Link from "next/link"
+import { redirect } from "next/navigation"
+
+import prisma from "@/lib/prisma"
+import { getCurrentUser } from "@/lib/session"
+import { cn } from "@/lib/utils"
+import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
+import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
+import { EmptyPlaceholder } from "@/components/Dashboard/EmptyPlaceholder"
+import { Icons } from "@/components/Icons"
+import { QuizItem } from "@/components/QuizItem"
+import { buttonVariants } from "@/components/ui/button"
+
+export const metadata = {
+  title: "Dashboard",
+}
+
+const getQuizzes = cache(async () => {
+  const quizzes = await prisma.quiz.findMany({
+    include: {
+      questions: {
+        select: {
+          question: true,
+          answers: { select: { answer: true, isCorrect: true } },
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  })
+
+  if (quizzes) {
+    for (const quiz of quizzes) {
+      quiz.coverImage =
+        "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+    }
+  }
+
+  return quizzes
+})
+
+export default async function DashboardPage() {
+  const user = await getCurrentUser()
+
+  if (!user) {
+    redirect("/")
+  }
+
+  const quizzes = await getQuizzes()
+
+  return (
+    <DashboardContainer>
+      <DashboardHeader heading="Posts" text="Create and manage posts.">
+        <Link
+          className={cn(buttonVariants({ variant: "default" }))}
+          href="/dashboard/editor"
+        >
+          <Icons.add className="w-4 h-4 mr-2 dark:text-dark-700" />
+          Add Quiz
+        </Link>
+      </DashboardHeader>
+      <div>
+        {quizzes?.length ? (
+          <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">
+            {quizzes.map((quiz) => (
+              <QuizItem key={quiz.id} quiz={quiz} />
+            ))}
+          </div>
+        ) : (
+          <EmptyPlaceholder>
+            <EmptyPlaceholder.Icon name="post" />
+            <EmptyPlaceholder.Title>No posts created</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Description>
+              You don&apos;t have any posts yet. Start creating content.
+            </EmptyPlaceholder.Description>
+            <Link
+              className={cn(buttonVariants({ variant: "default" }))}
+              href="/dashboard/editor"
+            >
+              <Icons.add className="w-4 h-4 mr-2 dark:text-dark-700" />
+              Add Quiz
+            </Link>
+          </EmptyPlaceholder>
+        )}
+      </div>
+    </DashboardContainer>
+  )
+}

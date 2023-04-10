@@ -103,6 +103,20 @@ const UserDropdown = () => {
                   <DropdownMenuShortcut>⌘Q</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
+              <Link href="/dash/">
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Dash</span>
+                  <DropdownMenuShortcut>⌘Q</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/dash/settings">
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>DashSettings</span>
+                  <DropdownMenuShortcut>⌘Q</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => signOut()}>
