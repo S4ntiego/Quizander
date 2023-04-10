@@ -1,10 +1,8 @@
 import { Suspense } from "react"
-import { redirect } from "next/navigation"
 
-import { getCurrentUser } from "@/lib/session"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
-import { UserNameForm } from "@/components/Dashboard/UserNameForm"
+import { UserNameForm2 } from "@/components/Dashboard/UserNameForm2"
 
 export default async function ProfilePage() {
   return (
@@ -15,7 +13,7 @@ export default async function ProfilePage() {
       />
       <div className="grid gap-10">
         <Suspense fallback="loading user profile">
-          <UserNameForm />
+          <UserNameForm2 />
         </Suspense>
       </div>
     </DashboardContainer>
