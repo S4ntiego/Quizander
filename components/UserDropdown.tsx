@@ -82,21 +82,21 @@ const UserDropdown = () => {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <Link href="/dash/profile">
+              <Link legacyBehavior href="/dash/profile">
                 <DropdownMenuItem>
                   <User className="mr-2 h-4 w-4" />
                   <span>Profile</span>
                   <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dash/scoreboard">
+              <Link legacyBehavior href="/dash/scoreboard">
                 <DropdownMenuItem>
                   <Trophy className="mr-2 h-4 w-4" />
                   <span>Scoreboard</span>
                   <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dash/">
+              <Link legacyBehavior href="/dash/">
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Quizzes</span>
