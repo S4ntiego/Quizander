@@ -5,10 +5,7 @@ import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 export default function DashboardSettingsLoading() {
   return (
     <DashboardContainer>
-      <DashboardHeader
-        heading="User Profile"
-        text="Manage your user profile."
-      />
+      <DashboardHeader heading="Quizzes" text="Manage and create quizzes." />
       <div className="grid gap-10">
         <Card.Skeleton />
         <Card.Skeleton />

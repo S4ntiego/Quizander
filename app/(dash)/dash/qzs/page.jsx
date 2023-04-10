@@ -5,9 +5,7 @@ import Qzs from "@/components/Qzs"
 const page = () => {
   return (
     <div>
-      <Suspense fallback={<div>Loading quizzes...</div>}>
-        <Qzs />
-      </Suspense>
+      <Qzs />
     </div>
   )
 }
