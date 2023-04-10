@@ -7,9 +7,9 @@ import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
+import { DashboardQuizItem } from "@/components/Dashboard/DashboardQuizItem"
 import { EmptyPlaceholder } from "@/components/Dashboard/EmptyPlaceholder"
 import { Icons } from "@/components/Icons"
-import { QuizItem } from "@/components/QuizItem"
 import { buttonVariants } from "@/components/ui/button"
 
 export const metadata = {
@@ -65,7 +65,7 @@ export default async function DashboardPage() {
         {quizzes?.length ? (
           <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">
             {quizzes.map((quiz) => (
-              <QuizItem key={quiz.id} quiz={quiz} />
+              <DashboardQuizItem key={quiz.id} quiz={quiz} />
             ))}
           </div>
         ) : (
