@@ -1,9 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { redirect, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
@@ -24,18 +23,7 @@ export const userNameSchema = z.object({
 
 type FormData = z.infer<typeof userNameSchema>
 
-export function UserNameForm() {
-  const session = useSession()
-  const user = session?.data?.user
-
-  if (session.status === "loading") {
-    return <div>loading</div>
-  }
-
-  if (session.status === "unauthenticated") {
-    redirect("/")
-  }
-
+export function UserNameForm({ user }) {
   const router = useRouter()
   const {
     handleSubmit,
@@ -44,7 +32,7 @@ export function UserNameForm() {
   } = useForm<FormData>({
     resolver: zodResolver(userNameSchema),
     defaultValues: {
-      name: user?.name as string,
+      name: user.name as string,
     },
   })
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
@@ -52,7 +40,7 @@ export function UserNameForm() {
   async function onSubmit(data: FormData) {
     setIsSaving(true)
 
-    const response = await fetch(`/api/users/${user?.id}`, {
+    const response = await fetch(`/api/users/${user.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
