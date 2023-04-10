@@ -82,14 +82,14 @@ const UserDropdown = () => {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <Link href="/dash/profile">
+              <Link href="/dashh/profile">
                 <DropdownMenuItem>
                   <User className="mr-2 h-4 w-4" />
                   <span>Profile</span>
                   <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dash/scoreboard">
+              <Link href="/dashh/scoreboard">
                 <DropdownMenuItem>
                   <Trophy className="mr-2 h-4 w-4" />
                   <span>Scoreboard</span>
