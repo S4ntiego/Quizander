@@ -12,7 +12,10 @@ interface QuizzesProps {
 const layout = ({ children }: QuizzesProps) => {
   return (
     <div className="flex min-h-screen flex-col ">
-      <Header />
+      <SiteHeader
+        mainConfig={dashboardConfig.mainNav}
+        mobileConfig={dashboardConfig.mobileNav}
+      />
       <div className="flex-1">{children}</div>
       <SiteFooter />
     </div>

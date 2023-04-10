@@ -96,7 +96,7 @@ const UserDropdown = () => {
                   <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dash/qzs">
+              <Link href="/dashh/qzs">
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Quizzes</span>
