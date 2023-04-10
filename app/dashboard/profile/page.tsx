@@ -23,8 +23,8 @@ const SessionPage = () => {
   return (
     <DashboardContainer>
       <DashboardHeader
-        heading="User Scoreboard"
-        text="View your historical results."
+        heading="User Profile"
+        text="View and manage your user account settings."
       />
       <UserNameForm user={user} />
     </DashboardContainer>

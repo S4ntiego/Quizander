@@ -6,8 +6,8 @@ export default function DashboardLoading() {
   return (
     <DashboardContainer>
       <DashboardHeader
-        heading="User Scoreboard"
-        text="View your historical results."
+        heading="Quizzes"
+        text="Create and manage quizzes."
       ></DashboardHeader>
       <div className="divide-y divide-dark-200 rounded-md border border-dark-200">
         <div className="p-4">
