@@ -21,20 +21,20 @@ Libraries/Technology used in the project:
 - RadixUi/ShadcnUI
 
 Features
-Server & Client Components - Nextjs 13 App Directory
+Server & Client Components - Next.js 13 App Directory
 Loading UI - React Suspense
 Authentication - NextAuth.js (Google & Facebook Providers)
 Protected & Unprotected API routes - Node.js API/Middlewares
 Response toasts - ShadcnUI
 Form validation - Zod
 Typescript
-Routing/Layouts - Nextjs 13
-Data Fetching, Caching and Mutation - Nextjs 13/Fetch/React Cache
+Routing/Layouts - Next.js 13
+Data Fetching, Caching and Mutation - Next.js 13/Fetch/React Cache
 ORM - Prisma
 Database - Postgresql hosted on Railway
 Stylization - Tailwindcss
 Dark/Light mode - Next theme toggle
-Dashboard with partial revalidation - Nextjs 13
+Dashboard with partial revalidation - Next.js 13
 
 Running locally
 To run the project, you need to provide the following .env files:
