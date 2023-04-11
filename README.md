@@ -7,7 +7,7 @@ Fullstack Harry Potter's Trivia website built with app directory of Next.js 13.
 
 Project is not endorsed or supported directly or indirectly with Warner Bros. Entertainment, JK Rowling, Wizarding World Digital, or any of the official Harry Potter trademark/right holders.
 
-Libraries/Technology used in the project:
+# Libraries/Technology used in the project:
 - Next.js 13
 - Prisma ORM
 - Postgresql database
@@ -20,7 +20,7 @@ Libraries/Technology used in the project:
 - Multer
 - RadixUi/ShadcnUI
 
-Features
+# Features
 - Server & Client Components - Next.js 13 App Directory
 - Loading UI - React Suspense
 - Authentication - NextAuth.js (Google & Facebook Providers)
@@ -36,10 +36,10 @@ Features
 - Dark/Light mode - Next theme toggle
 - Dashboard with partial revalidation - Next.js 13
 
-Running locally
-- To run the project, you need to provide the following .env files:
+# Running locally
+To run the project, you need to provide the following .env files:
 
---RAILWAY POSTGRESQL DATABASE: https://railway.app/
+RAILWAY POSTGRESQL DATABASE: https://railway.app/
 - DATABASE_URL=
 - PGDATABASE=railway
 - PGHOST=
@@ -47,15 +47,15 @@ Running locally
 - PGPORT=
 - PGUSER=postgres
 
---GOOGLE PROVIDER: https://developers.google.com/identity/protocols/oauth2
+GOOGLE PROVIDER: https://developers.google.com/identity/protocols/oauth2
 - GOOGLE_CLIENT_ID=
 - GOOGLE_CLIENT_SECRET=
 
---FACEBOOK PROVIDER: https://developers.facebook.com/apps/
+FACEBOOK PROVIDER: https://developers.facebook.com/apps/
 - FACEBOOK_CLIENT_ID=
 - FACEBOOK_CLIENT_SECRET=
 
---AWS S3: https://aws.amazon.com/s3/
+AWS S3: https://aws.amazon.com/s3/
 - APP_AWS_ACCESS_KEY=
 - APP_AWS_SECRET_KEY=
 - APP_AWS_REGION=
