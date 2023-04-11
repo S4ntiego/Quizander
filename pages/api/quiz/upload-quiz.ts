@@ -87,7 +87,6 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
 
       return res.json({
         quiz: quiz,
-        error: "",
       })
     }
   } catch (error: any) {
