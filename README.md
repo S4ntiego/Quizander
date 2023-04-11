@@ -48,6 +48,9 @@ Project is not endorsed or supported directly or indirectly with Warner Bros. En
 - Dashboard with partial revalidation - Next.js 13
 - Responsive design
 
+# Initial skeletons of this trivia prepared with Nextjs, React-Query, Typegoose, Express & Node, JWT & Redis Authentication:
+https://github.com/S4ntiego/QuizanderQueryTypegoose
+
 # Running locally
 To run the project, you need to provide the following .env files:
 
