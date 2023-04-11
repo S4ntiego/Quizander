@@ -102,8 +102,7 @@ export default function QuizzesForm({ categories }: QuizzesFormProps) {
       body: formData,
     })
 
-    if (!response?.ok) {
-      console.log(response)
+    if (!response?.ok && response.status !== 504) {
       toast({
         title: "Something went wrong.",
         message: "Your quiz was not created. Please try again.",
