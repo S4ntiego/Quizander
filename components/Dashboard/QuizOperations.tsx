@@ -53,7 +53,7 @@ export function QuizOperations({ quiz }: QuizOperationsProps) {
     }
 
     toast({
-      title: "Quiz has been successfully deleted.",
+      title: "Quiz deleted",
       message: "Quiz has been successfully deleted.",
       type: "success",
     })
