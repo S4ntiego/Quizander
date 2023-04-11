@@ -6,7 +6,7 @@ import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 import Scoreboard from "@/components/Dashboard/Scoreboard"
 
 export default async function ScoreboardPage() {
-  const user = getCurrentUser()
+  const user = await getCurrentUser()
 
   if (!user) {
     redirect("/")

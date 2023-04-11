@@ -1,8 +1,6 @@
 import React from "react"
-import { redirect } from "next/navigation"
 
 import prisma from "@/lib/prisma"
-import { getSession } from "@/lib/session"
 import {
   Accordion,
   AccordionContent,
@@ -55,8 +53,13 @@ async function getAggregations(user: User["id"]) {
 }
 
 const ScoreboardContainer = async ({ user }) => {
-  const scoreboard = await getScoreboard(user.id)
-  const aggregations = await getAggregations(user.id)
+  const scoreboardData = getScoreboard(user.id)
+  const aggregationsData = getAggregations(user.id)
+
+  const [scoreboard, aggregations] = await Promise.all([
+    scoreboardData,
+    aggregationsData,
+  ])
 
   return (
     <>
