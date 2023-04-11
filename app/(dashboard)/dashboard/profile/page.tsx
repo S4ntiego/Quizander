@@ -1,24 +1,17 @@
-"use client"
-
 import React from "react"
 import { redirect } from "next/navigation"
-import { useSession } from "next-auth/react"
 
+import { getCurrentUser } from "@/lib/session"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 import { UserNameForm } from "@/components/Dashboard/UserNameForm"
 
-const SessionPage = () => {
-  const session = useSession()
-  if (session.status === "loading") {
-    return <div>loading...</div>
-  }
+const ProfilePage = async () => {
+  const user = await getCurrentUser()
 
-  if (session.status === "unauthenticated") {
+  if (!user) {
     redirect("/")
   }
-
-  const user = session?.data?.user
 
   return (
     <DashboardContainer>
@@ -31,4 +24,4 @@ const SessionPage = () => {
   )
 }
 
-export default SessionPage
+export default ProfilePage
