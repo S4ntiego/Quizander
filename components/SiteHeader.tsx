@@ -1,8 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { getServerSession } from "next-auth"
-import { signIn, useSession } from "next-auth/react"
+import { getSession, signIn } from "next-auth/react"
 import { MainNavItem, MobileNavItem } from "types/nav"
 
 import { siteConfig } from "@/config/site"
@@ -30,7 +29,7 @@ interface SiteHeaderProps {
 }
 
 export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
-  const session = getServerSession()
+  const session = getSession()
 
   const scrollPosition = useScrollPosition()
 
