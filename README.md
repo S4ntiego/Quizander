@@ -7,6 +7,15 @@ Fullstack Harry Potter's Trivia website built with app directory of Next.js 13.
 
 Project is not endorsed or supported directly or indirectly with Warner Bros. Entertainment, JK Rowling, Wizarding World Digital, or any of the official Harry Potter trademark/right holders.
 
+<div style={{'display':'flex'}}>
+
+<img src="https://user-images.githubusercontent.com/62663595/231110040-21a53b59-be5c-4682-9521-a73d722de59a.png" width="500"  />
+<img src="https://user-images.githubusercontent.com/62663595/231110068-80a55917-f4fe-4844-876d-441b98431bb9.png" width="500"  />
+<img src="https://user-images.githubusercontent.com/62663595/231110121-ac823f52-f14f-46de-afbe-f8fe453c485f.png" width="500"  />
+<img src="https://user-images.githubusercontent.com/62663595/231109983-226a00ba-add1-40d9-9378-dfc9678f8faf.png" height="300"  />
+</div>
+
+
 # Libraries/Technology used in the project:
 - Next.js 13
 - Prisma ORM
@@ -35,6 +44,7 @@ Project is not endorsed or supported directly or indirectly with Warner Bros. En
 - Stylization - Tailwindcss
 - Dark/Light mode - Next theme toggle
 - Dashboard with partial revalidation - Next.js 13
+- Responsive design
 
 # Running locally
 To run the project, you need to provide the following .env files:
