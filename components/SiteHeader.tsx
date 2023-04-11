@@ -1,12 +1,11 @@
 "use client"
 
 import Link from "next/link"
-import { getSession, signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 import { MainNavItem, MobileNavItem } from "types/nav"
 
 import { siteConfig } from "@/config/site"
 import { useScrollPosition } from "@/lib/hooks/useScrollPosition"
-import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 import { MainNav } from "@/components/MainNav"
 import { MobileNav } from "@/components/MobileNav"
@@ -29,8 +28,8 @@ interface SiteHeaderProps {
 }
 
 export function SiteHeader({ mainConfig, mobileConfig }: SiteHeaderProps) {
-  const session = getSession()
-
+  const { data: session, status } = useSession()
+  const { image, name } = session?.user || {}
   const scrollPosition = useScrollPosition()
 
   return (
