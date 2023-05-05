@@ -20,6 +20,7 @@ Project is not endorsed or supported directly or indirectly with Warner Bros. En
 
 # Libraries/Technology used in the project:
 - Next.js 13
+- React
 - Prisma ORM
 - Postgresql database
 - Typescript
