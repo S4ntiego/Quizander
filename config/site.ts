@@ -13,7 +13,7 @@ interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "Quizander",
-  description: "Verify your knowledge about the Harry Potter's universe.",
+  description: "Verify your knowledge about the Harry Potter's universe. ",
   mainNav: [
     {
       title: "Quizzes",
