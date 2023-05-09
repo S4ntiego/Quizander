@@ -29,7 +29,7 @@ const Answers = ({ nestIndex, control, register }: AnswersProps) => {
     <div className="mt-4">
       <Label className="">Answers:</Label>
       <ul className="grid w-full mt-1.5 gap-4">
-        {/* This is what we add with append */}
+        {/* append */}
         {fields.map((item, k) => (
           <div
             key={item.id}
