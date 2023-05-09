@@ -9,12 +9,7 @@ interface DashboardConfig {
 }
 
 export const dashboardConfig: DashboardConfig = {
-  mainNav: [
-    {
-      // title: "Quizzes",
-      // href: "/quizzes",
-    },
-  ],
+  mainNav: [{}],
   mainDashboardNav: [],
   dashboardNav: [
     {
