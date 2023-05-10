@@ -16,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Icons } from "./Icons"
 import { Button } from "./ui/button"
 import { DropdownMenuShortcut } from "./ui/dropdown-menu"
 
@@ -32,7 +33,11 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
           className="relative flex items-center justify-center h-10 w-10 bg-center rounded-full"
         >
           <Avatar>
-            <AvatarImage src={`${user.image}`} alt={"A"} />
+            {user.image?.startsWith("https://platform") ? (
+              <Icons.user className="h-4 w-4 text-dark-50" />
+            ) : (
+              <AvatarImage src={`${user.image}`} alt={"A"} />
+            )}
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -43,7 +48,7 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
         className="w-[200px] slide-in-from-top-2 overflow-auto"
         forceMount
       >
-        <DropdownMenuLabel>{user.image}</DropdownMenuLabel>
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <Link href="/dashboard/profile">

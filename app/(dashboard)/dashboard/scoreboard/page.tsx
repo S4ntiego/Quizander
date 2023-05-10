@@ -70,64 +70,58 @@ export default async function ScoreboardPage() {
           className="
        rounded-md border border-dark-200 dark:border-dark-400"
         >
-          {scores?.length ? (
-            <div>
-              {scores.map((category) => (
-                <Accordion type="multiple" className="" key={category.id}>
-                  {category.quizzes.map((quiz) => (
-                    <AccordionItem
-                      className="px-4"
-                      key={quiz.id}
-                      value={quiz.title}
-                    >
-                      <AccordionTrigger>
-                        <h1>{quiz.title}</h1>
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <div className="flex justify-between mb-1">
-                          <div>Date:</div>
-                          <div>Score:</div>
-                        </div>
-                        {quiz.quizScores.map((quizScore) => (
-                          <div key={quizScore.id} className="flex flex-col">
-                            <div className="flex justify-between">
-                              <div>
-                                {new Date(
-                                  quizScore?.createdAt
-                                ).toLocaleDateString()}
-                              </div>
-                              <div>{quizScore.score}</div>
+          <div>
+            {scores.map((category) => (
+              <Accordion type="multiple" className="" key={category.id}>
+                {category.quizzes.map((quiz) => (
+                  <AccordionItem
+                    className="px-4"
+                    key={quiz.id}
+                    value={quiz.title}
+                  >
+                    <AccordionTrigger>
+                      <h1>{quiz.title}</h1>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="flex justify-between mb-1">
+                        <div>Date:</div>
+                        <div>Score:</div>
+                      </div>
+                      {quiz.quizScores.map((quizScore) => (
+                        <div key={quizScore.id} className="flex flex-col">
+                          <div className="flex justify-between">
+                            <div>
+                              {new Date(
+                                quizScore?.createdAt
+                              ).toLocaleDateString()}
                             </div>
+                            <div>{quizScore.score}</div>
                           </div>
-                        ))}
-                        <Separator className="my-2" />
-                        {aggregations?.length ? (
-                          <div className="flex flex-col justify-end items-end">
-                            <p>
-                              <span className="mr-2">Average Score:</span>
-                              {aggregations
-                                ?.find((x) => x.quizId === quiz["id"])
-                                ?._avg.score?.toFixed(2)}
-                            </p>
-                            <p>
-                              <span className="mr-2">Total Plays:</span>
-                              {
-                                aggregations.find(
-                                  (x) => x.quizId === quiz["id"]
-                                )?._count.score
-                              }
-                            </p>
-                          </div>
-                        ) : (
-                          <div></div>
-                        )}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              ))}
-            </div>
-          ) : (
+                        </div>
+                      ))}
+                      <Separator className="my-2" />
+                      <div className="flex flex-col justify-end items-end">
+                        <p>
+                          <span className="mr-2">Average Score:</span>
+                          {aggregations
+                            ?.find((x) => x.quizId === quiz["id"])
+                            ?._avg.score?.toFixed(2)}
+                        </p>
+                        <p>
+                          <span className="mr-2">Total Plays:</span>
+                          {
+                            aggregations.find((x) => x.quizId === quiz["id"])
+                              ?._count.score
+                          }
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            ))}
+          </div>
+          {!aggregations?.length && (
             <EmptyPlaceholder>
               <EmptyPlaceholder.Icon name="trophy" />
               <EmptyPlaceholder.Title>No scores</EmptyPlaceholder.Title>
