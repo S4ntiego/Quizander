@@ -8,16 +8,14 @@ import { MainNavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/Icons"
-import { MobileNav } from "@/components/MobileNav"
 
 interface MainNavProps {
   items?: MainNavItem[]
   children?: React.ReactNode
 }
 
-export function MainNav({ items, children }: MainNavProps) {
+export function MainNav({ items }: MainNavProps) {
   const segment = useSelectedLayoutSegment()
-  const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
 
   return (
     <div className="flex gap-6 md:gap-10">

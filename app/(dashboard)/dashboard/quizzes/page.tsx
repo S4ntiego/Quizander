@@ -12,30 +12,30 @@ import { EmptyPlaceholder } from "@/components/Dashboard/EmptyPlaceholder"
 import { Icons } from "@/components/Icons"
 import { buttonVariants } from "@/components/ui/button"
 
-// const getQuizzes = cache(async () => {
-//   const quizzes = await prisma.quiz.findMany({
-//     include: {
-//       questions: {
-//         select: {
-//           question: true,
-//           answers: { select: { answer: true, isCorrect: true } },
-//         },
-//       },
-//     },
-//     orderBy: {
-//       createdAt: "desc",
-//     },
-//   })
+const getQuizzes = cache(async () => {
+  const quizzes = await prisma.quiz.findMany({
+    include: {
+      questions: {
+        select: {
+          question: true,
+          answers: { select: { answer: true, isCorrect: true } },
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  })
 
-//   if (quizzes) {
-//     for (const quiz of quizzes) {
-//       quiz.coverImage =
-//         "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
-//     }
-//   }
+  if (quizzes) {
+    for (const quiz of quizzes) {
+      quiz.coverImage =
+        "https://d16toh0t29dtt4.cloudfront.net/" + quiz.coverImage
+    }
+  }
 
-//   return quizzes
-// })
+  return quizzes
+})
 
 export default async function DashboardPage() {
   const user = await getCurrentUser()
@@ -44,11 +44,11 @@ export default async function DashboardPage() {
     redirect("/")
   }
 
-  // const quizzes = await getQuizzes()
+  const quizzes = await getQuizzes()
 
   return (
     <DashboardContainer>
-      {/* <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
+      <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
         <Link
           className={cn(
             buttonVariants({ variant: "default" }),
@@ -59,9 +59,9 @@ export default async function DashboardPage() {
           <Icons.add className="w-4 h-4 mr-2" />
           <span>Add Quiz</span>
         </Link>
-      </DashboardHeader> */}
+      </DashboardHeader>
 
-      {/* <div>
+      <div>
         {quizzes?.length ? (
           <div className="divide-y dark:divide-dark-400 divide-dark-200 rounded-md border dark:border-dark-400 border-dark-200">
             {quizzes.map((quiz) => (
@@ -86,7 +86,7 @@ export default async function DashboardPage() {
             </Link>
           </EmptyPlaceholder>
         )}
-      </div> */}
+      </div>
     </DashboardContainer>
   )
 }
