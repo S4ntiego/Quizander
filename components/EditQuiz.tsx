@@ -140,7 +140,6 @@ export default function QuizEditor({ quiz, categories }: QuizEditorProps) {
   }
 
   useEffect(() => {
-    console.log(quiz.coverImage)
     if (quiz) {
       methods.reset({
         title: quiz.title,
