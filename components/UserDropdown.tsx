@@ -43,7 +43,7 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
         className="w-[200px] slide-in-from-top-2 overflow-auto"
         forceMount
       >
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>{user.image}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <Link href="/dashboard/profile">
