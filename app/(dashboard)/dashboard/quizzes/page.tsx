@@ -38,7 +38,7 @@ import { buttonVariants } from "@/components/ui/button"
 // })
 
 export default async function DashboardPage() {
-  const user = getCurrentUser()
+  const user = await getCurrentUser()
 
   if (!user) {
     redirect("/")
@@ -48,7 +48,7 @@ export default async function DashboardPage() {
 
   return (
     <DashboardContainer>
-      <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
+      {/* <DashboardHeader heading="Quizzes" text="Create and manage quizzes.">
         <Link
           className={cn(
             buttonVariants({ variant: "default" }),
@@ -59,7 +59,7 @@ export default async function DashboardPage() {
           <Icons.add className="w-4 h-4 mr-2" />
           <span>Add Quiz</span>
         </Link>
-      </DashboardHeader>
+      </DashboardHeader> */}
 
       {/* <div>
         {quizzes?.length ? (
