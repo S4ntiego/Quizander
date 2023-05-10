@@ -8,7 +8,7 @@ const Landing = () => {
     <section className="w-full bg-gradient-to-t from-dark-150 to-dark-50 dark:from-dark-700 dark:to-dark-600 -mt-20 pt-20 pb-24">
       <div className="flex flex-col">
         {/* text */}
-        <div className="flex flex-col text-center items-center container ">
+        <div className="flex flex-col text-center items-center container mt-12">
           <p className="text-sm uppercase tracking-widest text-dark-400 mb-2 dark:text-dark-200">
             Yer a wizard
           </p>

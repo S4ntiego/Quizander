@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
+import { LoginButton } from "@/components/LoginButton"
 import { MainNav } from "@/components/MainNav"
 import { SiteFooter } from "@/components/SiteFooter"
 import { buttonVariants } from "@/components/ui/button"
@@ -14,20 +15,10 @@ export default async function MarketingLayout({
 }: MarketingLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="container z-40 bg-background">
-        <div className="flex h-20 items-center justify-between py-6">
+      <header className="sticky top-0 border-b border-dark-200 dark:border-dark-400 z-40 bg-dark-50 dark:bg-dark-700">
+        <div className="container flex h-20 items-center justify-between py-6">
           <MainNav />
-          <nav>
-            <Link
-              href="/login"
-              className={cn(
-                buttonVariants({ variant: "subtle", size: "sm" }),
-                "px-4"
-              )}
-            >
-              Login
-            </Link>
-          </nav>
+          <LoginButton />
         </div>
       </header>
       <main className="flex-1">{children}</main>
