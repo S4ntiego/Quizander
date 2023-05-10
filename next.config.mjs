@@ -12,7 +12,6 @@ const nextConfig = {
   },
   experimental: {
     appDir: true,
-    scrollRestoration: true,
     serverComponentsExternalPackages: ["@prisma/client"],
     fontLoaders: [
       {

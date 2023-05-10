@@ -1,10 +1,6 @@
-import Link from "next/link"
-
-import { cn } from "@/lib/utils"
 import { LoginButton } from "@/components/LoginButton"
 import { MainNav } from "@/components/MainNav"
 import { SiteFooter } from "@/components/SiteFooter"
-import { buttonVariants } from "@/components/ui/button"
 
 interface MarketingLayoutProps {
   children: React.ReactNode
