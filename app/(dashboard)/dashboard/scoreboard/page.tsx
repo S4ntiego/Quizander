@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
+import { EmptyPlaceholder } from "@/components/Dashboard/EmptyPlaceholder"
 import {
   Accordion,
   AccordionContent,
@@ -127,7 +128,14 @@ export default async function ScoreboardPage() {
               ))}
             </div>
           ) : (
-            <div></div>
+            <EmptyPlaceholder>
+              <EmptyPlaceholder.Icon name="trophy" />
+              <EmptyPlaceholder.Title>No scores</EmptyPlaceholder.Title>
+              <EmptyPlaceholder.Description>
+                You don&apos;t have any saved scores yet. Play quizzes while
+                being logged in to save your results.
+              </EmptyPlaceholder.Description>
+            </EmptyPlaceholder>
           )}
         </div>
       </div>

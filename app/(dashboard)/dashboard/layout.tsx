@@ -24,6 +24,8 @@ export default async function DashboardLayout({
     <div className="flex min-h-screen flex-col space-y-6">
       <header className="sticky top-0 z-40 border-b dark:border-dark-400 border-dark-200 bg-background">
         <div className="container flex h-20 items-center justify-between py-4">
+          {console.log(user)}
+          <div>{user.image}</div>
           <MainNav />
           <UserDropdown
             user={{
