@@ -79,16 +79,8 @@ module.exports = {
         16: "repeat(16, minmax(0, 1fr))",
       },
       fontFamily: {
-        playfair: ["var(--font-playfair-display)"],
         lexend: ["var(--font-lexend)"],
-        fraunces: ["var(--font-fraunces)"],
-        outfit: ["var(--font-outfit)"],
-        mulish: ["var(--font-mulish)"],
-        jost: ["var(--font-jost)"],
-        inter: ["var(--font-inter)"],
-        dancingscript: ["var(--font-dancing-script)"],
         space: ["var(--font-space-grotesk)"],
-        sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       keyframes: {
         "accordion-down": {

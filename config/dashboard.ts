@@ -9,7 +9,7 @@ interface DashboardConfig {
 }
 
 export const dashboardConfig: DashboardConfig = {
-  mainNav: [{}],
+  mainNav: [],
   mainDashboardNav: [],
   dashboardNav: [
     {

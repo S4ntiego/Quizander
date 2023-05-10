@@ -1,24 +1,37 @@
-import React from "react"
+import Link from "next/link"
 
-import { dashboardConfig } from "@/config/dashboard"
+import { cn } from "@/lib/utils"
+import { MainNav } from "@/components/MainNav"
 import { SiteFooter } from "@/components/SiteFooter"
-import { SiteHeader } from "@/components/SiteHeader"
+import { buttonVariants } from "@/components/ui/button"
 
-interface QuizzesProps {
+interface MarketingLayoutProps {
   children: React.ReactNode
 }
 
-const layout = ({ children }: QuizzesProps) => {
+export default async function MarketingLayout({
+  children,
+}: MarketingLayoutProps) {
   return (
-    <div className="flex min-h-screen flex-col ">
-      <SiteHeader
-        mainConfig={dashboardConfig.mainNav}
-        mobileConfig={dashboardConfig.mobileNav}
-      />
-      <div className="flex-1">{children}</div>
+    <div className="flex min-h-screen flex-col">
+      <header className="container z-40 bg-background">
+        <div className="flex h-20 items-center justify-between py-6">
+          <MainNav />
+          <nav>
+            <Link
+              href="/login"
+              className={cn(
+                buttonVariants({ variant: "subtle", size: "sm" }),
+                "px-4"
+              )}
+            >
+              Login
+            </Link>
+          </nav>
+        </div>
+      </header>
+      <main className="flex-1">{children}</main>
       <SiteFooter />
     </div>
   )
 }
-
-export default layout

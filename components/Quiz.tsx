@@ -3,8 +3,7 @@
 import React, { useState, useTransition } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { Answer, Question as Qs, Quiz as Qz, User } from "@prisma/client"
-import { useSession } from "next-auth/react"
+import { Answer, Question as Qs, Quiz as Qz } from "@prisma/client"
 
 import { cn } from "@/lib/utils"
 import { toast } from "@/components/ui/toast"
@@ -25,8 +24,6 @@ interface QuizProps {
 }
 
 export function Quiz({ quiz }: QuizProps) {
-  const session = useSession()
-  const user = session?.data?.user
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
   const [currentAnswer, setCurrentAnswer] = useState<
     Pick<Answer, "answer" | "isCorrect"> | string
@@ -96,18 +93,18 @@ export function Quiz({ quiz }: QuizProps) {
   }
 
   const onCompleteHandle = async () => {
-    const data = {
-      quizId: quiz?.id,
-      userId: user?.id,
-      score: correctAnswersCount,
-    }
+    // const data = {
+    //   quizId: quiz?.id,
+    //   userId: user?.id,
+    //   score: correctAnswersCount,
+    // }
 
-    if (!user) {
-      router.push("/#harry_potter_quizzes")
-      return
-    }
+    // if (!user) {
+    //   router.push("/#harry_potter_quizzes")
+    //   return
+    // }
 
-    await saveQuizResults(data)
+    // await saveQuizResults(data)
     router.push("/#harry_potter_quizzes")
   }
 

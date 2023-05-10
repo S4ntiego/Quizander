@@ -1,69 +1,13 @@
-"use client"
-
 import "@/styles/globals.css"
 import React from "react"
-import {
-  Dancing_Script,
-  Inter as FontSans,
-  Fraunces,
-  Inter,
-  Jost,
-  Lexend,
-  Mulish,
-  Outfit,
-  Playfair_Display,
-  Space_Grotesk,
-} from "next/font/google"
-import { ThemeProvider } from "next-themes"
+import { Lexend, Space_Grotesk } from "next/font/google"
 
 import { cn } from "@/lib/utils"
-import AuthContext from "@/components/Dashboard/AuthContext"
+import { ThemeProvider } from "@/components/ThemeProvider"
 import { Toaster } from "@/components/ui/toast"
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-})
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair-display",
-  subsets: ["latin"],
-})
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "optional",
-})
 
 const lexend = Lexend({
   variable: "--font-lexend",
-  subsets: ["latin"],
-})
-
-const jost = Jost({
-  variable: "--font-jost",
-  subsets: ["latin"],
-})
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-})
-
-const mulish = Mulish({
-  variable: "--font-mulish",
-  subsets: ["latin"],
-})
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-})
-
-const dancingscript = Dancing_Script({
-  variable: "--font-dancing-script",
   subsets: ["latin"],
 })
 
@@ -71,6 +15,42 @@ const space = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
 })
+
+export const metadata = {
+  title: {
+    default: `Quizander`,
+    template: `%s | Quizander`,
+  },
+  description: `Full-stack Harry Potter Trivia Website`,
+  keywords: ["Next.js", "Harry Potter", "Trivia"],
+  authors: [
+    {
+      name: "Adam Ksiazek",
+      url: "https://github.com/S4ntiego",
+    },
+  ],
+  creator: "Adam Ksiazek",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: `https://quizander-dqzb.vercel.app/`,
+    title: `Quizander`,
+    description: `Full-stack Harry Potter Trivia Website`,
+    siteName: `Quizander`,
+  },
+  twitter: {
+    title: `Quizander`,
+    description: `Full-stack Harry Potter Trivia Website`,
+    creator: "Adam Ksiazek",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+}
 
 export default function RootLayout({
   children,
@@ -88,22 +68,16 @@ export default function RootLayout({
         <body
           className={cn(
             "h-full bg-dark-50 font-lexend box-border text-dark-900 antialiased dark:bg-dark-700 dark:text-dark-50",
-            playfair.variable,
-            dancingscript.variable,
-            jost.variable,
-            outfit.variable,
-            mulish.variable,
-            inter.variable,
-            fontSans.variable,
+
             lexend.variable,
-            fraunces.variable,
+
             space.variable
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="dark">
-            <AuthContext>{children}</AuthContext>
+            {children}
+            <Toaster position="bottom-right" />
           </ThemeProvider>
-          <Toaster position="bottom-right" />
         </body>
       </html>
     </>

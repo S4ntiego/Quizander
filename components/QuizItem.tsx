@@ -30,7 +30,7 @@ export function QuizItem({
           />
         </AspectRatio>
         <div className="space-y-1 mt-2 text-sm">
-          <h3 className="font-playfair font-bold text-2xl leading-none">
+          <h3 className="font-space font-bold text-2xl leading-none">
             {quiz.title}
           </h3>
           <p className="text-normal text-slate-500 dark:text-slate-400">
