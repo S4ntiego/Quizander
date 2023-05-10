@@ -4,7 +4,6 @@ import React, { startTransition } from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { User } from "@prisma/client"
-import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -14,22 +13,20 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { toast } from "../ui/toast"
 
-interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-  user: Pick<User, "id" | "name">
-}
-
 export const userNameSchema = z.object({
   name: z.string().min(3).max(32),
 })
 
 type FormData = z.infer<typeof userNameSchema>
 
-const ChangeNameForm = () => {
+interface ChangeNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
+  user: Pick<User, "id" | "name">
+}
+
+const ChangeNameForm = ({ user, className, ...props }: ChangeNameFormProps) => {
   const router = useRouter()
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
-  const { data: session } = useSession()
 
-  const user = session?.user
   const {
     handleSubmit,
     register,

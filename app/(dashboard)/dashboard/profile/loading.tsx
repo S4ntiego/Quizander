@@ -11,7 +11,6 @@ export default function DashboardSettingsLoading() {
       />
       <div className="grid gap-10">
         <Card.Skeleton />
-        <Card.Skeleton />
       </div>
     </DashboardContainer>
   )

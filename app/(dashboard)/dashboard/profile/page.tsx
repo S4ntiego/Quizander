@@ -6,6 +6,11 @@ import { DashboardContainer } from "@/components/Dashboard/DashboardContainer"
 import { DashboardHeader } from "@/components/Dashboard/DashboardHeader"
 import { UserNameForm } from "@/components/Dashboard/UserNameForm"
 
+export const metadata = {
+  title: "User Profile",
+  description: "View and manage your user account settings.",
+}
+
 const ProfilePage = async () => {
   const user = await getCurrentUser()
 
