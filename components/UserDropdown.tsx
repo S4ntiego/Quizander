@@ -32,9 +32,9 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
           variant="ghost"
           className="relative flex items-center justify-center h-10 w-10 bg-center rounded-full"
         >
-          <Avatar className="flex items-center justify-center dark:bg-dark-50 group dark:hover:bg-dark-400 bg-dark-600 hover:bg-slate-600">
+          <Avatar className="flex items-center justify-center dark:bg-dark-50 bg-dark-600 ">
             {user.image?.startsWith("https://platform") ? (
-              <Icons.user className="h-5 w-5 dark:text-dark-900 text-dark-50 dark:group-hover:text-dark-150" />
+              <Icons.user className="h-5 w-5 dark:text-dark-900 text-dark-50" />
             ) : (
               <AvatarImage src={`${user.image}`} alt={"A"} />
             )}
