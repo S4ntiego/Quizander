@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import { getServerSession } from "next-auth"
+import { getServerSession } from "next-auth/next"
 
 import { withCurrentUser } from "@/lib/api-middlewares/with-current-user"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
@@ -11,9 +11,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "PATCH") {
     try {
       const session = await getServerSession(req, res, authOptions)
-      const user = session?.user
 
-      if (!user) {
+      if (!session?.user) {
         throw new Error("User not found")
       }
 
@@ -22,7 +21,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
         await prisma.user.update({
           where: {
-            id: user.id,
+            id: session.user.id,
           },
           data: {
             name: payload.name,

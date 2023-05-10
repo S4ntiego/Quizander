@@ -25,7 +25,7 @@ export function SiteFooter() {
           >
             Midjourney
           </a>
-          . Design inspired by{" "}
+          . Project inspired by{" "}
           <a
             href={"https://github.com/shadcn"}
             target="_blank"

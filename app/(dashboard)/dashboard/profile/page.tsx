@@ -24,7 +24,7 @@ const ProfilePage = async () => {
         heading="User Profile"
         text="View and manage your user account settings."
       />
-      <UserNameForm user={user} />
+      <UserNameForm user={{ id: user.id, name: user.name || "" }} />
     </DashboardContainer>
   )
 }

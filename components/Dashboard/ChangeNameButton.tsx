@@ -1,32 +1,39 @@
 "use client"
 
-import React, { startTransition } from "react"
+import * as React from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { User } from "@prisma/client"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import * as z from "zod"
 
 import { cn } from "@/lib/utils"
-import { Icons } from "../Icons"
-import { Button } from "../ui/button"
-import { Input } from "../ui/input"
-import { toast } from "../ui/toast"
+import { Icons } from "@/components/Icons"
+import { buttonVariants } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { toast } from "@/components/ui/toast"
 
 export const userNameSchema = z.object({
   name: z.string().min(3).max(32),
 })
 
-type FormData = z.infer<typeof userNameSchema>
-
-interface ChangeNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
+interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
   user: Pick<User, "id" | "name">
 }
 
-const ChangeNameForm = ({ user, className, ...props }: ChangeNameFormProps) => {
-  const router = useRouter()
-  const [isSaving, setIsSaving] = React.useState<boolean>(false)
+type FormData = z.infer<typeof userNameSchema>
 
+export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
+  const router = useRouter()
   const {
     handleSubmit,
     register,
@@ -34,14 +41,15 @@ const ChangeNameForm = ({ user, className, ...props }: ChangeNameFormProps) => {
   } = useForm<FormData>({
     resolver: zodResolver(userNameSchema),
     defaultValues: {
-      name: user?.name as string,
+      name: user?.name || "",
     },
   })
+  const [isSaving, setIsSaving] = React.useState<boolean>(false)
 
   async function onSubmit(data: FormData) {
     setIsSaving(true)
 
-    const response = await fetch(`/api/users/${user?.id}`, {
+    const response = await fetch(`/api/users/${user.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -56,37 +64,60 @@ const ChangeNameForm = ({ user, className, ...props }: ChangeNameFormProps) => {
     if (!response?.ok) {
       return toast({
         title: "Something went wrong.",
-        message: "Your username could not be updated. Please try again.",
-        type: "error",
+        message: "Your name was not updated. Please try again.",
       })
     }
 
-    startTransition(() => {
-      router.refresh()
+    toast({
+      message: "Your name has been updated.",
     })
 
-    toast({
-      message: "Your username has been updated.",
-    })
+    router.refresh()
   }
 
   return (
-    <form className={cn("overflow-hidden")} onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid gap-1">
-        <label className="sr-only" htmlFor="name">
-          Name
-        </label>
-        <Input id="name" className="" {...register("name")} />
-        {errors?.name && (
-          <p className="px-2 text-xs text-red-600">{errors.name.message}</p>
-        )}
-      </div>
-      <Button variant="default" className="w-28 h-8" disabled={isSaving}>
-        {isSaving && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-        <span>Save</span>
-      </Button>
+    <form
+      className={cn(className)}
+      onSubmit={handleSubmit(onSubmit)}
+      {...props}
+    >
+      <Card>
+        <CardHeader>
+          <CardTitle>Your Name</CardTitle>
+          <CardDescription>
+            Please enter your full name or a display name you are comfortable
+            with.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-1">
+            <Label className="sr-only" htmlFor="name">
+              Name
+            </Label>
+            <Input
+              id="name"
+              className="w-[400px]"
+              size={32}
+              {...register("name")}
+            />
+            {errors?.name && (
+              <p className="px-1 text-xs text-red-600">{errors.name.message}</p>
+            )}
+          </div>
+        </CardContent>
+        <CardFooter>
+          <button
+            type="submit"
+            className={cn(buttonVariants(), className)}
+            disabled={isSaving}
+          >
+            {isSaving && (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            )}
+            <span>Save</span>
+          </button>
+        </CardFooter>
+      </Card>
     </form>
   )
 }
-
-export default ChangeNameForm

@@ -3,6 +3,7 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { User } from "@prisma/client"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
@@ -13,9 +14,9 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { toast } from "../ui/toast"
 
-// interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-//   user: Pick<User, "id" | "name">
-// }
+interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
+  user: Pick<User, "id" | "name">
+}
 
 export const userNameSchema = z.object({
   name: z.string().min(3).max(32),
@@ -23,7 +24,7 @@ export const userNameSchema = z.object({
 
 type FormData = z.infer<typeof userNameSchema>
 
-export function UserNameForm({ user }) {
+export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
   const router = useRouter()
   const {
     handleSubmit,
