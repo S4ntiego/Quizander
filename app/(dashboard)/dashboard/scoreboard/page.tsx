@@ -19,7 +19,7 @@ export default async function ScoreboardPage() {
     redirect("/login")
   }
 
-  const scores = await prisma.quizCategory.findMany({
+  const scoresPromise = prisma.quizCategory.findMany({
     include: {
       quizzes: {
         where: {
@@ -40,7 +40,7 @@ export default async function ScoreboardPage() {
     },
   })
 
-  const aggregations = await prisma.quizScore.groupBy({
+  const aggregationsPromise = prisma.quizScore.groupBy({
     by: ["userId", "quizId"],
     where: {
       userId: user.id,
@@ -52,6 +52,11 @@ export default async function ScoreboardPage() {
       score: true,
     },
   })
+
+  const [scores, aggregations] = await Promise.all([
+    scoresPromise,
+    aggregationsPromise,
+  ])
 
   return (
     <DashboardContainer>
