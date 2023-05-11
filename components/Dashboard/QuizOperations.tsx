@@ -47,16 +47,17 @@ export function QuizOperations({ quiz }: QuizOperationsProps) {
     if (!response?.ok) {
       toast({
         title: "Something went wrong.",
-        message: "Quiz could not be deleted. Please try again.",
+        message:
+          "Quiz could not be deleted. Please try again. You can delete only your own quizzes.",
         type: "error",
       })
+    } else {
+      toast({
+        title: "Quiz deleted",
+        message: "Quiz has been successfully deleted.",
+        type: "success",
+      })
     }
-
-    toast({
-      title: "Quiz deleted",
-      message: "Quiz has been successfully deleted.",
-      type: "success",
-    })
 
     startTransition(() => {
       setIsFetching(false)
@@ -95,7 +96,8 @@ export function QuizOperations({ quiz }: QuizOperationsProps) {
             <AlertDialogTitle>Are you sure absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
               This action cannot be undone. This will permanently delete the
-              given quiz and remove data from our servers.
+              given quiz and remove data from our servers. You can delete only
+              your own quizzes.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

@@ -108,13 +108,13 @@ export default function QuizzesForm({ categories }: QuizzesFormProps) {
         message: "Your quiz was not created. Please try again.",
         type: "error",
       })
+    } else {
+      toast({
+        title: "Quiz uploaded successfully",
+        message: "Your quiz has been created successfully.",
+        type: "success",
+      })
     }
-
-    toast({
-      title: "Quiz uploaded successfully",
-      message: "Your quiz has been created successfully.",
-      type: "success",
-    })
 
     startTransition(() => {
       setIsFetching(false)
@@ -173,172 +173,179 @@ export default function QuizzesForm({ categories }: QuizzesFormProps) {
   }
 
   return (
-    <FormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit(onSubmit)}
-        className="grid w-full gap-2 text-sm"
-      >
-        <Label htmlFor="coverImage">Cover Image</Label>
-        <div className="grid w-full items-center gap-1.5">
-          <Label
-            htmlFor="coverImage"
-            className={cn(
-              "flex cursor-pointer relative items-center justify-center w-[320px] h-[320px] border border-slate-300 dark:border-dark-400 border-dashed overflow-hidden rounded-md hover:border-none  hover:ring-slate-300 hover:ring-2 dark:hover:border-none dark:hover:ring-slate-600",
-              preview && "border-solid"
-            )}
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
-              <div
-                className={cn(
-                  "flex flex-col items-center justify-center gap-2",
-                  preview && "border-none"
-                )}
-              >
-                <Icons.addImage className="w-8 h-8" />
-                <span
+    <div className="flex flex-col">
+      <div className="w-full rounded-md text-center flex items-center justify-center border-[0.25px] p-1 border-red-500 mb-4">
+        Please note that, due to the code being open-sourced and the AWS
+        restrictions, the 'Add quiz' functionality is limited to the admin role
+        as of today.
+      </div>
+      <FormProvider {...methods}>
+        <form
+          onSubmit={methods.handleSubmit(onSubmit)}
+          className="grid w-full gap-2 text-sm"
+        >
+          <Label htmlFor="coverImage">Cover Image</Label>
+          <div className="grid w-full items-center gap-1.5">
+            <Label
+              htmlFor="coverImage"
+              className={cn(
+                "flex cursor-pointer relative items-center justify-center w-[320px] h-[320px] border border-slate-300 dark:border-dark-400 border-dashed overflow-hidden rounded-md hover:border-none  hover:ring-slate-300 hover:ring-2 dark:hover:border-none dark:hover:ring-slate-600",
+                preview && "border-solid"
+              )}
+            >
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+                <div
                   className={cn(
-                    buttonVariants({ variant: "default", size: "sm" }),
-                    "text-xs mt-2"
+                    "flex flex-col items-center justify-center gap-2",
+                    preview && "border-none"
                   )}
                 >
-                  <Icons.add className="h-4 w-4 mr-1" />
-                  Add image
-                </span>
-              </div>
-            </div>
-            {selectedFile && preview && (
-              <div className="h-full w-full group">
-                <div className="absolute flex-col h-full w-full flex items-center justify-center opacity-0 hover:opacity-100 z-40">
-                  <Icons.fileEdit className="text-slate-50 w-8 h-8" />
-
+                  <Icons.addImage className="w-8 h-8" />
                   <span
                     className={cn(
-                      buttonVariants({ variant: "subtle", size: "sm" }),
+                      buttonVariants({ variant: "default", size: "sm" }),
                       "text-xs mt-2"
                     )}
                   >
-                    Edit image
+                    <Icons.add className="h-4 w-4 mr-1" />
+                    Add image
                   </span>
                 </div>
-                <Image
-                  priority
-                  src={preview}
-                  alt={"quiz cover"}
-                  fill
-                  className="object-cover group-hover:brightness-50 "
-                />
               </div>
+              {selectedFile && preview && (
+                <div className="h-full w-full group">
+                  <div className="absolute flex-col h-full w-full flex items-center justify-center opacity-0 hover:opacity-100 z-40">
+                    <Icons.fileEdit className="text-slate-50 w-8 h-8" />
+
+                    <span
+                      className={cn(
+                        buttonVariants({ variant: "subtle", size: "sm" }),
+                        "text-xs mt-2"
+                      )}
+                    >
+                      Edit image
+                    </span>
+                  </div>
+                  <Image
+                    priority
+                    src={preview}
+                    alt={"quiz cover"}
+                    fill
+                    className="object-cover group-hover:brightness-50 "
+                  />
+                </div>
+              )}
+
+              <Input
+                id="coverImage"
+                onInput={(e) => onSelectFile(e)}
+                {...methods.register("coverImage", { required: true })}
+                type="file"
+                className="hidden cursor-pointer top-1/2 left-1/2 border-none h-full w-full"
+              />
+            </Label>
+            {errors.coverImage && (
+              <p className="mb-3 text-red-600 dark:text-red-400">
+                {errors.coverImage?.message?.toString()}
+              </p>
             )}
+          </div>
 
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="title">Title</Label>
             <Input
-              id="coverImage"
-              onInput={(e) => onSelectFile(e)}
-              {...methods.register("coverImage", { required: true })}
-              type="file"
-              className="hidden cursor-pointer top-1/2 left-1/2 border-none h-full w-full"
+              id="title"
+              placeholder="Title"
+              type="text"
+              {...methods.register(`title`)}
             />
-          </Label>
-          {errors.coverImage && (
-            <p className="mb-3 text-red-600 dark:text-red-400">
-              {errors.coverImage?.message?.toString()}
-            </p>
-          )}
-        </div>
+            {errors.title && (
+              <p className="mb-3 text-red-600 dark:text-red-400">
+                {errors.title?.message}
+              </p>
+            )}
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="description">Description</Label>
+            <Input
+              placeholder="Description"
+              id="description"
+              type="text"
+              {...methods.register(`description`)}
+            />
+            {errors.description && (
+              <p className="mb-3 text-red-600 dark:text-red-400">
+                {errors.description?.message}
+              </p>
+            )}
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="category">Quiz Category</Label>
+            <CategorySelect
+              categories={categories}
+              name="category"
+              id="category"
+            />
+            {errors.category && (
+              <p className="mb-3 text-red-600 dark:text-red-400">
+                {errors.category?.message}
+              </p>
+            )}
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="lowScore">Low Score Description</Label>
+            <Input
+              placeholder="Low Score"
+              id="lowScore"
+              type="text"
+              {...methods.register(`lowScore`)}
+            />
+            {errors.lowScore && (
+              <p className="mb-3 text-red-600 dark:text-red-400">
+                {errors.lowScore?.message}
+              </p>
+            )}
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="mediumScore">Medium Score Description</Label>
+            <Input
+              placeholder="Medium Score"
+              id="mediumScore"
+              type="text"
+              {...methods.register(`mediumScore`)}
+            />
+            {errors.mediumScore && (
+              <p className="mb-3 text-red-600 dark:text-red-400">
+                {errors.mediumScore?.message}
+              </p>
+            )}
+          </div>
 
-        <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="title">Title</Label>
-          <Input
-            id="title"
-            placeholder="Title"
-            type="text"
-            {...methods.register(`title`)}
-          />
-          {errors.title && (
-            <p className="mb-3 text-red-600 dark:text-red-400">
-              {errors.title?.message}
-            </p>
-          )}
-        </div>
-        <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="description">Description</Label>
-          <Input
-            placeholder="Description"
-            id="description"
-            type="text"
-            {...methods.register(`description`)}
-          />
-          {errors.description && (
-            <p className="mb-3 text-red-600 dark:text-red-400">
-              {errors.description?.message}
-            </p>
-          )}
-        </div>
-        <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="category">Quiz Category</Label>
-          <CategorySelect
-            categories={categories}
-            name="category"
-            id="category"
-          />
-          {errors.category && (
-            <p className="mb-3 text-red-600 dark:text-red-400">
-              {errors.category?.message}
-            </p>
-          )}
-        </div>
-        <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="lowScore">Low Score Description</Label>
-          <Input
-            placeholder="Low Score"
-            id="lowScore"
-            type="text"
-            {...methods.register(`lowScore`)}
-          />
-          {errors.lowScore && (
-            <p className="mb-3 text-red-600 dark:text-red-400">
-              {errors.lowScore?.message}
-            </p>
-          )}
-        </div>
-        <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="mediumScore">Medium Score Description</Label>
-          <Input
-            placeholder="Medium Score"
-            id="mediumScore"
-            type="text"
-            {...methods.register(`mediumScore`)}
-          />
-          {errors.mediumScore && (
-            <p className="mb-3 text-red-600 dark:text-red-400">
-              {errors.mediumScore?.message}
-            </p>
-          )}
-        </div>
-
-        <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="highScore">High Score Description</Label>
-          <Input
-            placeholder="High Score"
-            id="highScore"
-            type="text"
-            {...methods.register(`highScore`)}
-          />
-          {errors.highScore && (
-            <p className="mb-3 text-red-600 dark:text-red-400">
-              {errors.highScore?.message}
-            </p>
-          )}
-        </div>
-        <Question {...{ control, register, getValues, setValue }} />
-        <Button type="submit">
-          <span className="flex flex-row justify-center items-center">
-            {isFetching ? (
-              <Icons.spinner className="h-4 w-4 animate-spin" />
-            ) : null}
-            <span>Add Quiz</span>
-          </span>
-        </Button>
-      </form>
-    </FormProvider>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="highScore">High Score Description</Label>
+            <Input
+              placeholder="High Score"
+              id="highScore"
+              type="text"
+              {...methods.register(`highScore`)}
+            />
+            {errors.highScore && (
+              <p className="mb-3 text-red-600 dark:text-red-400">
+                {errors.highScore?.message}
+              </p>
+            )}
+          </div>
+          <Question {...{ control, register, getValues, setValue }} />
+          <Button type="submit">
+            <span className="flex flex-row justify-center items-center">
+              {isFetching ? (
+                <Icons.spinner className="h-4 w-4 animate-spin" />
+              ) : null}
+              <span>Add Quiz</span>
+            </span>
+          </Button>
+        </form>
+      </FormProvider>
+    </div>
   )
 }

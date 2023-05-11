@@ -93,16 +93,17 @@ export default function QuizEditor({ quiz, categories }: QuizEditorProps) {
     if (!response?.ok) {
       toast({
         title: "Something went wrong.",
-        message: "Quiz could not be edited. Please try again.",
+        message:
+          "Quiz could not be edited. Please try again. You can edit only your own quizzes.",
         type: "error",
       })
+    } else {
+      toast({
+        title: "Quiz edited successfully",
+        message: "Your quiz has been edited successfully.",
+        type: "success",
+      })
     }
-
-    toast({
-      title: "Quiz edited successfully",
-      message: "Your quiz has been edited successfully.",
-      type: "success",
-    })
 
     startTransition(() => {
       setIsFetching(false)

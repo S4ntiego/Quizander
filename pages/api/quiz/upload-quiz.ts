@@ -31,6 +31,13 @@ const handler = async (req: RequestWithFile, res: NextApiResponse) => {
       return res.status(400).json({ error: "User not logged in" })
     }
 
+    //temporary solution before resetting the database to include user roles
+    if (session?.user.email !== "adamksiazek123@gmail.com") {
+      return res
+        .status(400)
+        .json({ error: "Only admin users can add quizzes." })
+    }
+
     if (req.method === "POST") {
       await runMiddleware(req, res, upload.single("coverImage"))
 
