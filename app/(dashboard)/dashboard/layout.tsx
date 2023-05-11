@@ -21,7 +21,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
-      <header className="sticky top-0 z-40 border-b dark:border-dark-400 border-dark-200 bg-background">
+      <header className="sticky top-0 z-40 border-b dark:border-dark-400 border-dark-200 bg-dark-50 dark:bg-dark-700">
         <div className="container flex h-20 items-center justify-between py-4">
           <MainNav />
           <UserDropdown
