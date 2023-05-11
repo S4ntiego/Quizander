@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation"
 
 import { getCurrentUser } from "@/lib/session"
+import { DashboardMainNav } from "@/components/DashboardMainNav"
 import { DashboardNav } from "@/components/DashboardNav"
-import { MainNav } from "@/components/MainNav"
+import { MobileNav } from "@/components/MobileNav"
 import { SiteFooter } from "@/components/SiteFooter"
 import UserDropdown from "@/components/UserDropdown"
 
@@ -23,7 +24,8 @@ export default async function DashboardLayout({
     <div className="flex min-h-screen flex-col space-y-6">
       <header className="sticky top-0 z-40 border-b dark:border-dark-400 border-dark-200 bg-dark-50 dark:bg-dark-700">
         <div className="container flex h-20 items-center justify-between py-4">
-          <MainNav />
+          <MobileNav />
+          <DashboardMainNav />
           <UserDropdown
             user={{
               name: user.name,
@@ -37,7 +39,7 @@ export default async function DashboardLayout({
         <aside className="hidden w-[200px] flex-col md:flex">
           <DashboardNav />
         </aside>
-        <main className="flex w-full flex-1 flex-col overflow-hidden">
+        <main className="flex w-full flex-1 flex-col overflow-hidden p-1">
           {children}
         </main>
       </div>

@@ -1,33 +1,71 @@
+"use client"
+
 import * as React from "react"
 import Link from "next/link"
-import { useLockBody } from "@/hooks/useLockBody"
+import { Glasses, Settings, Trophy, User } from "lucide-react"
 
-import { MainNavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
 import { Icons } from "@/components/Icons"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu"
 
-interface MobileNavProps {
-  items: MainNavItem[]
-  children?: React.ReactNode
-}
-
-export function MobileNav({ items, children }: MobileNavProps) {
-  useLockBody()
-
+export function MobileNav() {
   return (
-    <div
-      className={cn(
-        "fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md animate-in slide-in-from-bottom-80 md:hidden"
-      )}
-    >
-      <div className="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-md">
-        <Link href="/" className="flex items-center space-x-2">
-          <Icons.logo />
-          <span className="font-bold">{siteConfig.name}</span>
-        </Link>
-        {children}
-      </div>
+    <div className="flex md:hidden">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button className="flex items-center space-x-2">
+            <Icons.logo />
+            <span className="font-bold sm:inline-block">{siteConfig.name}</span>
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="start"
+          sideOffset={32}
+          alignOffset={0}
+          className="w-[200px] slide-in-from-top-2 overflow-auto"
+          forceMount
+        >
+          <Link href="/">
+            <DropdownMenuItem>
+              <Glasses className="mr-2 h-4 w-4" />
+              <span>Home</span>
+              <DropdownMenuShortcut>⇧⌘H</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <Link href="/dashboard/profile">
+              <DropdownMenuItem>
+                <User className="mr-2 h-4 w-4" />
+                <span>Profile</span>
+                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </Link>
+            <Link href="/dashboard/scoreboard">
+              <DropdownMenuItem>
+                <Trophy className="mr-2 h-4 w-4" />
+                <span>Scoreboard</span>
+                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </Link>
+            <Link href="/dashboard/quizzes">
+              <DropdownMenuItem>
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Quizzes</span>
+                <DropdownMenuShortcut>⌘Q</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </Link>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   )
 }
