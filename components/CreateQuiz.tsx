@@ -176,8 +176,8 @@ export default function QuizzesForm({ categories }: QuizzesFormProps) {
     <div className="flex flex-col">
       <div className="w-full rounded-md text-center flex items-center justify-center border-[0.25px] p-1 border-red-500 mb-4">
         Please note that, due to the code being open-sourced and the AWS
-        restrictions, the 'Add quiz' functionality is limited to the admin role
-        as of today.
+        restrictions, the &apos;Add quiz&apos; functionality is limited to the
+        admin role as of today.
       </div>
       <FormProvider {...methods}>
         <form
