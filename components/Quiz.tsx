@@ -4,6 +4,7 @@ import React, { useState, useTransition } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { Answer, Question as Qs, Quiz as Qz } from "@prisma/client"
+import { useSession } from "next-auth/react"
 
 import { cn } from "@/lib/utils"
 import { toast } from "@/components/ui/toast"
@@ -34,6 +35,7 @@ export function Quiz({ quiz }: QuizProps) {
   const [isPending, startTransition] = useTransition()
   const [isFetching, setIsFetching] = useState<boolean>(false)
   const router = useRouter()
+  const session = useSession()
 
   const selectAnswer = (answer: Answer) => {
     setCurrentAnswer(answer)
@@ -79,6 +81,12 @@ export function Quiz({ quiz }: QuizProps) {
       return
     }
 
+    toast({
+      title: "Success",
+      message: "Your score has been saved successfully.",
+      type: "success",
+    })
+
     startTransition(() => {
       setIsFetching(false)
       router.refresh()
@@ -93,18 +101,18 @@ export function Quiz({ quiz }: QuizProps) {
   }
 
   const onCompleteHandle = async () => {
-    // const data = {
-    //   quizId: quiz?.id,
-    //   userId: user?.id,
-    //   score: correctAnswersCount,
-    // }
+    const data = {
+      quizId: quiz?.id,
+      userId: session?.data?.user?.id,
+      score: correctAnswersCount,
+    }
 
-    // if (!user) {
-    //   router.push("/#harry_potter_quizzes")
-    //   return
-    // }
+    if (!session) {
+      router.push("/#harry_potter_quizzes")
+      return
+    }
 
-    // await saveQuizResults(data)
+    await saveQuizResults(data)
     router.push("/#harry_potter_quizzes")
   }
 
