@@ -107,13 +107,15 @@ export function Quiz({ quiz }: QuizProps) {
       score: correctAnswersCount,
     }
 
-    if (!session) {
+    if (session.data?.user) {
+      await saveQuizResults(data)
+      router.push("/#harry_potter_quizzes")
+    } else {
       router.push("/#harry_potter_quizzes")
       return
     }
 
-    await saveQuizResults(data)
-    router.push("/#harry_potter_quizzes")
+    return
   }
 
   return (
